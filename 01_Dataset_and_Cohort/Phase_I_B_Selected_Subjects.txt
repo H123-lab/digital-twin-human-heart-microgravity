@@ -1,0 +1,230 @@
+Phase I-B — Definition of Exact Inclusion Criteria and Selection Strategy for the 25 Personalized Cardiac Digital Twins
+Objective of Phase I-B
+The aim is not to maximize sample size. The aim is to create a high-fidelity, reproducible cohort of patient-specific cardiac digital twins where every selected subject can pass through the complete pipeline:
+\text{CMR} \rightarrow \text{Segmentation} \rightarrow 3D Mesh} \rightarrow \text{Fiber Architecture} \rightarrow \text{Physics Calibration} \rightarrow \text{Digital Twin} \rightarrow \text{Gravity Simulation}
+For this reason, we will prioritize data completeness and physiological interpretability over disease diversity.
+ACDC is particularly suitable because it provides cine CMR, expert ventricular/myocardial annotations, diagnosis categories, and patient metadata including age, height, weight, and cardiac phase information. 
+M&Ms is suitable for external validation because it was specifically designed to test generalization across centers, vendors, and diseases, containing 375 heterogeneous CMR datasets from multiple hospitals and scanner vendors. 
+
+1. Final Study Cohort Design
+Development Cohort
+Dataset:
+ACDC Training Dataset
+Target:
+n = 15 personalized cardiac digital twins
+Purpose:
+	• Development of mesh-generation workflow 
+	• Physics parameter calibration 
+	• Gravity simulation framework 
+	• Sensitivity analysis 
+
+External Validation Cohort
+Dataset:
+M&Ms Dataset
+Target:
+n = 10 personalized cardiac digital twins
+Purpose:
+	• Test robustness against: 
+		○ different scanners 
+		○ different institutions 
+		○ different disease distributions 
+
+2. Inclusion Criteria
+Core Eligibility Criteria (Mandatory)
+A subject will be included only if ALL criteria are satisfied.
+
+A. Imaging Requirements
+Required:
+✅ Cine cardiac MRI available
+✅ Short-axis stack available
+✅ Complete end-diastolic (ED) phase
+✅ Complete end-systolic (ES) phase
+✅ Full ventricular coverage
+✅ Expert segmentation available
+✅ Image quality acceptable for 3D reconstruction
+Rationale:
+Digital twin construction requires reliable ventricular geometry. Current MRI-based digital twin pipelines typically begin with segmentation, contour extraction, volumetric mesh generation, and fiber assignment. 
+
+B. Age Criteria
+Include:
+18–65 years
+Reason:
+This avoids:
+	• pediatric cardiac anatomy variation 
+	• extreme age-related remodeling 
+
+C. Anthropometric Criteria
+Required:
+Variable	Requirement
+Height	Available
+Weight	Available
+BMI	Calculable
+Reason:
+Body size influences:
+	• ventricular dimensions 
+	• wall stress 
+	• scaling of computational models 
+
+D. Cardiac Function Criteria
+Available:
+	• LV end-diastolic volume 
+	• LV end-systolic volume 
+	• LV ejection fraction 
+	• Stroke volume 
+Calculated:
+SV=EDV−ESVSV = EDV - ESVSV=EDV−ESVEF=EDV−ESVEDV×100EF = \frac{EDV-ESV}{EDV}\times100EF=EDVEDV−ESV​×100
+
+E. Rhythm Criteria
+Preferred:
+Sinus rhythm
+Exclude:
+	• atrial fibrillation 
+	• paced rhythm 
+	• major arrhythmia 
+Reason:
+The first-generation model focuses on mechanical adaptation to gravity, not electrophysiological remodeling.
+
+3. Disease Distribution Strategy
+We should NOT randomly select 15 ACDC patients.
+A digital twin paper should demonstrate biological variability.
+Recommended ACDC development cohort:
+Group	Number
+Healthy controls	5
+Dilated cardiomyopathy	3
+Hypertrophic cardiomyopathy	3
+Previous myocardial infarction	3
+Abnormal RV	1
+Total	15
+ACDC contains balanced groups including healthy subjects, myocardial infarction, dilated cardiomyopathy, hypertrophic cardiomyopathy, and abnormal RV cases. 
+
+4. Exclusion Criteria
+Imaging Exclusions
+Remove:
+❌ Severe motion artifact
+❌ Missing ED frame
+❌ Missing ES frame
+❌ Incomplete ventricular coverage
+❌ Poor segmentation boundaries
+❌ Non-diagnostic cine quality
+
+Clinical Exclusions
+Remove:
+❌ Congenital heart disease
+Reason:
+Congenital anatomy requires a separate modeling framework.
+
+❌ Severe combined cardiac pathology
+Example:
+	• infarction + severe dilation 
+	• complex valve disease 
+Reason:
+Too many unknown physiological variables.
+
+❌ Extreme ventricular remodeling
+Example:
+	• giant aneurysms 
+	• massive hypertrophy 
+Reason:
+May introduce unstable mesh deformation.
+
+5. Selection Algorithm
+We should create a scoring system.
+Digital Twin Suitability Score (DTSS)
+Each patient receives:
+Parameter	Score
+Complete cine MRI	20
+Complete segmentation	20
+Metadata completeness	15
+Good image quality	15
+Physiological parameters available	15
+Representative disease phenotype	10
+Age suitability	5
+Maximum:
+100 points
+Selection:
+Include only:
+DTSS≥85DTSS \geq 85DTSS≥85
+
+6. Patient Selection Spreadsheet
+Create:
+Table: Phase_I_B_Selected_Subjects.xlsx
+Columns:
+Variable
+Dataset
+Patient ID
+Inclusion status
+DTSS score
+Age
+Sex
+Height
+Weight
+BMI
+Diagnosis
+MRI vendor
+Field strength
+ED frame
+ES frame
+LV EDV
+LV ESV
+LV EF
+RV EDV
+RV ESV
+LV mass
+Image quality score
+Final decision
+
+7. Final Expected Dataset
+After screening:
+ACDC
+100 available patients
+↓
+approximately 40–50 eligible
+↓
+ranked by DTSS
+↓
+select top 15
+
+M&Ms
+375 available patients
+↓
+screen for complete annotations and metadata
+↓
+select 10
+
+Phase I-B Deliverables
+Before any COMSOL simulation begins, we should complete:
+Deliverable 1
+ACDC Patient Screening Table
+100 → 15 subjects
+
+Deliverable 2
+M&Ms Validation Screening Table
+375 → 10 subjects
+
+Deliverable 3
+Final Cohort CONSORT-style Flow Diagram
+Example:
+
+ACDC dataset
+n=100
+ |
+ |-- excluded:
+ |   incomplete metadata
+ |   poor quality
+ |   missing segmentation
+ |
+Eligible
+n≈45
+ |
+DTSS ranking
+ |
+Final digital twins
+n=15
+
+M&Ms dataset
+n=375
+ |
+Eligibility screening
+ |
+Final validation twins
+n=10
