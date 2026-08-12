@@ -1,0 +1,261 @@
+These are my study screening and cohort selection data, which are part of the Methods and Supplementary Material, not the primary Results.
+
+Think of the study as having four levels of data.
+| Level       | File                                       | Purpose                             | Appears in Paper                  |
+| ----------- | ------------------------------------------ | ----------------------------------- | --------------------------------- |
+| **Level 1** | ACDC & M&Ms original MRI datasets          | External source (raw data)          | Not reproduced                    |
+| **Level 2** | **Screening workbook (your three sheets)** | Document how subjects were selected | Methods + Supplementary           |
+| **Level 3** | Extracted patient measurements             | Input for digital twin construction | Methods, Supplementary Dataset S1 |
+| **Level 4** | Digital twin simulation outputs            | Your actual research results        | Results section                   |
+
+Phase I-D (Current Work)
+
+The workbook
+
+ACDC Screening (100 rows)
+M&Ms Screening (375 rows)
+Final DTSS Ranking
+
+is essentially your CONSORT/STROBE-style screening database.
+
+Its purpose is to demonstrate:
+
+every candidate patient considered
+inclusion/exclusion decisions
+objective DTSS scoring
+reproducible cohort selection
+
+This is not the dataset analyzed for the main findings.
+
+Role of each file in the project
+
+Original MRI Datasets
+        │
+        ▼
+Screening Workbook
+(100 + 375 patients)
+        │
+        ▼
+Final DTSS Ranking
+        │
+        ▼
+Select 15 + 10 patients
+        │
+        ▼
+Patient Extraction Workbook (Dataset S1)
+        │
+        ▼
+Digital Twin Construction
+        │
+        ▼
+Simulation Output Dataset
+        │
+        ▼
+Statistical Analysis
+        │
+        ▼
+Results Tables & Figures
+
+As our study protocol evolves, I recommend organizing the project into five master datasets rather than one:
+File	Purpose	Status
+Dataset_01_Screening.xlsx	Screen all ACDC and M&Ms subjects, calculate DTSS, document inclusion/exclusion	Current phase
+Dataset_02_Selected_Subjects.xlsx	Complete demographic and imaging metadata for the final 25 participants	Next
+Dataset_03_DigitalTwin_Parameters.xlsx	Mesh characteristics, fiber assignment, material properties, boundary conditions, calibrated parameters	Later
+Dataset_04_Simulation_Results.xlsx	Earth, Mars, and microgravity outputs (EDV, ESV, EF, wall stress, strain, pressure, etc.)	Results
+Dataset_05_Statistical_Analysis.xlsx	Summary statistics, hypothesis tests, confidence intervals, effect sizes, regression, validation metrics	Final analysis
+
+This structure follows good computational cardiovascular research practice and will make your work highly reproducible. It also separates source data, cohort selection, model inputs, simulation outputs, and statistical analyses, which reviewers in journals such as European Heart Journal – Digital Health, npj Digital Medicine, or Computer Methods in Biomechanics and Biomedical Engineering typically expect.
+
+
+
+
+
+
+Original MRI Datasets Used in This Study
+Primary Development Dataset
+Automated Cardiac Diagnosis Challenge (ACDC)
+
+Role in study
+
+Development dataset
+Patient-specific digital twin construction
+Initial validation
+
+Original source
+
+Automated Cardiac Diagnosis Challenge (ACDC)
+
+Imaging modality
+
+Cine Cardiac Magnetic Resonance Imaging (cine CMR)
+
+Sequence
+
+Balanced Steady-State Free Precession (bSSFP)
+
+Views
+
+Short-axis stack covering the entire ventricles
+
+Subjects
+
+100 patients
+
+Available cardiac phases
+
+End-Diastole (ED)
+End-Systole (ES)
+
+Manual expert segmentations.
+
+
+Data Provenance Statement
+
+I recommend using a dedicated table in the manuscript.
+| Dataset                      | Role                | Subjects | Modality            | Used for                                  |
+| ---------------------------- | ------------------- | -------: | ------------------- | ----------------------------------------- |
+| ACDC Challenge               | Development         |      100 | Cine CMR            | Patient-specific digital twin development |
+| M&Ms Challenge               | External validation |      375 | Cine CMR            | Independent validation                    |
+| Living Heart / Cardiac Atlas | Anatomical prior    |      N/A | Computational atlas | Rule-based fiber architecture             |
+
+
+Left ventricular cavity (LV)
+Right ventricular cavity (RV)
+Left ventricular myocardium
+
+Clinical labels
+
+Normal (NOR)
+Dilated cardiomyopathy (DCM)
+Hypertrophic cardiomyopathy (HCM)
+Myocardial infarction (MINF)
+Abnormal right ventricle (ARV)
+
+Patient metadata
+
+Age
+Sex
+Height
+Weight
+Diagnosis
+
+Functional parameters
+
+EDV
+ESV
+EF
+LV volumes (derived)
+
+Purpose in this study
+
+Patient-specific
+
+segmentation
+mesh generation
+geometry reconstruction
+digital twin personalization
+External Validation Dataset
+M&Ms Challenge Dataset
+
+(Multi-Centre, Multi-Vendor & Multi-Disease)
+
+Role in study
+
+External validation
+
+Imaging modality
+
+Cine cardiac MRI
+
+Subjects
+
+375 studies
+
+Centers
+
+Multiple hospitals
+
+Scanner vendors
+
+Siemens
+Philips
+GE
+Canon
+
+Available segmentations
+
+LV
+RV
+Myocardium
+
+Clinical diversity
+
+Multiple diseases
+
+Multiple scanner vendors
+
+Multiple acquisition protocols
+
+Purpose
+
+Independent validation of
+
+segmentation pipeline
+geometry reconstruction
+digital twin robustness
+Supporting Anatomical Prior Dataset
+Living Heart / Cardiac Atlas Resources
+
+Role
+
+NOT patient data
+
+Used only for
+
+rule-based myocardial fiber architecture
+anatomical priors
+ventricular coordinate system
+biomechanical initialization
+
+No patient included in analysis.
+
+Important Clarification for the Manuscript
+
+This sentence should appear in the Methods:
+
+"No new human participants were recruited. All patient imaging data were obtained from publicly available, previously de-identified cardiac MRI datasets. The study used the ACDC Challenge dataset for digital twin development and the M&Ms Challenge dataset for external validation. Rule-based myocardial fiber architecture was assigned using established anatomical priors rather than patient-specific diffusion tensor MRI."
+
+This statement is technically accurate because neither ACDC nor M&Ms provides diffusion tensor MRI (DT-MRI), so patient-specific myocardial fiber orientation cannot be directly reconstructed from the datasets.
+
+
+
+
+
+Data Flow for the Study:
+Original MRI Datasets
+│
+├── ACDC (100 patients)
+│      ├── Cine CMR
+│      ├── LV segmentation
+│      ├── RV segmentation
+│      ├── Myocardium segmentation
+│      └── Patient metadata
+│
+├── M&Ms (375 studies)
+│      ├── Cine CMR
+│      ├── LV segmentation
+│      ├── RV segmentation
+│      └── Multi-centre validation
+│
+└── Anatomical Priors
+       ├── Living Heart
+       └── Cardiac Atlas
+               │
+               ▼
+Dataset_01_Screening.xlsx
+               ▼
+Selected Cohort (15 + 10)
+               ▼
+Digital Twin Construction
+               ▼
+Gravity Simulations
