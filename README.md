@@ -112,6 +112,9 @@ The constitutive formulation and numerical parameters are documented in the corr
 10_Methods_and_Supplementary/
 11_Reproducibility_Artifacts/
 
+Source Data and Data Governance
+The original source imaging datasets are not redistributed in this repository. Source datasets remain subject to the access, licensing, and redistribution conditions established by their respective dataset providers. Only permitted derived cohort information, computational metadata, model specifications, execution records, and simulation outputs are provided. No directly identifying patient information is intentionally included.
+
 Data Provenance
 Patient-specific anatomical information is derived from the designated cardiac imaging datasets.
 The repository distinguishes between:
@@ -122,6 +125,32 @@ literature-derived constitutive parameters
 study-defined experimental conditions
 computationally defined solver settings
 simulation-derived outputs
+
+Numerical Verification
+The computational verification framework includes:
+surface-volume agreement
+surface topology checks
+geometry integrity checks
+fiber-field continuity checks
+constitutive implementation verification
+mesh-quality assessment
+mesh-convergence analysis
+nonlinear solver convergence
+energy and numerical consistency checks.
+
+Scientific Experiment
+The primary experiment evaluates cardiac mechanical response across the predefined gravity conditions.
+Primary output variables include:
+maximum principal stress
+von Mises stress
+fiber-direction stress
+maximum principal strain
+fiber strain
+displacement
+LV cavity volume
+myocardial volume
+strain energy
+Additional analyses include pressure-response and predefined sensitivity analyses.
 
 Reproducibility
 The repository is designed to preserve the computational chain from source cohort selection through patient-specific geometry reconstruction, model implementation, numerical verification, gravity simulation, sensitivity analysis, and final audit. Where distribution is permitted, computational artifacts such as COMSOL models, geometry files, meshes, solver logs, convergence records, exported numerical results, and checksums are retained in the reproducibility-artifact directory.
