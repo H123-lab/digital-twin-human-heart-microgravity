@@ -1,0 +1,276 @@
+Phase I-C — Finalized Dataset Extraction Framework and Subject Selection Plan
+
+We now move from selection criteria → operational dataset construction.
+
+The objective is to generate the final analytical dataset that will feed:
+
+CMR→Segmentation→Mesh→FiberModel→PhysicsCalibration→DigitalTwin
+
+1. Final Dataset Architecture
+
+We will create three linked datasets:
+
+Dataset 1 — Screening Dataset
+
+Purpose:
+
+Evaluate every available subject
+Apply inclusion/exclusion criteria
+Calculate Digital Twin Suitability Score (DTSS)
+
+File:
+
+ACDC_Screening_Dataset.xlsx
+
+and
+
+MMs_Screening_Dataset.xlsx
+
+Dataset 2 — Final Personalized Digital Twin Cohort
+
+Purpose:
+Contains only subjects entering computational modeling.
+
+File:
+
+Phase_I_B_Selected_Subjects.xlsx
+
+Final:
+
+Dataset	Target
+ACDC Development	15 subjects
+M&Ms External Validation	10 subjects
+Total Personalized Twins	25
+Dataset 3 — Digital Twin Parameter Dataset
+
+Purpose:
+
+Feeds computational model.
+
+File:
+
+Digital_Twin_Input_Parameters.xlsx
+
+Contains:
+
+anatomical parameters
+physiological parameters
+mechanical parameters
+simulation parameters
+2. Final Subject Extraction Template
+Sheet 1: Cohort Selection
+Variable	Description
+Study ID	Internal identifier
+Dataset	ACDC / M&Ms
+Original Patient ID	Dataset identifier
+Selection status	Included / Excluded
+DTSS score	0–100
+Final cohort	Development / Validation
+Disease category	Diagnosis
+Selection reason	Notes
+Sheet 2: Demographic Characteristics
+Variable	Unit
+Age	years
+Sex	Male/Female
+Height	cm
+Weight	kg
+BMI	kg/m²
+
+BMI:
+
+BMI=
+height(m)
+2
+weight(kg)
+	​
+
+Sheet 3: MRI Acquisition Parameters
+Variable	Source
+Scanner vendor	MRI metadata
+Field strength	Tesla
+Sequence	Cine bSSFP
+Slice thickness	mm
+Pixel spacing	mm
+Number of slices	count
+Acquisition center	M&Ms only
+Sheet 4: Cardiac Geometry Parameters
+LV Parameters
+Variable	Unit
+LV EDV	mL
+LV ESV	mL
+LV Stroke Volume	mL
+LV EF	%
+LV mass	g
+LV end-diastolic diameter	mm
+LV wall thickness	mm
+
+Calculated:
+
+SV=EDV−ESV
+EF=
+EDV
+EDV−ESV
+	​
+
+×100
+RV Parameters
+Variable	Unit
+RV EDV	mL
+RV ESV	mL
+RV EF	%
+RV mass	g
+Sheet 5: Disease Phenotype
+
+ACDC:
+
+Category	Target
+Normal	5
+Dilated cardiomyopathy	3
+Hypertrophic cardiomyopathy	3
+Previous myocardial infarction	3
+Abnormal RV	1
+
+Total:
+
+15
+
+M&Ms:
+
+Selection should prioritize:
+
+Phenotype	Target
+Normal	3
+Cardiomyopathy	4
+Ischemic remodeling	2
+RV involvement	1
+
+Total:
+
+10
+
+3. Digital Twin Suitability Score Implementation
+
+Each patient receives:
+
+Criterion	Points
+Complete cine MRI	20
+Complete LV/RV/myocardium segmentation	20
+Complete metadata	15
+Image quality	15
+Physiological parameter availability	15
+Disease representativeness	10
+Age suitability	5
+Total	100
+
+Selection:
+
+DTSS≥85
+4. Image Quality Scoring
+
+We should standardize this.
+
+Image Quality Score (15 points)
+Feature	Score
+No motion artifact	5
+Clear endocardial borders	5
+Complete ventricular coverage	5
+5. Final Expected Extraction Workflow
+Step 1
+
+Download:
+
+ACDC:
+
+100 subjects
+
+↓
+
+Extract:
+
+NIfTI images
+ED/ES labels
+metadata
+Step 2
+
+Automated screening:
+
+Remove:
+
+missing segmentation
+incomplete slices
+poor quality
+
+Expected:
+
+100 → 40–50 candidates
+
+Step 3
+
+Apply DTSS ranking
+
+Example:
+
+Patient	DTSS
+ACDC-001	96
+ACDC-014	93
+ACDC-072	91
+ACDC-031	88
+ACDC-055	86
+
+Select top 15 while preserving disease distribution.
+
+6. Final Data Dictionary for Digital Twin Construction
+
+After selection:
+
+Anatomical Inputs
+
+Required for mesh:
+
+LV endocardial contour
+LV epicardial contour
+RV contour
+myocardial thickness
+ventricular volumes
+
+Output:
+
+3D ventricular mesh
+
+Mechanical Inputs
+
+Initially assigned:
+
+Parameter	Source
+Myocardial density	Literature
+Passive stiffness	Literature + calibration
+Active tension	Inverse optimization
+Fiber angle	Rule-based atlas
+Physiological Calibration Inputs
+Parameter	Source
+EF	MRI
+EDV	MRI
+ESV	MRI
+Stroke volume	MRI-derived
+HR	Available metadata/literature
+BP	Literature assumptions
+7. Important Protocol Decision
+
+For this first-generation digital twin study:
+
+We should not attempt to model every cardiovascular variable.
+
+The primary endpoint should be:
+
+Anatomically constrained mechanical adaptation under altered gravity.
+
+Therefore:
+
+Primary outputs:
+
+LV volume change
+stroke volume change
+wall stress
+myocardial strain
+pressure-volume relationship
+ventricular remodeling index
