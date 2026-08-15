@@ -1,0 +1,866 @@
+COMSOL MODEL PARAMETER AND BOUNDARY-CONDITION REGISTRY
+======================================================
+
+Repository location:
+05_COMSOL_Model/
+
+File:
+COMSOL_Model_Parameter_and_Boundary_Condition_Registry.txt
+
+Purpose
+-------
+This registry reconstructs the documented computational parameters,
+constitutive assumptions, boundary conditions, gravity conditions,
+numerical settings, primary outputs, and sensitivity specifications
+for the patient-specific ventricular solid-mechanics model.
+
+This registry is an evidence-control document. It distinguishes
+documented model specifications from parameters for which actual
+execution evidence has been recovered.
+
+Evidence classes
+----------------
+CLASS 1 — SPECIFIED
+The parameter or method is documented as part of the intended model.
+
+CLASS 2 — EXECUTED
+The parameter was used in an actual computational run and a corresponding
+execution artifact is available.
+
+CLASS 3 — VERIFIED
+The executed parameter/model component has been checked against a
+predefined numerical or methodological criterion.
+
+CLASS 4 — MANUSCRIPT-REPORTED
+The parameter/result has sufficient traceability to an underlying
+execution artifact to support quantitative reporting.
+
+NOT RECOVERED
+The parameter is described in the reconstructed model documentation,
+but the underlying numerical value or execution artifact has not yet
+been recovered.
+
+IMPORTANT CONTROL RULE
+----------------------
+A CLASS 1 specification must not be silently converted into a CLASS 2,
+CLASS 3, or CLASS 4 claim.
+
+Where an exact numerical parameter is not currently evidenced, the
+manuscript should report the methodological formulation without
+inventing a numerical value.
+
+======================================================================
+1. STUDY AND MODEL SCOPE
+======================================================================
+
+Study scope:
+Patient-specific ventricular solid mechanics under gravity-dependent
+loading.
+
+Current documented pilot cohort:
+P001–P005.
+
+Input anatomy:
+Patient-specific end-diastolic/end-systolic ventricular segmentation.
+
+Primary computational framework:
+Nonlinear finite-element solid mechanics.
+
+Software:
+COMSOL Multiphysics, version 6.4 listed in the recovered artifact
+registry.
+
+Primary mechanical endpoints:
+1. Peak von Mises stress
+2. Peak principal strain
+3. Maximum ventricular displacement
+4. LV cavity volume
+5. Myocardial volume
+6. Strain energy
+
+Important scope restriction:
+The recovered COMSOL documentation does NOT independently establish
+execution of:
+- CFD
+- fluid–structure interaction (FSI)
+- electrophysiology
+- baroreflex control
+- chronic remodeling
+- pressure–volume-loop simulation
+- astronaut-specific validation
+
+These components must not be represented as executed components of the
+present solid-mechanics model unless independent executable evidence is
+recovered.
+
+======================================================================
+2. ANATOMICAL INPUT AND GEOMETRY
+======================================================================
+
+Parameter:
+Patient-specific ventricular anatomy
+
+Documented specification:
+ED/ES ventricular segmentation is used as the anatomical input.
+
+Input source:
+ACDC cardiac imaging dataset for the currently documented P001–P005
+pilot cohort.
+
+Processing:
+Deterministic surface reconstruction followed by generation of a
+simulation-ready ventricular solid domain.
+
+Surface reconstruction method:
+Marching Cubes.
+
+Geometry quality-control framework:
+- Watertightness
+- Self-intersection checks
+- Degenerate-face checks
+- Surface/volume agreement
+
+Evidence status:
+SPECIFIED.
+Patient-level execution evidence requires reconciliation with the
+original ACDC NIfTI and Info.cfg source files and retained geometry
+reconstruction artifacts.
+
+Manuscript-safe description:
+“Patient-specific ventricular geometries were reconstructed from
+end-diastolic and end-systolic cardiac segmentations using a
+deterministic surface-reconstruction workflow.”
+
+======================================================================
+3. MYOCARDIAL FIBER ARCHITECTURE
+======================================================================
+
+Parameter:
+Endocardial helix angle
+
+Documented value:
++60°
+
+Evidence status:
+SPECIFIED MODEL PARAMETER.
+
+Parameter:
+Epicardial helix angle
+
+Documented value:
+−60°
+
+Evidence status:
+SPECIFIED MODEL PARAMETER.
+
+Transmural interpolation:
+Helical interpolation between the prescribed endocardial and epicardial
+orientations.
+
+Orientation quality control:
+- Orthonormal basis checks
+- Fiber-field continuity checks
+
+Fiber architecture classification:
+Atlas/rule-based rather than subject-specific DT-MRI.
+
+Important limitation:
+The recovered documentation explicitly states that subject-specific
+DT-MRI fiber architecture is unavailable.
+
+Manuscript-safe description:
+“Atlas/rule-based transmural fiber orientation was mapped to the
+patient-specific ventricular geometry.”
+
+Do NOT describe this component as:
+“subject-specific DT-MRI fiber architecture.”
+
+Sensitivity specification:
+Fiber orientation perturbation of ±15°.
+
+Evidence status:
+SPECIFIED sensitivity design.
+Actual sensitivity execution must be supported by retained output
+artifacts before quantitative reporting.
+
+======================================================================
+4. CONSTITUTIVE MYOCARDIAL MATERIAL MODEL
+======================================================================
+
+Constitutive formulation:
+Holzapfel–Ogden-type anisotropic hyperelastic formulation.
+
+Mechanical behavior:
+Nonlinear anisotropic myocardial solid mechanics.
+
+Compressibility:
+Nearly incompressible penalty formulation.
+
+Primary role:
+Representation of passive/anisotropic myocardial mechanical response.
+
+Evidence status:
+SPECIFIED MODEL FORMULATION.
+
+Exact constitutive coefficients:
+NOT RECOVERED in the current reconstruction.
+
+Control rule:
+Do not invent numerical material coefficients.
+
+If the final Simulation Input Parameter Workbook or original COMSOL
+model provides the actual coefficients, those values must be transferred
+into this registry and linked to the corresponding artifact.
+
+Manuscript-safe description:
+“A Holzapfel–Ogden-type anisotropic hyperelastic constitutive
+formulation with a nearly incompressible penalty treatment was used to
+represent myocardial mechanical behavior.”
+
+======================================================================
+5. CAVITY LOADING
+======================================================================
+
+Boundary/input:
+End-diastolic ventricular cavity loading.
+
+Documented implementation:
+Prescribed end-diastolic cavity pressure.
+
+Exact pressure value:
+NOT RECOVERED in the currently indexed documentation.
+
+Evidence status:
+SPECIFIED FORMULATION / NUMERICAL VALUE NOT RECOVERED.
+
+Required recovery artifact:
+Final simulation parameter workbook and/or COMSOL model export.
+
+Control rule:
+Do not insert a numerical cavity-pressure value into the manuscript
+until it is verified from the final parameter source.
+
+Sensitivity specification:
+Cavity pressure ±10%.
+
+Evidence status:
+SPECIFIED sensitivity design.
+Actual execution requires corresponding sensitivity outputs.
+
+Manuscript-safe description:
+“End-diastolic cavity loading was prescribed using a predefined
+physiological pressure condition.”
+
+======================================================================
+6. BASAL BOUNDARY CONDITION
+======================================================================
+
+Boundary:
+Ventricular basal region.
+
+Documented implementation:
+Viscoelastic/spring–damper basal constraint.
+
+Exact spring coefficient:
+NOT RECOVERED.
+
+Exact damping coefficient:
+NOT RECOVERED.
+
+Evidence status:
+SPECIFIED FORMULATION / NUMERICAL COEFFICIENTS NOT RECOVERED.
+
+Sensitivity specification:
+Basal boundary-condition parameters ±20%.
+
+Evidence status:
+SPECIFIED sensitivity design.
+
+Control rule:
+Do not invent spring or damping coefficients.
+
+Required recovery artifact:
+Final COMSOL parameter file/model and/or simulation-input workbook.
+
+Manuscript-safe description:
+“A viscoelastic spring–damper constraint was applied at the ventricular
+base to provide controlled mechanical support while permitting
+physiologically plausible deformation.”
+
+======================================================================
+7. GRAVITY IMPLEMENTATION
+======================================================================
+
+Gravity formulation:
+External body-force multiplier γ.
+
+Reference gravitational acceleration:
+Earth gravity represented as γ = 1.00.
+
+Gravity conditions:
+
+Condition 1
+-----------
+Environment:
+Earth
+
+Multiplier:
+γ = 1.00
+
+Role:
+Normogravity reference condition.
+
+Condition 2
+-----------
+Environment:
+Intermediate reduced gravity
+
+Multiplier:
+γ = 0.75
+
+Role:
+Reduced-gravity response characterization.
+
+Condition 3
+-----------
+Environment:
+Intermediate reduced gravity
+
+Multiplier:
+γ = 0.50
+
+Role:
+Reduced-gravity response characterization.
+
+Condition 4
+-----------
+Environment:
+Mars
+
+Multiplier:
+γ = 0.38
+
+Role:
+Primary partial-gravity condition.
+
+Condition 5
+-----------
+Environment:
+Moon
+
+Multiplier:
+γ = 0.16
+
+Role:
+Partial-gravity condition.
+
+Condition 6
+-----------
+Environment:
+Microgravity approximation
+
+Multiplier:
+γ = 0.00
+
+Role:
+Primary mechanical-unloading condition.
+
+Evidence status:
+GRAVITY LEVELS ARE SPECIFIED IN THE RECOVERED STUDY DESIGN.
+
+Important interpretation:
+The gravity experiment changes the prescribed gravitational body-force
+multiplier. It does not automatically establish changes in preload,
+afterload, autonomic control, blood volume, baroreflex gain, or chronic
+physiological remodeling.
+
+Those physiological mechanisms must not be claimed as computationally
+implemented unless independently evidenced.
+
+Manuscript-safe description:
+“Gravity-dependent loading was represented by an external body-force
+multiplier evaluated at 1.00, 0.75, 0.50, 0.38, 0.16, and 0.00 g.”
+
+======================================================================
+8. FINITE-ELEMENT MESH
+======================================================================
+
+Mesh type:
+Three-dimensional tetrahedral finite-element mesh.
+
+Mesh strategy:
+Coarse, medium, and fine mesh series.
+
+Purpose:
+Assessment of numerical mesh convergence.
+
+Final mesh:
+Patient-specific fine/selected mesh following predefined convergence
+assessment.
+
+Exact patient-level element counts:
+Must be linked to the final mesh-export artifact before being classified
+as verified execution data.
+
+Evidence status:
+MESH STRATEGY SPECIFIED.
+Patient-level numerical counts require execution-artifact reconciliation.
+
+Manuscript-safe description:
+“Coarse, medium, and fine tetrahedral meshes were evaluated to assess
+mesh convergence.”
+
+======================================================================
+9. NUMERICAL SOLVER
+======================================================================
+
+Solver:
+Fully coupled Newton nonlinear solver.
+
+Problem class:
+Nonlinear finite-element solid mechanics.
+
+Convergence assessment:
+Nonlinear residual convergence.
+
+Exact solver tolerances:
+NOT FULLY RECOVERED IN THE CURRENT MODEL SPECIFICATION.
+
+Patient-level residual values:
+Reported elsewhere in the reconstructed study tables but require actual
+COMSOL solver-log/export evidence.
+
+Evidence status:
+SOLVER TYPE = SPECIFIED.
+PATIENT-LEVEL EXECUTION = REQUIRES ARTIFACT RECONCILIATION.
+
+Control rule:
+Reported residual values must not be labelled “verified” unless
+corresponding solver logs or machine-readable COMSOL exports are retained.
+
+======================================================================
+10. PRIMARY OUTPUT DEFINITIONS
+======================================================================
+
+Output 1:
+Peak von Mises stress
+
+Unit:
+kPa
+
+Role:
+Primary myocardial stress response.
+
+Output 2:
+Peak principal strain
+
+Unit:
+%
+
+Role:
+Primary myocardial deformation response.
+
+Output 3:
+Maximum ventricular displacement
+
+Unit:
+mm
+
+Role:
+Primary ventricular displacement response.
+
+Output 4:
+LV cavity volume
+
+Unit:
+mL
+
+Role:
+Geometric/mechanical response.
+
+Output 5:
+Myocardial volume
+
+Unit:
+mL
+
+Role:
+Structural quantity.
+
+Output 6:
+Strain energy
+
+Unit:
+J
+
+Role:
+Integrated mechanical response.
+
+Evidence status:
+OUTPUT DEFINITIONS ARE SPECIFIED.
+
+Quantitative manuscript reporting:
+Only after the corresponding patient × gravity computational result
+records are traceable to execution artifacts.
+
+======================================================================
+11. NUMERICAL VERIFICATION PARAMETERS
+======================================================================
+
+Verification domain:
+Geometry
+Mesh
+Nonlinear solver
+Energy consistency where applicable
+
+Documented geometry agreement range:
+0.67–1.08%
+
+Status:
+REQUIRES SOURCE-GEOMETRY EVIDENCE.
+
+Documented fine-versus-medium mesh variation:
+0.94–1.63%
+
+Documented criterion:
+≤2%
+
+Status:
+REQUIRES ACTUAL MESH-CONVERGENCE EXPORTS.
+
+Documented solver residual range:
+5.8 × 10⁻⁷ to 9.1 × 10⁻⁷
+
+Status:
+REQUIRES ACTUAL COMSOL SOLVER LOGS/EXPORTS.
+
+Documented failed elements:
+0
+
+Status:
+REQUIRES MESH/SOLVER EXECUTION ARTIFACT.
+
+Documented energy-balance error:
+≤1%
+
+Status:
+REQUIRES ENERGY-AUDIT/EXECUTION ARTIFACT.
+
+Important control rule:
+The numerical values above are recovered/documented values, not
+automatically verified execution results.
+
+They must be upgraded to VERIFIED only after their corresponding
+machine-readable or native COMSOL artifacts are retained.
+
+======================================================================
+12. ROBUSTNESS / SENSITIVITY DESIGN
+======================================================================
+
+Sensitivity domain 1:
+Fiber orientation
+
+Perturbation:
+±15°
+
+Purpose:
+Assess dependence of mechanical response on prescribed fiber
+architecture.
+
+Evidence:
+Sensitivity design specified; execution outputs required.
+
+Sensitivity domain 2:
+Material parameters
+
+Perturbation:
+±20%
+
+Purpose:
+Assess dependence on constitutive material assumptions.
+
+Evidence:
+Sensitivity design specified; execution outputs required.
+
+Sensitivity domain 3:
+Basal boundary condition
+
+Perturbation:
+±20%
+
+Purpose:
+Assess dependence on basal mechanical constraint.
+
+Evidence:
+Sensitivity design specified; execution outputs required.
+
+Sensitivity domain 4:
+Cavity pressure
+
+Perturbation:
+±10%
+
+Purpose:
+Assess dependence on prescribed cavity loading.
+
+Evidence:
+Sensitivity design specified; execution outputs required.
+
+Important reporting rule:
+Sensitivity ranges must not be presented as observed confidence
+intervals, biological variability, or measured uncertainty.
+
+They represent predefined computational perturbations.
+
+======================================================================
+13. BOUNDARY-CONDITION CONTROL TABLE
+======================================================================
+
+Boundary/input:
+Patient-specific ventricular geometry
+Type:
+Geometric input
+Status:
+SPECIFIED / execution evidence to be retained
+
+Boundary/input:
+End-diastolic cavity pressure
+Type:
+Prescribed loading
+Numerical value:
+NOT RECOVERED
+Status:
+SPECIFIED / VALUE NOT RECOVERED
+
+Boundary/input:
+Basal spring–damper constraint
+Type:
+Mechanical constraint
+Numerical coefficients:
+NOT RECOVERED
+Status:
+SPECIFIED / COEFFICIENTS NOT RECOVERED
+
+Boundary/input:
+Epicardial/outer ventricular mechanical surface
+Type:
+Mechanical tissue boundary
+Status:
+SPECIFIED
+
+Boundary/input:
+Gravity body force
+Type:
+External body-force multiplier
+Values:
+1.00, 0.75, 0.50, 0.38, 0.16, 0.00 g
+Status:
+SPECIFIED
+
+======================================================================
+14. PARAMETER EVIDENCE MATRIX
+======================================================================
+
+Parameter:
+Patient-specific geometry
+Documented:
+YES
+Exact numerical execution evidence:
+PENDING RECONCILIATION
+Classification:
+SPECIFIED
+
+Parameter:
+Fiber endocardial angle
+Documented:
++60°
+Classification:
+SPECIFIED
+
+Parameter:
+Fiber epicardial angle
+Documented:
+−60°
+Classification:
+SPECIFIED
+
+Parameter:
+Material formulation
+Documented:
+Holzapfel–Ogden-type anisotropic hyperelastic
+Classification:
+SPECIFIED
+
+Parameter:
+Exact material coefficients
+Documented:
+NO
+Classification:
+NOT RECOVERED
+
+Parameter:
+Cavity pressure
+Documented:
+Prescribed ED loading
+Exact value:
+NO
+Classification:
+NOT RECOVERED
+
+Parameter:
+Basal spring coefficient
+Exact value:
+NO
+Classification:
+NOT RECOVERED
+
+Parameter:
+Basal damping coefficient
+Exact value:
+NO
+Classification:
+NOT RECOVERED
+
+Parameter:
+Gravity levels
+Documented:
+YES
+Values:
+1.00, 0.75, 0.50, 0.38, 0.16, 0.00 g
+Classification:
+SPECIFIED
+
+Parameter:
+Mesh strategy
+Documented:
+YES
+Classification:
+SPECIFIED
+
+Parameter:
+Patient-level mesh counts
+Documented elsewhere:
+YES
+Execution export:
+PENDING
+Classification:
+SPECIFIED / REQUIRES VERIFICATION
+
+Parameter:
+Newton nonlinear solver
+Documented:
+YES
+Classification:
+SPECIFIED
+
+Parameter:
+Patient-level solver residuals
+Documented elsewhere:
+YES
+Execution logs:
+PENDING
+Classification:
+SPECIFIED / REQUIRES VERIFICATION
+
+======================================================================
+15. MANUSCRIPT-SAFE MODEL DESCRIPTION
+======================================================================
+
+The computational model consisted of a patient-specific ventricular
+solid domain reconstructed from end-diastolic/end-systolic cardiac
+segmentations. The ventricular tissue was represented using a nonlinear
+anisotropic hyperelastic constitutive formulation of the
+Holzapfel–Ogden type with a nearly incompressible treatment. Myocardial
+fiber orientation was assigned using a rule/atlas-based transmural
+helical architecture, with prescribed endocardial and epicardial helix
+angles of +60° and −60°, respectively. A prescribed end-diastolic cavity
+loading condition and a viscoelastic spring–damper basal constraint were
+used to define the mechanical boundary conditions. Gravity-dependent
+loading was introduced through an external body-force multiplier and
+evaluated at 1.00, 0.75, 0.50, 0.38, 0.16, and 0.00 g. Three-dimensional
+tetrahedral meshes were assessed using a coarse-to-fine convergence
+strategy, and the nonlinear finite-element equations were solved using
+a fully coupled Newton method. Primary mechanical outputs were peak
+von Mises stress, peak principal strain, maximum ventricular
+displacement, LV cavity volume, myocardial volume, and strain energy.
+
+This description is a methodological specification. Numerical parameter
+values not independently recovered from the final simulation-input
+artifact or native COMSOL model must not be added solely to complete the
+description.
+
+======================================================================
+16. CRITICAL EXCLUSIONS
+======================================================================
+
+Unless independent executable evidence is recovered, this registry does
+not support claims that the present model executed:
+
+- CFD
+- fluid–structure interaction
+- electrophysiological simulation
+- baroreflex control
+- autonomic feedback
+- chronic ventricular remodeling
+- astronaut-specific physiological personalization
+- astronaut-specific validation
+- pressure–volume loop simulation
+- blood-flow/WSS prediction
+
+Such concepts may be discussed as future extensions or biological
+context, but they must not be represented as executed components of the
+present solid-mechanics experiment.
+
+======================================================================
+17. REQUIRED ARTIFACTS BEFORE FINAL MANUSCRIPT FREEZE
+======================================================================
+
+The following artifacts must be retained and linked to this registry:
+
+1. Original ACDC NIfTI images/masks used for P001–P005
+2. ACDC Info.cfg metadata
+3. Patient-specific geometry files
+4. Geometry reconstruction logs
+5. Final COMSOL .mph model
+6. Final COMSOL model version/date
+7. Final material-parameter record
+8. Exact cavity-pressure parameter
+9. Exact basal spring/damper parameters
+10. Fiber-field generation/mapping record
+11. Coarse/medium/fine mesh exports
+12. Mesh-convergence logs
+13. Solver logs
+14. Gravity-sweep result exports
+15. Sensitivity-analysis result exports
+16. Patient × gravity × endpoint machine-readable results
+17. Final figure-generation data
+18. Final manuscript table-generation data
+
+======================================================================
+18. FINAL EVIDENCE-CONTROL STATEMENT
+======================================================================
+
+This registry is intended to prevent specification-to-result
+conversion.
+
+A parameter documented in the reconstructed model is not automatically
+evidence that the corresponding computational operation was executed.
+
+Before manuscript submission, every quantitative manuscript result must
+be traceable through:
+
+Patient input
+→ geometry
+→ model parameter
+→ boundary condition
+→ mesh
+→ solver execution
+→ output export
+→ verification
+→ manuscript table/figure.
+
+If an execution artifact cannot be recovered, the corresponding item
+must remain classified as “not currently evidenced” until the actual
+model/output is reconstructed and independently checked.
+
+END OF REGISTRY
