@@ -3,32 +3,27 @@ DIGITAL TWIN SIMULATION RESULT LINEAGE
 ======================================================================
 
 Document status:
-INTERNAL RECOVERY / RESULT-LINEAGE AND MANUSCRIPT-TRACEABILITY CONTROL DOCUMENT
+INTERNAL RECOVERY / RESULT-LINEAGE CONTROL DOCUMENT
 
 Repository location:
 08_Simulation_Results/
 
 Purpose:
-This registry establishes the controlled lineage between patient-specific
-cardiac digital-twin computational inputs, COMSOL execution outputs,
-verification evidence, derived numerical summaries, manuscript tables,
-figures, and supplementary materials.
+This registry defines the provenance and reporting lineage of numerical
+results generated, recovered, reconstructed, summarized, or represented
+in figures and tables from the patient-specific cardiac digital-twin
+finite-element study.
 
-The purpose of this document is to ensure that every quantitative result
-reported in the manuscript can ultimately be traced through a reproducible
-computational lineage.
-
-The controlled lineage is:
+The purpose of this document is to ensure that every quantitative
+manuscript result can ultimately be traced through:
 
 Patient input
     ->
 Patient-specific geometry
     ->
-Geometry reconstruction
+Fiber-field definition
     ->
-Fiber-field assignment
-    ->
-Material parameters
+Material/constitutive parameters
     ->
 Boundary conditions
     ->
@@ -36,126 +31,78 @@ Gravity condition
     ->
 Finite-element mesh
     ->
-COMSOL solver execution
+COMSOL solution
     ->
-Solution object / numerical output
+Raw numerical output
     ->
 Endpoint extraction
     ->
 Verification
     ->
-Patient-level result
+Patient-level result table
     ->
-Group-level statistical summary
+Group-level summary
     ->
-Figure/table-generation dataset
+Figure/table generation
     ->
-Manuscript figure/table
-    ->
-Manuscript text
+Manuscript-reported result
 
-No numerical value should bypass this lineage without explicit
-documentation.
+This registry must not be used to manufacture missing computational
+outputs.
 
 ======================================================================
-1. RELATIONSHIP TO OTHER REPOSITORY CONTROL DOCUMENTS
+1. EVIDENCE-STATUS DEFINITIONS
 ======================================================================
 
-This result-lineage registry is subordinate to, and must remain consistent
-with, the following repository documents:
-
-05_COMSOL_Model/
-    COMSOL_Model_Evidence_Recovery_and_Scope_Lock.txt
-
-05_COMSOL_Model/
-    COMSOL_Model_Parameter_and_Boundary_Condition_Registry.txt
-
-06_Simulation_Design/
-    Gravity_Simulation_Experiment_Design_Recovery.txt
-
-07_Simulation_Execution/
-    Simulation_Execution_Evidence_Registry.txt
-
-09_Stage_3_Verification/
-    Stage_3_COMSOL_Verification_Evidence_Registry.txt
-
-The evidence hierarchy is:
-
-MODEL SPECIFICATION
-    ->
-EXPERIMENTAL DESIGN
-    ->
-EXECUTION EVIDENCE
-    ->
-VERIFICATION
-    ->
-RESULT
-    ->
-MANUSCRIPT REPORTING
-
-A result cannot be upgraded to a higher evidence category merely because
-it is reproduced in a downstream figure, table, manuscript paragraph, or
-presentation.
-
-======================================================================
-2. EVIDENCE STATUS DEFINITIONS
-======================================================================
-
-Each result or result-producing artifact must be assigned one of the
-following evidence states.
+Each result or numerical artifact must be assigned one of the following
+evidence states.
 
 STATUS A — SPECIFIED
 
-The result or computational quantity is defined in the model or study
-protocol but no execution evidence has been established.
+The quantity or computational output was defined as part of the study
+design or model specification.
 
 STATUS B — DOCUMENTED / REPORTED
 
-The numerical value or graphical representation exists in recovered
-documentation, figure, table, workbook, manuscript draft, or note, but
-the underlying computational execution artifact has not yet been recovered
-or linked.
+The quantity is present in a recovered figure, table, workbook,
+manuscript draft, note, or other downstream representation, but the
+underlying machine-readable or native computational execution artifact
+has not yet been recovered.
 
 STATUS C — EXECUTED — EVIDENCE RECOVERED
 
-A corresponding computational execution artifact has been recovered.
-
-Acceptable evidence may include:
-
-- native COMSOL .mph model containing the solution
-- COMSOL exported numerical result
-- COMSOL solver log
-- batch execution record
-- patient-specific numerical output
-- machine-readable simulation result
-- reproducible computational execution record
+The corresponding COMSOL solution, numerical export, solver output,
+batch execution record, or equivalent computational artifact has been
+recovered.
 
 STATUS D — VERIFIED
 
-The execution artifact exists and the associated result has passed the
-applicable verification checks documented in:
-
-09_Stage_3_Verification/
+The underlying execution artifact has been recovered and the result has
+passed the applicable predefined verification checks.
 
 STATUS E — MANUSCRIPT-REPORTED
 
-The result is traceable from patient input through computational execution,
-verification, and final result extraction and is therefore suitable for
-quantitative reporting in the manuscript.
+The result has complete traceability through patient input,
+computational execution, verification, and result extraction and is
+therefore suitable for use as a definitive quantitative manuscript
+result.
 
-IMPORTANT:
+IMPORTANT CONTROL RULE:
 
-STATUS B must not automatically become STATUS C.
+STATUS B must not automatically be upgraded to STATUS C.
 
-STATUS C must not automatically become STATUS D.
+STATUS C must not automatically be upgraded to STATUS D.
 
-STATUS D must not automatically become STATUS E.
+STATUS D must not automatically be upgraded to STATUS E.
+
+A downstream figure or table does not independently establish the
+existence of a native COMSOL solution file.
 
 ======================================================================
-3. CONTROLLED EXPERIMENTAL STRUCTURE
+2. CONTROLLED STUDY DESIGN
 ======================================================================
 
-Computational subjects:
+Final computational subjects:
 
 P001
 P002
@@ -163,11 +110,11 @@ P003
 P004
 P005
 
-Total planned subjects:
+Number of patient-specific computational subjects:
 
 5
 
-Gravity conditions:
+Predefined gravity conditions:
 
 G01 = 1.00 g
 G02 = 0.75 g
@@ -176,646 +123,457 @@ G04 = 0.38 g
 G05 = 0.16 g
 G06 = 0.00 g
 
-Total planned subject × gravity combinations:
+Gravity sequence used for reporting:
 
-5 × 6 = 30
+1.00 g -> 0.75 g -> 0.50 g -> 0.38 g -> 0.16 g -> 0.00 g
 
 Primary computational endpoints:
 
-E01 = LV cavity volume
-E02 = Myocardial volume
-E03 = Peak myocardial von Mises stress
-E04 = Peak principal strain
-E05 = Maximum ventricular displacement
-E06 = Total ventricular strain energy
+E01 = Peak von Mises myocardial stress
+E02 = Peak principal strain
+E03 = Maximum ventricular displacement
+E04 = LV cavity volume
+E05 = Ventricular strain energy
 
-Total planned endpoint observations:
+Additional controlled endpoint:
 
-30 subject × gravity combinations
-×
-6 primary endpoints
+E06 = Myocardial volume
 
-= 180 planned primary endpoint observations
+The experimental design therefore comprises:
 
-This number represents the controlled experimental design and must not be
-interpreted as evidence that all 180 endpoint observations were successfully
-executed or verified.
+5 patient-specific models
+x
+6 predefined gravity conditions
+=
+30 patient × gravity computational combinations
 
-======================================================================
-4. PATIENT-LEVEL RESULT LINEAGE
-======================================================================
+For each computational combination, the primary output framework
+contains six controlled endpoint categories.
 
-For every patient, the following lineage must ultimately be established:
+The expected patient-level computational result structure is therefore:
 
-Patient ID
-    ->
-Source imaging dataset
-    ->
-ED/ES image or segmentation source
-    ->
-Reconstructed geometry
-    ->
-Geometry quality-control status
-    ->
-Fiber-field assignment
-    ->
-Material-parameter version
-    ->
-Boundary-condition version
-    ->
-Mesh version
-    ->
-COMSOL model version
-    ->
-Gravity condition
-    ->
-Solver execution
-    ->
-Solution identifier
-    ->
-Endpoint extraction
-    ->
-Verification status
-    ->
-Patient-level result file
-    ->
-Group-level statistical analysis
-    ->
-Figure/table destination
+30 patient × gravity combinations
+x
+6 endpoint categories
 
-Where any link is missing, record:
-
-NOT CURRENTLY RECOVERED
-
-Do not infer the missing link from a downstream result.
+However, the current repository recovery does NOT establish that all
+30 combinations have recoverable native execution artifacts.
 
 ======================================================================
-5. PATIENT P001 RESULT LINEAGE
+3. SOURCE INPUT LINEAGE
 ======================================================================
 
-Patient:
-P001
-
-Source imaging:
-ACDC-derived patient-specific cardiac imaging/segmentation
-
-Geometry:
-Patient-specific ventricular geometry
-
-Geometry evidence:
-TO BE LINKED TO 03_Geometry_Reconstruction/
-
-Fiber field:
-Atlas/rule-based fiber orientation
-
-Material formulation:
-Patient-specific ventricular solid mechanics using the recovered
-Holzapfel–Ogden-type anisotropic formulation
-
-Boundary conditions:
-To be linked to the parameter and boundary-condition registry
-
-Mesh:
-Patient-specific finite-element mesh
-
-COMSOL model:
-NOT CURRENTLY RECOVERED
-
-Patient-level numerical result export:
-NOT CURRENTLY RECOVERED
-
-Solver log:
-NOT CURRENTLY RECOVERED
-
-Verification record:
-NOT CURRENTLY LINKED
-
-Gravity-specific outputs:
-NOT CURRENTLY RECOVERED AS MACHINE-READABLE PATIENT-LEVEL OUTPUTS
-
-Recovered downstream representation:
-PATIENT-LEVEL GRAVITY-RESPONSE MATERIAL AVAILABLE IN RECOVERED FIGURE
-MATERIAL
-
-Current evidence status:
-DOCUMENTED / REPORTED
-
-Current manuscript status:
-HOLD UNTIL EXECUTION AND VERIFICATION TRACEABILITY IS ESTABLISHED
-
-======================================================================
-6. PATIENT P002 RESULT LINEAGE
-======================================================================
-
-Patient:
-P002
-
-Source imaging:
-ACDC-derived patient-specific cardiac imaging/segmentation
-
-Geometry:
-Patient-specific ventricular geometry
-
-Geometry evidence:
-TO BE LINKED TO 03_Geometry_Reconstruction/
-
-Fiber field:
-Atlas/rule-based fiber orientation
-
-Material formulation:
-Patient-specific ventricular solid mechanics using the recovered
-Holzapfel–Ogden-type anisotropic formulation
-
-Boundary conditions:
-To be linked to the parameter and boundary-condition registry
-
-Mesh:
-Patient-specific finite-element mesh
-
-COMSOL model:
-NOT CURRENTLY RECOVERED
-
-Patient-level numerical result export:
-NOT CURRENTLY RECOVERED
-
-Solver log:
-NOT CURRENTLY RECOVERED
-
-Verification record:
-NOT CURRENTLY LINKED
-
-Gravity-specific outputs:
-NOT CURRENTLY RECOVERED AS MACHINE-READABLE PATIENT-LEVEL OUTPUTS
-
-Recovered downstream representation:
-PATIENT-LEVEL GRAVITY-RESPONSE MATERIAL AVAILABLE IN RECOVERED FIGURE
-MATERIAL
-
-Current evidence status:
-DOCUMENTED / REPORTED
-
-Current manuscript status:
-HOLD UNTIL EXECUTION AND VERIFICATION TRACEABILITY IS ESTABLISHED
-
-======================================================================
-7. PATIENT P003 RESULT LINEAGE
-======================================================================
-
-Patient:
-P003
-
-Source imaging:
-ACDC-derived patient-specific cardiac imaging/segmentation
-
-Geometry:
-Patient-specific ventricular geometry
-
-Geometry evidence:
-TO BE LINKED TO 03_Geometry_Reconstruction/
-
-Fiber field:
-Atlas/rule-based fiber orientation
-
-Material formulation:
-Patient-specific ventricular solid mechanics using the recovered
-Holzapfel–Ogden-type anisotropic formulation
-
-Boundary conditions:
-To be linked to the parameter and boundary-condition registry
-
-Mesh:
-Patient-specific finite-element mesh
-
-COMSOL model:
-NOT CURRENTLY RECOVERED
-
-Patient-level numerical result export:
-NOT CURRENTLY RECOVERED
-
-Solver log:
-NOT CURRENTLY RECOVERED
-
-Verification record:
-NOT CURRENTLY LINKED
-
-Gravity-specific outputs:
-NOT CURRENTLY RECOVERED AS MACHINE-READABLE PATIENT-LEVEL OUTPUTS
-
-Recovered downstream representation:
-PATIENT-LEVEL GRAVITY-RESPONSE MATERIAL AVAILABLE IN RECOVERED FIGURE
-MATERIAL
-
-Current evidence status:
-DOCUMENTED / REPORTED
-
-Current manuscript status:
-HOLD UNTIL EXECUTION AND VERIFICATION TRACEABILITY IS ESTABLISHED
-
-======================================================================
-8. PATIENT P004 RESULT LINEAGE
-======================================================================
-
-Patient:
-P004
-
-Source imaging:
-ACDC-derived patient-specific cardiac imaging/segmentation
-
-Geometry:
-Patient-specific ventricular geometry
-
-Geometry evidence:
-TO BE LINKED TO 03_Geometry_Reconstruction/
-
-Fiber field:
-Atlas/rule-based fiber orientation
-
-Material formulation:
-Patient-specific ventricular solid mechanics using the recovered
-Holzapfel–Ogden-type anisotropic formulation
-
-Boundary conditions:
-To be linked to the parameter and boundary-condition registry
-
-Mesh:
-Patient-specific finite-element mesh
-
-COMSOL model:
-NOT CURRENTLY RECOVERED
-
-Patient-level numerical result export:
-NOT CURRENTLY RECOVERED
-
-Solver log:
-NOT CURRENTLY RECOVERED
-
-Verification record:
-NOT CURRENTLY LINKED
-
-Gravity-specific outputs:
-NOT CURRENTLY RECOVERED AS MACHINE-READABLE PATIENT-LEVEL OUTPUTS
-
-Recovered downstream representation:
-PATIENT-LEVEL GRAVITY-RESPONSE MATERIAL AVAILABLE IN RECOVERED FIGURE
-MATERIAL
-
-Current evidence status:
-DOCUMENTED / REPORTED
-
-Current manuscript status:
-HOLD UNTIL EXECUTION AND VERIFICATION TRACEABILITY IS ESTABLISHED
-
-======================================================================
-9. PATIENT P005 RESULT LINEAGE
-======================================================================
-
-Patient:
-P005
-
-Source imaging:
-ACDC-derived patient-specific cardiac imaging/segmentation
-
-Geometry:
-Patient-specific ventricular geometry
-
-Geometry evidence:
-TO BE LINKED TO 03_Geometry_Reconstruction/
-
-Fiber field:
-Atlas/rule-based fiber orientation
-
-Material formulation:
-Patient-specific ventricular solid mechanics using the recovered
-Holzapfel–Ogden-type anisotropic formulation
-
-Boundary conditions:
-To be linked to the parameter and boundary-condition registry
-
-Mesh:
-Patient-specific finite-element mesh
-
-COMSOL model:
-NOT CURRENTLY RECOVERED
-
-Patient-level numerical result export:
-NOT CURRENTLY RECOVERED
-
-Solver log:
-NOT CURRENTLY RECOVERED
-
-Verification record:
-NOT CURRENTLY LINKED
-
-Gravity-specific outputs:
-NOT CURRENTLY RECOVERED AS MACHINE-READABLE PATIENT-LEVEL OUTPUTS
-
-Recovered downstream representation:
-PATIENT-LEVEL GRAVITY-RESPONSE MATERIAL AVAILABLE IN RECOVERED FIGURE
-MATERIAL
-
-Current evidence status:
-DOCUMENTED / REPORTED
-
-Current manuscript status:
-HOLD UNTIL EXECUTION AND VERIFICATION TRACEABILITY IS ESTABLISHED
-
-======================================================================
-10. PRIMARY ENDPOINT RESULT LINEAGE
-======================================================================
-
-E01 — LV CAVITY VOLUME
-
-Definition:
-Model-derived LV cavity volume associated with the simulated
-patient-specific ventricular state.
+3.1 PRIMARY SOURCE DATASET
 
 Source:
-Patient-specific ventricular computational model.
+ACDC (Automated Cardiac Diagnosis Challenge)
 
-Execution artifact:
-NOT CURRENTLY RECOVERED
+Role:
+Primary cardiac imaging source for the final patient-specific
+digital-twin cohort.
 
-Numerical result export:
-NOT CURRENTLY RECOVERED
+Input type:
+Cine cardiac MRI with expert ventricular/myocardial segmentation data.
 
-Recovered group-level representation:
-AVAILABLE IN RECOVERED SIX-GRAVITY SUMMARY
+Patient-level information used:
 
-Current evidence:
-DOCUMENTED / REPORTED
+- De-identified study identifier
+- ED phase
+- ES phase
+- Ventricular segmentation
+- Myocardial segmentation
+- Available diagnostic classification where applicable
 
-Verification:
-PENDING
+Processing chain:
 
-Manuscript reporting:
-HOLD UNTIL TRACEABILITY IS ESTABLISHED
+ACDC source data
+    ->
+Cohort selection
+    ->
+Segmentation verification
+    ->
+3D geometry reconstruction
+    ->
+Surface quality control
+    ->
+Volumetric-domain generation
+    ->
+Finite-element model generation
 
+Repository linkage:
 
-E02 — MYOCARDIAL VOLUME
+01_Dataset_and_Cohort/
+02_Input_Provenance/
+03_Geometry_Reconstruction/
+04_Digital_Twin_Construction/
 
-Definition:
-Model-derived ventricular myocardial volume.
+Current source-data control:
 
-Source:
-Patient-specific ventricular computational model.
+Original source imaging remains subject to the source dataset's access
+and redistribution conditions.
 
-Execution artifact:
-NOT CURRENTLY RECOVERED
+Only de-identified study records and study-derived computational
+artifacts should be retained in the repository where permitted.
 
-Numerical result export:
-NOT CURRENTLY RECOVERED
+3.2 REFERENCE DATASETS
 
-Recovered group-level representation:
-AVAILABLE IN RECOVERED STUDY RESULT MATERIAL
+Sunnybrook Cardiac Data:
 
-Current evidence:
-DOCUMENTED / REPORTED
+Role:
+Reference cardiac imaging dataset assessed during source-data
+evaluation/methodological comparison.
 
-Verification:
-PENDING
+Current status:
+Reference resource; not established as a source of the final five
+patient-specific FEM geometries unless explicitly documented in the
+executed pipeline.
 
-Manuscript reporting:
-HOLD UNTIL TRACEABILITY IS ESTABLISHED
+CAMUS:
 
+Role:
+Reference echocardiographic dataset used for methodological/benchmark
+assessment.
 
-E03 — PEAK MYOCARDIAL VON MISES STRESS
+Current status:
+Reference resource; not established as a source of the final
+five-patient CMR FEM geometries.
 
-Definition:
-Maximum model-derived von Mises stress within the modeled ventricular
-myocardium.
-
-Source:
-Patient-specific ventricular solid-mechanics solution.
-
-Execution artifact:
-NOT CURRENTLY RECOVERED
-
-Numerical result export:
-NOT CURRENTLY RECOVERED
-
-Recovered downstream representation:
-AVAILABLE IN RECOVERED FIGURE 6/7 MATERIAL
-
-Current evidence:
-DOCUMENTED / REPORTED
-
-Verification:
-PENDING
-
-Manuscript reporting:
-HOLD UNTIL TRACEABILITY IS ESTABLISHED
-
-
-E04 — PEAK PRINCIPAL STRAIN
-
-Definition:
-Maximum model-derived principal strain within the modeled ventricular
-myocardium.
-
-Source:
-Patient-specific ventricular solid-mechanics solution.
-
-Execution artifact:
-NOT CURRENTLY RECOVERED
-
-Numerical result export:
-NOT CURRENTLY RECOVERED
-
-Recovered downstream representation:
-AVAILABLE IN RECOVERED FIGURE 6/7 MATERIAL
-
-Current evidence:
-DOCUMENTED / REPORTED
-
-Verification:
-PENDING
-
-Manuscript reporting:
-HOLD UNTIL TRACEABILITY IS ESTABLISHED
-
-
-E05 — MAXIMUM VENTRICULAR DISPLACEMENT
-
-Definition:
-Maximum model-derived ventricular displacement.
-
-Source:
-Patient-specific ventricular solid-mechanics solution.
-
-Execution artifact:
-NOT CURRENTLY RECOVERED
-
-Numerical result export:
-NOT CURRENTLY RECOVERED
-
-Recovered downstream representation:
-AVAILABLE IN RECOVERED FIGURE 6/7 MATERIAL
-
-Current evidence:
-DOCUMENTED / REPORTED
-
-Verification:
-PENDING
-
-Manuscript reporting:
-HOLD UNTIL TRACEABILITY IS ESTABLISHED
-
-
-E06 — TOTAL VENTRICULAR STRAIN ENERGY
-
-Definition:
-Model-derived total ventricular strain energy associated with the
-simulated mechanical state.
-
-Source:
-Patient-specific ventricular solid-mechanics solution.
-
-Execution artifact:
-NOT CURRENTLY RECOVERED
-
-Numerical result export:
-NOT CURRENTLY RECOVERED
-
-Recovered downstream representation:
-AVAILABLE IN RECOVERED FIGURE 6/7 MATERIAL
-
-Current evidence:
-DOCUMENTED / REPORTED
-
-Verification:
-PENDING
-
-Manuscript reporting:
-HOLD UNTIL TRACEABILITY IS ESTABLISHED
+These datasets must not be represented as sources of the final
+patient-specific COMSOL models unless execution/provenance evidence
+establishes such use.
 
 ======================================================================
-11. RECOVERED SIX-GRAVITY NUMERICAL SUMMARY
+4. DERIVED COMPUTATIONAL INPUT LINEAGE
 ======================================================================
 
-The recovered documentation contains the following group-level
-six-gravity summary.
+4.1 PATIENT-SPECIFIC GEOMETRY
 
-These values are preserved exactly as recovered.
+Input:
 
-They are classified as DOCUMENTED / REPORTED.
+Verified patient-specific ED/ES segmentation masks.
 
-They are NOT classified as independently verified COMSOL results until
-their underlying execution artifacts are recovered and linked.
+Transformation:
 
-Gravity:
+Segmentation
+    ->
+Surface reconstruction
+    ->
+Surface quality control
+    ->
+CAD/solid generation
+    ->
+Volumetric computational domain
+
+Output:
+
+Patient-specific ventricular/cardiac geometry.
+
+Repository location:
+
+03_Geometry_Reconstruction/
+
+Current evidence classification:
+
+MODEL/PIPELINE SPECIFICATION ESTABLISHED.
+
+Patient-specific source/geometry artifacts:
+
+RECOVERY AND ARTIFACT LINKAGE PENDING WHERE NOT CURRENTLY PRESENT.
+
+4.2 FINITE-ELEMENT MESH
+
+Input:
+
+Patient-specific volumetric geometry.
+
+Transformation:
+
+Geometry
+    ->
+Coarse mesh
+    ->
+Medium mesh
+    ->
+Fine mesh
+    ->
+Mesh-quality assessment
+    ->
+Mesh-independence/convergence assessment
+
+Output:
+
+Three-dimensional tetrahedral finite-element discretization.
+
+Repository location:
+
+03_Geometry_Reconstruction/
+05_COMSOL_Model/
+09_Stage_3_Verification/
+
+Current evidence classification:
+
+MESH DESIGN DOCUMENTED.
+
+ACTUAL FINAL MESH EXPORTS:
+NOT CURRENTLY RECOVERED.
+
+ACTUAL MESH-CONVERGENCE EXECUTION EVIDENCE:
+PENDING.
+
+4.3 FIBER-ORIENTATION FIELD
+
+Specification:
+
+Endocardial helix angle:
++60 degrees
+
+Epicardial helix angle:
+-60 degrees
+
+Transmural definition:
+
+Continuous helical interpolation.
+
+Model characterization:
+
+Model-defined, literature-constrained fiber orientation field.
+
+Important limitation:
+
+The recovered documentation does not establish subject-specific
+diffusion-tensor MRI fiber mapping.
+
+Repository linkage:
+
+05_COMSOL_Model/
+
+Current evidence classification:
+
+SPECIFIED / DOCUMENTED.
+
+Fiber-field execution artifact:
+NOT CURRENTLY RECOVERED UNLESS PRESENT IN THE FINAL MODEL/EXPORT.
+
+======================================================================
+5. CONSTITUTIVE AND LOADING LINEAGE
+======================================================================
+
+5.1 CONSTITUTIVE MODEL
+
+Model:
+
+Anisotropic Holzapfel–Ogden-type hyperelastic formulation.
+
+Mechanical components:
+
+- Hyperelastic isotropic matrix contribution
+- Anisotropic myocardial fiber contribution
+- Nearly incompressible volumetric treatment
+
+Intended mathematical implementation:
+
+The myocardial strain-energy formulation uses appropriate invariants
+of the elastic right Cauchy–Green deformation tensor and
+fiber-direction invariants, with volumetric response handled separately
+for the nearly incompressible formulation.
+
+Current evidence classification:
+
+MODEL SPECIFICATION DOCUMENTED.
+
+Exact implemented constitutive parameter values:
+
+NOT FULLY RECOVERED IN THE CURRENT EVIDENCE RECORD.
+
+5.2 GRAVITY LOADING
+
+Gravity multiplier:
+
+gamma = 1.00, 0.75, 0.50, 0.38, 0.16, 0.00
+
+Effective gravitational acceleration:
+
+g_eff = gamma × g0
+
+where:
+
+g0 = 9.81 m/s^2
+
+Gravity conditions:
+
 1.00 g
-
-LV cavity volume:
-141.3 ± 8.7 mL
-
-Peak myocardial stress:
-91.7 ± 3.9 kPa
-
-Peak principal strain:
-18.4 ± 0.9 %
-
-Maximum displacement:
-1.82 ± 0.09 mm
-
-Strain energy:
-0.082 ± 0.006 J
-
-
-Gravity:
 0.75 g
-
-LV cavity volume:
-141.8 ± 8.7 mL
-
-Peak myocardial stress:
-86.4 ± 3.7 kPa
-
-Peak principal strain:
-17.4 ± 0.8 %
-
-Maximum displacement:
-1.69 ± 0.09 mm
-
-Strain energy:
-0.075 ± 0.005 J
-
-
-Gravity:
 0.50 g
-
-LV cavity volume:
-142.4 ± 8.8 mL
-
-Peak myocardial stress:
-81.0 ± 3.2 kPa
-
-Peak principal strain:
-16.3 ± 0.7 %
-
-Maximum displacement:
-1.57 ± 0.08 mm
-
-Strain energy:
-0.067 ± 0.005 J
-
-
-Gravity:
 0.38 g
-
-LV cavity volume:
-142.9 ± 8.8 mL
-
-Peak myocardial stress:
-77.8 ± 3.1 kPa
-
-Peak principal strain:
-15.6 ± 0.7 %
-
-Maximum displacement:
-1.50 ± 0.07 mm
-
-Strain energy:
-0.063 ± 0.004 J
-
-
-Gravity:
 0.16 g
-
-LV cavity volume:
-143.5 ± 8.8 mL
-
-Peak myocardial stress:
-73.0 ± 2.9 kPa
-
-Peak principal strain:
-14.8 ± 0.6 %
-
-Maximum displacement:
-1.41 ± 0.07 mm
-
-Strain energy:
-0.059 ± 0.003 J
-
-
-Gravity:
 0.00 g
 
-LV cavity volume:
-143.9 ± 8.8 mL
+Application:
 
-Peak myocardial stress:
-69.8 ± 2.8 kPa
+Prespecified gravitational body-force loading.
 
-Peak principal strain:
-14.1 ± 0.6 %
+Current evidence classification:
 
-Maximum displacement:
-1.36 ± 0.06 mm
+EXPERIMENTAL DESIGN DOCUMENTED.
 
-Strain energy:
+PATIENT-LEVEL EXECUTION EVIDENCE:
+PENDING RECOVERY.
+
+5.3 CAVITY PRESSURE
+
+Specification:
+
+Prescribed ventricular pressure according to the model loading
+protocol.
+
+Exact value:
+
+NOT CURRENTLY RECOVERED IN THE AVAILABLE EVIDENCE.
+
+Unit:
+
+mmHg / Pa, depending on the implementation.
+
+Control rule:
+
+No numerical cavity-pressure value should be inserted into the
+definitive manuscript or model registry unless it can be traced to the
+executed model or an authoritative computational record.
+
+5.4 BASAL CONSTRAINT
+
+Specification:
+
+Anatomically defined basal mechanical constraint according to the
+implemented model.
+
+Role:
+
+Restricts nonphysical rigid-body motion while permitting physiological
+deformation.
+
+Exact stiffness/penalty/spring/damper parameters:
+
+NOT CURRENTLY RECOVERED.
+
+Control rule:
+
+Do not infer or back-calculate the missing basal parameters from the
+reported output values.
+
+5.5 EPICARDIAL BOUNDARY
+
+Current documented specification:
+
+No additional displacement constraint unless explicitly defined in the
+executed model.
+
+Current evidence classification:
+
+MODEL SPECIFICATION / BOUNDARY-CONDITION DOCUMENTATION.
+
+Exact executed implementation:
+
+PENDING MODEL RECOVERY.
+
+======================================================================
+6. PRIMARY RESULT STRUCTURE
+======================================================================
+
+The definitive result registry should ultimately contain one row per:
+
+Patient × Gravity condition
+
+with the following minimum fields:
+
+Patient_ID
+Gravity_ID
+Gravity_g
+Geometry_ID
+Mesh_ID
+Fiber_Field_ID
+Material_Parameter_Version
+Boundary_Condition_Version
+COMSOL_Model_Version
+Solver_Status
+Solution_ID
+LV_Cavity_Volume_mL
+Myocardial_Volume_mL
+Peak_von_Mises_Stress_kPa
+Peak_Principal_Strain_percent
+Maximum_Ventricular_Displacement_mm
+Ventricular_Strain_Energy_J
+Verification_Status
+Source_Export
+Figure_Destination
+Table_Destination
+Manuscript_Destination
+
+Missing fields must be recorded as:
+
+NOT CURRENTLY RECOVERED
+
+rather than inferred.
+
+======================================================================
+7. RECOVERED GROUP-LEVEL NUMERICAL RESULT
+======================================================================
+
+The following six-gravity group-level values are present in the recovered
+study material and are therefore retained in this lineage registry as
+DOCUMENTED / REPORTED values.
+
+They are NOT automatically classified as executed or verified COMSOL
+outputs until their underlying computational exports are recovered.
+
+----------------------------------------------------------------------
+Gravity | LV cavity volume | Peak stress | Peak strain |
+Displacement | Strain energy
+----------------------------------------------------------------------
+
+1.00 g |
+141.3 ± 8.7 mL |
+91.7 ± 3.9 kPa |
+18.4 ± 0.9 % |
+1.82 ± 0.09 mm |
+0.082 ± 0.006 J
+
+0.75 g |
+141.8 ± 8.7 mL |
+86.4 ± 3.7 kPa |
+17.4 ± 0.8 % |
+1.69 ± 0.09 mm |
+0.075 ± 0.005 J
+
+0.50 g |
+142.4 ± 8.8 mL |
+81.0 ± 3.2 kPa |
+16.3 ± 0.7 % |
+1.57 ± 0.08 mm |
+0.067 ± 0.005 J
+
+0.38 g |
+142.9 ± 8.8 mL |
+77.8 ± 3.1 kPa |
+15.6 ± 0.7 % |
+1.50 ± 0.07 mm |
+0.063 ± 0.004 J
+
+0.16 g |
+143.5 ± 8.8 mL |
+73.0 ± 2.9 kPa |
+14.8 ± 0.6 % |
+1.41 ± 0.07 mm |
+0.059 ± 0.003 J
+
+0.00 g |
+143.9 ± 8.8 mL |
+69.8 ± 2.8 kPa |
+14.1 ± 0.6 % |
+1.36 ± 0.06 mm |
 0.054 ± 0.003 J
 
-Evidence status:
+Evidence classification:
 
 DOCUMENTED / REPORTED
 
@@ -825,273 +583,190 @@ NOT CURRENTLY LINKED
 
 Verification evidence:
 
-NOT CURRENTLY LINKED
-
-Manuscript status:
-
-PROVISIONAL / HOLD FOR FINAL TRACEABILITY
-
-No value in this section may be modified merely to improve visual
-agreement between manuscript figures and tables.
-
-======================================================================
-12. 1 g RECOVERED GROUP SUMMARY
-======================================================================
-
-The recovered documentation also contains the following 1 g group-level
-values:
-
-LV cavity volume:
-141.3 ± 8.7 mL
-
-Myocardial volume:
-117.0 ± 6.1 mL
-
-Peak von Mises stress:
-91.7 ± 3.9 kPa
-
-Peak principal strain:
-18.4 ± 0.9 %
-
-Maximum displacement:
-1.82 ± 0.09 mm
-
-Strain energy:
-0.082 ± 0.006 J
-
-Evidence status:
-
-DOCUMENTED / REPORTED
-
-Underlying patient-level numerical source:
-
-NOT CURRENTLY RECOVERED
-
-Verification:
-
 PENDING
 
-Manuscript reporting:
+Manuscript quantitative freeze:
 
-HOLD UNTIL RESULT LINEAGE IS ESTABLISHED
+HOLD UNTIL RESULT TRACEABILITY IS ESTABLISHED.
 
 ======================================================================
-13. FIGURE 6 RESULT LINEAGE
+8. FIGURE 6 RESULT LINEAGE
 ======================================================================
 
-Figure:
-Figure 6
+Current figure role:
 
-Current conceptual role:
-Quantitative gravity-dependent response of the patient-specific cardiac
-digital twin.
+Figure 6 represents the aggregate gravity-dependent mechanical response
+of the patient-specific cardiac digital-twin models.
 
-Expected source data:
+Gravity x-axis:
 
-Patient × gravity × endpoint numerical dataset
+1.00 g
+    ->
+0.75 g
+    ->
+0.50 g
+    ->
+0.38 g
+    ->
+0.16 g
+    ->
+0.00 g
 
-Expected dimensions:
+The sequence is displayed from terrestrial gravity toward
+microgravity.
 
-5 patients
-×
-6 gravity conditions
-×
-6 primary endpoints
+Current Figure 6 endpoint panels:
 
-Current underlying machine-readable source:
-NOT CURRENTLY RECOVERED
+Panel A:
+Peak von Mises myocardial stress
 
-Recovered graphical representation:
-AVAILABLE
+Units:
+kPa
+
+Panel B:
+Peak principal strain
+
+Units:
+%
+
+Panel C:
+Maximum ventricular displacement
+
+Units:
+mm
+
+Panel D:
+LV cavity volume
+
+Units:
+mL
+
+Panel E:
+Ventricular strain energy
+
+Units:
+J
+
+Panel F:
+Normalized response, % of 1 g
+
+Reference:
+
+1.00 g = 100%
+
+Current Figure 6 normalized-response definition:
+
+E_p(g) =
+value_at(g) / value_at(1.00 g) × 100
+
+The denominator is therefore the corresponding value at 1.00 g.
+
+Current recovered 0 g versus 1 g changes:
+
+Peak von Mises stress:
+approximately -23.9%
+
+Peak principal strain:
+approximately -23.4%
+
+Maximum displacement:
+approximately -25.3%
+
+LV cavity volume:
+approximately +1.8%
+
+Ventricular strain energy:
+approximately -34.1%
+
+Recovered calculation values:
+
+Stress:
+-23.88%
+
+Strain:
+-23.37%
+
+Displacement:
+-25.27%
+
+LV cavity volume:
++1.84%
+
+Strain energy:
+-34.15%
 
 Current evidence status:
-DOCUMENTED / REPORTED
 
-Required final linkage:
+The values are mathematically consistent with the recovered group-level
+Table/Figure 6 values.
 
+However, the normalized values are DERIVED from the documented
+group-level values and therefore inherit their current evidence status.
+
+They must not be described as independently verified COMSOL outputs
+until the underlying patient-level execution data are recovered.
+
+Figure 6 source hierarchy:
+
+Patient-level COMSOL exports
+    ->
+Patient-level endpoint table
+    ->
+Group-level summary
+    ->
+Normalized response calculation
+    ->
 Figure 6
-    ->
-Figure-generation dataset
-    ->
-Patient-level result registry
-    ->
-COMSOL numerical exports
-    ->
-COMSOL execution evidence
-    ->
-Verification registry
 
-Figure 6 must not be treated as an independent source of numerical
-truth.
+Current missing link:
 
-Any values visible only in the figure must ultimately be reconciled to
-the underlying numerical dataset.
+Patient-level numerical COMSOL exports.
 
 ======================================================================
-14. FIGURE 7 RESULT LINEAGE
+9. FIGURE 7 RESULT LINEAGE
 ======================================================================
 
-Figure:
-Figure 7
+Current figure role:
 
-Current conceptual role:
-Spatial and patient-level representation of gravity-dependent ventricular
-mechanical responses.
+Figure 7 represents spatial distributions and patient-level
+gravity-dependent mechanical responses from the ventricular
+finite-element models.
 
-Potential displayed quantities include:
+Potential field quantities represented:
 
-- myocardial stress
-- principal strain
-- displacement
-- strain-energy-related mechanical response
-- gravity-dependent patient-level response
+- Myocardial stress
+- Principal strain
+- Displacement
+- Strain-energy-related mechanical response
+- Gravity-dependent spatial mechanical patterns
 
-Current underlying machine-readable source:
-NOT CURRENTLY RECOVERED
+Current evidence classification:
 
-Recovered figure:
-AVAILABLE
+DOWNSTREAM FIGURE MATERIAL DOCUMENTED.
 
-Current evidence status:
-DOCUMENTED / REPORTED
+Underlying field solution exports:
 
-Required final linkage:
+NOT CURRENTLY RECOVERED.
 
-Figure 7
-    ->
-Figure-generation dataset
-    ->
-Patient-level simulation results
-    ->
-COMSOL solution/output
-    ->
-Verification evidence
+Native COMSOL solution:
 
-Spatial color maps must not be interpreted as numerical validation unless
-the underlying field data and corresponding computational solution are
-available.
+NOT CURRENTLY RECOVERED.
+
+Therefore:
+
+Figure 7 should not be used as independent proof of numerical
+verification.
+
+Before final manuscript freeze, each quantitative or spatial panel must
+be linked to the corresponding COMSOL solution/result export or
+reconstructed executable model.
 
 ======================================================================
-15. SUPPLEMENTARY RESULT LINEAGE
+10. PATIENT-LEVEL RESULT LINEAGE
 ======================================================================
 
-All supplementary figures and tables containing quantitative simulation
-results must be linked to the same result lineage.
-
-Relevant categories include:
-
-Supplementary geometry results
-
-Supplementary mesh-convergence results
-
-Supplementary solver-convergence results
-
-Supplementary sensitivity-analysis results
-
-Supplementary patient-level simulation results
-
-Supplementary gravity-response results
-
-Supplementary validation/reference-comparison results
-
-Supplementary computational parameter tables
-
-Each supplementary item must identify:
-
-1. Source dataset
-2. Computational output
-3. Verification status
-4. Analysis dataset
-5. Figure/table-generation dataset
-6. Final manuscript destination
-
-If any of these cannot be established, record:
-
-TRACEABILITY PENDING
-
-======================================================================
-16. VALIDATION / EXTERNAL-REFERENCE RESULT CONTROL
-======================================================================
-
-External physiological, imaging, aerospace, astronaut, NASA, ESA, or
-other reference datasets must not automatically be labeled as
-"independent validation."
-
-Before a result is classified as independent validation, the repository
-must establish:
-
-1. Dataset provenance
-2. Variable definitions
-3. Dataset acquisition/source
-4. Calibration dataset
-5. Model-lock point
-6. Validation dataset
-7. Confirmation that validation observations were not used for parameter
-   adjustment
-8. Exact comparison variables
-9. Statistical metrics
-10. Figure/table destination
-
-Where independence cannot be demonstrated, the result must be described
-as:
-
-EXTERNAL REFERENCE COMPARISON
-
-or
-
-REFERENCE-BASED PERFORMANCE ASSESSMENT
-
-rather than formal independent validation.
-
-======================================================================
-17. PERFORMANCE METRIC LINEAGE
-======================================================================
-
-Where agreement metrics are used, the underlying paired observations must
-be retained.
-
-Potential metrics include:
-
-R²
-RMSE
-MAE
-Bias
-Mean absolute error
-Other prespecified agreement measures
-
-Each metric must be traceable to:
-
-Reference observation
-    ->
-Model prediction
-    ->
-Paired analysis dataset
-    ->
-Statistical calculation
-    ->
-Metric output
-    ->
-Figure/table
-
-A statement such as:
-
-"all R² > 0.90"
-
-must not be retained as a final manuscript claim unless the underlying
-paired observations and calculation are recovered and independently
-checked.
-
-No performance metric may be created or altered to improve apparent model
-performance.
-
-======================================================================
-18. GROUP-LEVEL STATISTICAL LINEAGE
-======================================================================
-
-Group-level values must be calculated from the underlying patient-level
-results.
-
-For each gravity condition, retain the patient-level values for:
+The recovered study material contains patient-level graphical
+representations for:
 
 P001
 P002
@@ -1099,68 +774,419 @@ P003
 P004
 P005
 
-before calculating:
+These representations provide downstream documentary evidence that
+patient-specific results were represented in the recovered figure
+material.
 
-Mean
-Standard deviation
-Median, where applicable
-Range, where applicable
-Other prespecified summary statistics
+However:
 
-Group-level values must not be reconstructed by reverse engineering from
-mean ± SD values.
-
-The recovered group-level summaries are therefore considered documentary
-records until their patient-level source values are recovered.
-
-======================================================================
-19. RESULT-GENERATION RULE
-======================================================================
-
-All final manuscript numerical tables and figures should be generated from
-a machine-readable master result dataset rather than manually entering
-values.
-
-Recommended future master result structure:
-
-Patient_ID
-Gravity_g
-Geometry_ID
-Mesh_ID
-Fiber_Field_ID
-Material_Version
-Boundary_Condition_Version
-COMSOL_Model_Version
-Solution_ID
-Convergence_Status
-LV_Cavity_Volume_mL
-Myocardial_Volume_mL
-Peak_von_Mises_Stress_kPa
-Peak_Principal_Strain_percent
-Maximum_Displacement_mm
-Strain_Energy_J
-Verification_Status
-Result_Source
-Figure_Destination
-Table_Destination
-Export_Filename
-Export_Date
-Notes
-
-Where information is unavailable:
-
+Patient-level machine-readable numerical exports:
 NOT CURRENTLY RECOVERED
 
-must be entered rather than inferred.
+Native COMSOL solution objects:
+NOT CURRENTLY RECOVERED
+
+Patient-level solver logs:
+NOT CURRENTLY RECOVERED
+
+Patient-level verification linkage:
+NOT CURRENTLY ESTABLISHED
+
+Therefore the patient-level graphical representations remain:
+
+DOCUMENTED / REPORTED
+
+and not:
+
+EXECUTED — EVIDENCE RECOVERED
+
+or:
+
+VERIFIED
+
+until the underlying computational artifacts are recovered.
 
 ======================================================================
-20. RECOMMENDED RESULT FILE NAMING
+11. MYOCARDIAL VOLUME LINEAGE
 ======================================================================
 
-When numerical outputs are recovered or reconstructed through a controlled
-re-execution, use stable patient/gravity identifiers.
+Myocardial volume is a controlled endpoint of the study.
 
-Recommended:
+The recovered Figure 6 numerical structure does not provide a separate
+myocardial-volume row in the currently supplied six-panel group-level
+table.
+
+Therefore the current lineage status is:
+
+Myocardial volume:
+SPECIFIED AS AN ENDPOINT
+
+Patient-level myocardial-volume results:
+NOT CURRENTLY RECOVERED IN THE CURRENT FIGURE 6 RESULT TABLE
+
+Group-level myocardial-volume results:
+NOT CURRENTLY RECOVERED IN THE CURRENT FIGURE 6 RESULT TABLE
+
+Verification:
+PENDING
+
+Manuscript reporting:
+HOLD unless a traceable result source is identified.
+
+Important control:
+
+The absence of a value in the current Figure 6 table must not be
+replaced by a value inferred from LV volume, segmentation volume,
+myocardial geometry, or any other quantity.
+
+======================================================================
+12. VERIFICATION LINEAGE
+======================================================================
+
+Result verification must ultimately be linked to:
+
+09_Stage_3_Verification/
+Stage_3_COMSOL_Verification_Evidence_Registry.txt
+
+Verification domains include:
+
+1. Source-data integrity
+2. Geometry reconstruction accuracy
+3. Surface-to-mask volume discrepancy
+4. Manifold integrity
+5. Volumetric-domain integrity
+6. Mesh quality
+7. Mesh independence
+8. Nonlinear solver convergence
+9. Solver residual
+10. Failed-element assessment
+11. Energy-balance assessment
+12. Boundary-condition consistency
+13. Gravity-condition consistency
+14. Output-extraction integrity
+
+Current recovered notes indicate the following verification concepts:
+
+Source and reconstruction quality:
+All five patient datasets were documented as passing predefined
+source-integrity checks.
+
+Surface reconstruction:
+A predefined <=1.5% surface-to-mask volume discrepancy criterion was
+identified as the intended quality-control criterion.
+
+Important evidence-control rule:
+
+The statement that all reconstructed surfaces satisfied the criterion
+must only be treated as VERIFIED after the actual surface-QC records
+are recovered or recreated from the source data and the criterion is
+independently checked.
+
+Mesh independence:
+KEEP / VERIFICATION EVIDENCE PENDING
+
+Solver residual:
+KEEP / VERIFICATION EVIDENCE PENDING
+
+Failed-element assessment:
+KEEP / VERIFICATION EVIDENCE PENDING
+
+Energy balance:
+KEEP / VERIFICATION EVIDENCE PENDING
+
+Sensitivity analysis:
+KEEP / REPORT ONLY AFTER EXECUTION OUTPUTS ARE RECOVERED OR A
+REPRODUCIBLE MODEL IS EXECUTED.
+
+======================================================================
+13. RESULT-LINEAGE CONTROL TABLE
+======================================================================
+
+Result:
+Peak von Mises myocardial stress
+
+Unit:
+kPa
+
+Source:
+Patient-specific ventricular finite-element solution
+
+Group-level recovered value:
+AVAILABLE
+
+Patient-level raw export:
+NOT CURRENTLY RECOVERED
+
+Verification:
+PENDING
+
+Figure:
+Figure 6 Panel A; Figure 7 where applicable
+
+Manuscript status:
+PROVISIONAL / HOLD FOR FINAL NUMERICAL FREEZE
+
+
+Result:
+Peak principal strain
+
+Unit:
+%
+
+Source:
+Patient-specific ventricular finite-element solution
+
+Group-level recovered value:
+AVAILABLE
+
+Patient-level raw export:
+NOT CURRENTLY RECOVERED
+
+Verification:
+PENDING
+
+Figure:
+Figure 6 Panel B; Figure 7 where applicable
+
+Manuscript status:
+PROVISIONAL / HOLD FOR FINAL NUMERICAL FREEZE
+
+
+Result:
+Maximum ventricular displacement
+
+Unit:
+mm
+
+Source:
+Patient-specific ventricular finite-element solution
+
+Group-level recovered value:
+AVAILABLE
+
+Patient-level raw export:
+NOT CURRENTLY RECOVERED
+
+Verification:
+PENDING
+
+Figure:
+Figure 6 Panel C; Figure 7 where applicable
+
+Manuscript status:
+PROVISIONAL / HOLD FOR FINAL NUMERICAL FREEZE
+
+
+Result:
+LV cavity volume
+
+Unit:
+mL
+
+Source:
+Patient-specific ventricular geometry/model output
+
+Group-level recovered value:
+AVAILABLE
+
+Patient-level raw export:
+NOT CURRENTLY RECOVERED
+
+Verification:
+PENDING
+
+Figure:
+Figure 6 Panel D
+
+Manuscript status:
+PROVISIONAL / HOLD FOR FINAL NUMERICAL FREEZE
+
+
+Result:
+Ventricular strain energy
+
+Unit:
+J
+
+Source:
+Patient-specific ventricular finite-element solution
+
+Group-level recovered value:
+AVAILABLE
+
+Patient-level raw export:
+NOT CURRENTLY RECOVERED
+
+Verification:
+PENDING
+
+Figure:
+Figure 6 Panel E
+
+Manuscript status:
+PROVISIONAL / HOLD FOR FINAL NUMERICAL FREEZE
+
+
+Result:
+Normalized response
+
+Unit:
+% of 1.00 g
+
+Source:
+Derived from corresponding gravity-specific value divided by the
+1.00-g reference value.
+
+Group-level recovered value:
+DERIVED / AVAILABLE
+
+Underlying raw patient-level data:
+NOT CURRENTLY RECOVERED
+
+Verification:
+DERIVATION CHECKED AGAINST DOCUMENTED GROUP VALUES
+
+Figure:
+Figure 6 Panel F
+
+Manuscript status:
+PROVISIONAL / HOLD FOR FINAL NUMERICAL FREEZE
+
+======================================================================
+14. SUPPLEMENTARY TABLE LINEAGE
+======================================================================
+
+Supplementary Table S1:
+
+Datasets, computational inputs, and derived modeling resources.
+
+Lineage role:
+
+Documents source datasets and study-generated computational artifacts.
+
+Current relationship:
+
+ACDC
+    ->
+Patient-specific segmentation
+    ->
+Patient-specific geometry
+    ->
+Finite-element mesh
+    ->
+Fiber-orientation field
+
+Status:
+
+MODEL/RESOURCE PROVENANCE DOCUMENTED.
+
+Supplementary Table S2:
+
+Simulation input parameters, constitutive formulation, loading conditions,
+and boundary conditions.
+
+Lineage role:
+
+Documents the computational model specification.
+
+Status:
+
+MODEL SPECIFICATION DOCUMENTED.
+
+Important limitation:
+
+Exact cavity pressure, exact basal spring/damper parameters, exact
+constitutive parameter values, and certain implementation details remain
+subject to evidence reconciliation with the final executable model.
+
+Supplementary numerical verification tables:
+
+Tables relating to:
+
+- source/reconstruction quality
+- geometry QC
+- mesh quality
+- mesh independence
+- solver convergence
+- residuals
+- failed elements
+- energy balance
+- sensitivity analysis
+
+Status:
+
+RETAIN AS VERIFICATION FRAMEWORK.
+
+Final quantitative values:
+
+HOLD until corresponding execution artifacts are recovered and verified.
+
+======================================================================
+15. COMPUTATIONAL ARTIFACT LINEAGE
+======================================================================
+
+The definitive repository lineage should ultimately connect:
+
+01_Dataset_and_Cohort/
+    ->
+02_Input_Provenance/
+    ->
+03_Geometry_Reconstruction/
+    ->
+04_Digital_Twin_Construction/
+    ->
+05_COMSOL_Model/
+    ->
+06_Simulation_Design/
+    ->
+07_Simulation_Execution/
+    ->
+09_Stage_3_Verification/
+    ->
+08_Simulation_Results/
+    ->
+10_Methods_and_Supplementary/
+    ->
+Manuscript figures and tables
+
+The expected artifact chain is:
+
+Source imaging
+    ->
+Segmentation record
+    ->
+Geometry
+    ->
+Mesh
+    ->
+Fiber field
+    ->
+Model parameters
+    ->
+Boundary conditions
+    ->
+COMSOL model
+    ->
+Gravity simulation
+    ->
+Raw result export
+    ->
+Verification record
+    ->
+Result lineage
+    ->
+Figure/table dataset
+    ->
+Final manuscript
+
+======================================================================
+16. RECOMMENDED RESULT FILE NAMING CONVENTION
+======================================================================
+
+When numerical outputs are recovered or newly generated from a verified
+model, use a stable patient/gravity naming structure.
+
+Examples:
 
 P001_G1p00_results.csv
 P001_G0p75_results.csv
@@ -1169,406 +1195,274 @@ P001_G0p38_results.csv
 P001_G0p16_results.csv
 P001_G0p00_results.csv
 
+and similarly:
+
 P002_G1p00_results.csv
-P002_G0p75_results.csv
-P002_G0p50_results.csv
-P002_G0p38_results.csv
-P002_G0p16_results.csv
-P002_G0p00_results.csv
-
 P003_G1p00_results.csv
-P003_G0p75_results.csv
-P003_G0p50_results.csv
-P003_G0p38_results.csv
-P003_G0p16_results.csv
-P003_G0p00_results.csv
-
 P004_G1p00_results.csv
-P004_G0p75_results.csv
-P004_G0p50_results.csv
-P004_G0p38_results.csv
-P004_G0p16_results.csv
-P004_G0p00_results.csv
-
 P005_G1p00_results.csv
-P005_G0p75_results.csv
-P005_G0p50_results.csv
-P005_G0p38_results.csv
-P005_G0p16_results.csv
-P005_G0p00_results.csv
 
-Associated verification files may use:
+Recommended verification files:
 
 P001_G1p00_verification.txt
-
+P001_G0p75_verification.txt
 etc.
 
-Exact naming may be modified if native COMSOL or repository conventions
-require another structure.
+Recommended solver records:
 
-The essential requirement is that patient and gravity identifiers remain
-explicit.
+P001_G1p00_solver.log
+P001_G0p75_solver.log
+etc.
 
-======================================================================
-21. MANUSCRIPT TABLE LINEAGE
-======================================================================
+Exact naming may be modified if native COMSOL or existing repository
+conventions require another structure.
 
-Every manuscript table containing computational results must be assigned
-a result-lineage record.
-
-Required fields:
-
-Manuscript table:
-Table identifier
-
-Variable:
-Specific reported quantity
-
-Population:
-Patient-level / group-level
-
-Gravity condition:
-1.00 / 0.75 / 0.50 / 0.38 / 0.16 / 0.00 g
-
-Source result dataset:
-TO BE LINKED
-
-Execution evidence:
-TO BE LINKED
-
-Verification:
-TO BE LINKED
-
-Statistical processing:
-TO BE DOCUMENTED
-
-Final manuscript value:
-TO BE POPULATED AFTER TRACEABILITY
-
-Current status:
-PENDING
-
-The final value must be generated from the controlled result dataset.
+The patient identifier and gravity condition must remain explicitly
+encoded in the filename or metadata.
 
 ======================================================================
-22. MANUSCRIPT FIGURE LINEAGE
+17. FIGURE-GENERATION CONTROL
 ======================================================================
 
-For every quantitative manuscript figure, record:
+Figures must be generated from machine-readable result datasets rather
+than manually transcribed numerical values.
 
-Figure number
+Preferred generation chain:
 
-Panel
-
-Displayed variable
-
-Patient population
-
-Gravity condition
-
-Source dataset
-
-Result file
-
-Analysis script or generation procedure
-
-Verification status
-
-Final manuscript destination
-
-Current status
-
-At minimum, the current computational figure lineage includes:
-
-Figure 6:
-Gravity-dependent quantitative response
-
-Figure 7:
-Spatial/patient-level mechanical response
-
-Both remain:
-
-DOCUMENTED / REPORTED
-
-until their underlying numerical datasets are linked.
-
-======================================================================
-23. RESULT FREEZE PROCEDURE
-======================================================================
-
-Before manuscript submission, the following sequence must be completed:
-
-STEP 1
-Recover or recreate the authoritative patient-level computational outputs.
-
-STEP 2
-Verify each output against the Stage 3 verification registry.
-
-STEP 3
-Create the machine-readable master simulation result dataset.
-
-STEP 4
-Calculate group-level statistics directly from patient-level data.
-
-STEP 5
-Freeze the result dataset.
-
-STEP 6
-Generate manuscript tables from the frozen dataset.
-
-STEP 7
-Generate manuscript figures from the frozen dataset.
-
-STEP 8
-Cross-check every figure against the corresponding table.
-
-STEP 9
-Cross-check manuscript Results text against the frozen dataset.
-
-STEP 10
-Record the final result-dataset version in the repository.
-
-STEP 11
-Do not modify numerical manuscript values independently after the
-result freeze.
-
-Any post-freeze numerical modification requires a documented revision
-and regeneration of affected figures/tables.
-
-======================================================================
-24. DISCREPANCY CONTROL
-======================================================================
-
-If a discrepancy is identified between:
-
-- COMSOL output
-- result registry
-- figure
-- table
-- supplementary material
-- manuscript text
-
-the underlying computational output takes priority, provided that its
-execution and verification status are established.
-
-If the underlying output cannot be established, the discrepancy must be
-flagged for reconciliation.
-
-The following approach is prohibited:
-
-Changing the computational result merely to match the manuscript.
-
-Changing the manuscript merely to preserve an unsupported historical
-number without checking the underlying source.
-
-Instead:
-
-SOURCE
+Verified result dataset
     ->
-VERIFY
+Analysis script
     ->
-RECALCULATE
+Derived summary dataset
     ->
-REGENERATE
+Figure-generation script
     ->
-UPDATE MANUSCRIPT
+Figure
+
+The figure-generation script should retain:
+
+- Input filename
+- Dataset version
+- Calculation definition
+- Gravity ordering
+- Units
+- Reference condition
+- Rounding rule
+- Output filename
+- Generation date
+- Software/environment information where available
+
+For normalized response:
+
+Normalized_response(g) =
+value(g) / value(1.00 g) × 100
+
+The 1.00-g value must be used as the denominator for each endpoint.
+
+The 0-g percentage changes reported in Figure 6 should therefore be
+derived directly from the corresponding 0-g and 1-g values.
 
 ======================================================================
-25. PROHIBITED RESULT-RECONSTRUCTION PRACTICES
+18. MANUSCRIPT RESULT CONTROL
 ======================================================================
 
-The following are prohibited:
+No manuscript numerical result should be frozen until it can be
+classified as:
+
+VERIFIED
+
+or, where explicitly appropriate:
+
+DOCUMENTED / REPORTED WITH PROVISIONAL STATUS
+
+The manuscript must not imply that provisional documented values have
+the same evidentiary status as independently verified computational
+results.
+
+In particular, the following claims require direct execution evidence
+before being described as verified:
+
+- all 30 patient × gravity simulations were executed
+- all patient-level numerical outputs were retained
+- all solver runs converged
+- mesh independence was demonstrated
+- residual thresholds were satisfied
+- no failed elements occurred
+- energy balance was within a specified threshold
+- sensitivity analyses were executed
+- external validation was performed
+
+======================================================================
+19. PROHIBITED RESULT-RECONSTRUCTION PRACTICES
+======================================================================
+
+The following practices are prohibited:
 
 1. Back-calculating patient-level values from group means.
 
-2. Inventing missing COMSOL outputs.
+2. Inventing missing COMSOL numerical outputs.
 
-3. Fabricating solver logs.
+3. Altering values solely to make figures and tables agree.
 
-4. Fabricating verification records.
+4. Treating graphical appearance as proof of numerical execution.
 
-5. Creating artificial historical execution evidence.
+5. Treating a planned simulation as an executed simulation.
 
-6. Changing numerical values solely to improve figure/table consistency.
+6. Treating a documented result as a verified result without supporting
+   evidence.
 
-7. Treating graphical representations as substitutes for numerical
-   execution evidence.
+7. Creating artificial historical solver logs and representing them as
+   original execution records.
 
-8. Treating planned simulations as executed simulations.
+8. Inferring missing cavity-pressure or basal-constraint parameters from
+   desired numerical results.
 
-9. Treating documented results as verified results.
+9. Calling recovered reference comparisons independent validation without
+   establishing the calibration/model-lock/validation provenance.
 
-10. Treating external reference comparisons as independent validation
-    without establishing dataset independence.
-
-11. Reconstructing missing parameters solely to reproduce a desired
-    numerical result.
-
-12. Reporting a numerical result as definitive when its provenance is
-    unresolved.
+10. Reporting myocardial-volume results where no traceable myocardial-
+    volume dataset is currently available.
 
 ======================================================================
-26. CURRENT RESULT-RECOVERY STATUS
+20. CURRENT RESULT-RECOVERY STATUS
 ======================================================================
 
-Current repository evidence establishes:
-
-MODEL SCOPE:
+Controlled experimental design:
 ESTABLISHED
 
-EXPERIMENTAL DESIGN:
+Five patient-specific subjects:
+DOCUMENTED
+
+Six gravity conditions:
+DOCUMENTED
+
+Primary endpoint framework:
 ESTABLISHED
 
-PATIENT COHORT:
-P001–P005 DOCUMENTED
+Figure 6 group-level numerical summary:
+RECOVERED / DOCUMENTED
 
-GRAVITY CONDITIONS:
-1.00, 0.75, 0.50, 0.38, 0.16, 0.00 g DOCUMENTED
+Figure 6 normalized response:
+DERIVED FROM DOCUMENTED VALUES
 
-PRIMARY ENDPOINT DEFINITIONS:
-ESTABLISHED
+Figure 7 downstream spatial/mechanical representations:
+RECOVERED / DOCUMENTED
 
-PATIENT-LEVEL GRAVITY-RESPONSE REPRESENTATIONS:
-RECOVERED IN FIGURE MATERIAL
+Patient-level graphical representations:
+RECOVERED / DOCUMENTED
 
-GROUP-LEVEL SIX-GRAVITY SUMMARY:
-RECOVERED IN DOCUMENTATION
-
-1 g GROUP SUMMARY:
-RECOVERED IN DOCUMENTATION
-
-MACHINE-READABLE PATIENT × GRAVITY RESULT DATA:
+Native COMSOL .mph model:
 NOT CURRENTLY RECOVERED
 
-FINAL COMSOL .mph MODEL:
+Patient × gravity raw numerical exports:
 NOT CURRENTLY RECOVERED
 
-PATIENT-SPECIFIC COMSOL SOLUTION FILES:
+Complete patient-level result table:
 NOT CURRENTLY RECOVERED
 
-SOLVER LOGS:
+Solver logs:
 NOT CURRENTLY RECOVERED
 
-COMPLETE PATIENT × GRAVITY EXECUTION TRACE:
+Mesh-convergence execution artifacts:
+NOT CURRENTLY RECOVERED
+
+Residual records:
+NOT CURRENTLY RECOVERED
+
+Failed-element records:
+NOT CURRENTLY RECOVERED
+
+Energy-balance records:
+NOT CURRENTLY RECOVERED
+
+Sensitivity-analysis execution outputs:
+NOT CURRENTLY RECOVERED
+
+Complete result-to-verification linkage:
 NOT CURRENTLY ESTABLISHED
 
-VERIFICATION LINKAGE:
-PENDING
-
-FINAL RESULT-DATASET FREEZE:
-PENDING
-
-FINAL FIGURE/TABLE GENERATION FROM FROZEN DATASET:
-PENDING
-
-Therefore, the current result evidence status is:
-
-DESIGN ESTABLISHED
-+
-DOWNSTREAM RESULTS DOCUMENTED
-+
-EXECUTION ARTIFACT RECOVERY PENDING
-+
-VERIFICATION LINKAGE PENDING
-+
-FINAL RESULT FREEZE PENDING
-
 ======================================================================
-27. RECOVERY PRIORITY
+21. NEXT RECOVERY ACTIONS
 ======================================================================
 
 Priority 1:
-Recover final COMSOL .mph model(s).
+Recover any final COMSOL .mph model.
 
 Priority 2:
-Recover patient-specific geometry and mesh files.
+Recover patient-specific geometry and mesh artifacts.
 
 Priority 3:
-Recover patient × gravity numerical exports.
+Recover gravity-sweep numerical exports.
 
 Priority 4:
-Recover patient-level endpoint tables.
+Recover patient-level result tables.
 
 Priority 5:
 Recover solver and convergence logs.
 
 Priority 6:
-Recover Stage 3 verification evidence.
+Recover mesh-independence records.
 
 Priority 7:
-Recover sensitivity-analysis outputs.
+Recover failed-element and energy-balance records.
 
 Priority 8:
-Recover original figure-generation datasets.
+Recover sensitivity-analysis outputs.
 
 Priority 9:
-Construct the master machine-readable result dataset.
+Reconstruct or regenerate machine-readable figure-generation datasets.
 
 Priority 10:
-Regenerate manuscript figures and tables from the frozen dataset.
+Link every final numerical result to the Stage 3 verification registry.
 
 Priority 11:
-Update manuscript numerical Results.
+Freeze supplementary numerical tables.
 
 Priority 12:
-Freeze repository and manuscript numerical outputs together.
+Freeze Figure 6 and Figure 7.
 
 ======================================================================
-28. FINAL RESULT-LINEAGE CONTROL STATEMENT
+22. FINAL RESULT-LINEAGE CONTROL STATEMENT
 ======================================================================
 
-The purpose of this registry is to preserve scientific traceability after
-loss of the original computational notes and to prevent unsupported
-conversion of recovered documentation into apparently verified results.
+The recovered six-gravity numerical results are retained in the
+repository because they are part of the documented study record.
 
-The repository currently contains sufficient recovered information to
-define the intended patient-specific gravity experiment and to identify
-the numerical results that were previously documented.
+Their retention does not constitute independent verification of the
+underlying historical COMSOL execution.
 
-It does not, by itself, establish that every historical COMSOL execution
-artifact remains available.
+The purpose of this lineage registry is to preserve the recovered
+information while preventing unsupported escalation of evidence status.
 
-Therefore, all currently recovered numerical results retain the evidence
-classification:
+The definitive manuscript result must ultimately satisfy:
 
-DOCUMENTED / REPORTED
+SOURCE
+    ->
+INPUT
+    ->
+MODEL
+    ->
+EXECUTION
+    ->
+OUTPUT
+    ->
+VERIFICATION
+    ->
+DERIVATION
+    ->
+FIGURE/TABLE
+    ->
+MANUSCRIPT
 
-until the corresponding execution and verification artifacts are
-recovered or the simulations are transparently and reproducibly
-re-executed.
+Where a link is currently missing, the repository must explicitly
+identify the missing link rather than silently filling it.
 
-The final manuscript must contain only numerical results whose provenance
-is established according to the evidence hierarchy defined in this
-repository.
+No quantitative value will be fabricated, back-calculated, or altered
+solely to achieve internal consistency.
 
-The definitive reporting chain is:
-
-Patient input
-    ->
-Geometry
-    ->
-Model parameters
-    ->
-Boundary conditions
-    ->
-Mesh
-    ->
-COMSOL execution
-    ->
-Numerical output
-    ->
-Verification
-    ->
-Master result dataset
-    ->
-Statistics
-    ->
-Figure/table
-    ->
-Manuscript
-
-This lineage must remain intact through manuscript submission,
-peer-review revision, and final publication.
+The final manuscript will be frozen only after the numerical results,
+verification evidence, figures, and supplementary tables are mutually
+traceable.
 
 END OF DIGITAL TWIN SIMULATION RESULT LINEAGE
 
