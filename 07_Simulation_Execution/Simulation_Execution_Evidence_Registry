@@ -1,0 +1,926 @@
+======================================================================
+SIMULATION EXECUTION EVIDENCE REGISTRY
+======================================================================
+
+Document status:
+INTERNAL RECOVERY / EXECUTION-EVIDENCE CONTROL DOCUMENT
+
+Repository location:
+07_Simulation_Execution/
+
+Purpose:
+This registry records the execution evidence available for the
+patient-specific gravity-dependent cardiac digital-twin simulations.
+
+The registry is designed to distinguish:
+
+1. Planned
+2. Documented / reported
+3. Executed with recoverable evidence
+4. Verified
+5. Manuscript-reported
+
+A simulation must not be classified as "Executed with recoverable
+evidence" solely because a numerical value appears in a manuscript,
+figure, presentation, workbook, or narrative note.
+
+======================================================================
+1. CONTROLLED EXPERIMENTAL DESIGN
+======================================================================
+
+Computational subjects:
+
+P001
+P002
+P003
+P004
+P005
+
+Total planned computational subjects:
+
+5
+
+Gravity conditions:
+
+G01 = 1.00 g
+G02 = 0.75 g
+G03 = 0.50 g
+G04 = 0.38 g
+G05 = 0.16 g
+G06 = 0.00 g
+
+Total planned subject × gravity combinations:
+
+5 subjects × 6 gravity conditions = 30 computational combinations
+
+Primary endpoints:
+
+1. LV cavity volume
+2. Myocardial volume
+3. Peak myocardial von Mises stress
+4. Peak principal strain
+5. Maximum ventricular displacement
+6. Total ventricular strain energy
+
+The controlled experiment therefore contains:
+
+30 subject × gravity combinations
+×
+6 primary computational endpoints
+
+======================================================================
+2. EXECUTION-EVIDENCE CLASSIFICATION
+======================================================================
+
+STATUS A — PLANNED
+
+The simulation is part of the predefined experimental design but no
+execution artifact has yet been identified.
+
+STATUS B — DOCUMENTED / REPORTED
+
+The simulation or its numerical output is represented in a recovered
+figure, table, workbook, note, or narrative source, but the underlying
+machine-readable or native computational execution artifact has not yet
+been recovered.
+
+STATUS C — EXECUTED — EVIDENCE RECOVERED
+
+An execution artifact has been identified, such as:
+
+- COMSOL .mph model containing the relevant solution
+- COMSOL result export
+- numerical result export
+- solver log
+- batch execution record
+- patient-specific simulation output
+- reproducible computational execution record
+
+STATUS D — VERIFIED
+
+Execution evidence exists and the corresponding result has passed the
+applicable predefined verification checks.
+
+STATUS E — MANUSCRIPT-REPORTED
+
+The result has sufficient provenance from patient input through
+computational execution and verification to support inclusion as a
+quantitative manuscript result.
+
+IMPORTANT:
+
+STATUS B must not automatically be upgraded to STATUS C.
+
+STATUS C must not automatically be upgraded to STATUS D.
+
+STATUS D must not automatically be upgraded to STATUS E.
+
+======================================================================
+3. REQUIRED EXECUTION TRACEABILITY
+======================================================================
+
+Each simulation should ultimately be traceable through:
+
+Patient input
+    ->
+Patient-specific geometry
+    ->
+Fiber-field assignment
+    ->
+Material parameters
+    ->
+Boundary conditions
+    ->
+Gravity condition
+    ->
+Finite-element mesh
+    ->
+COMSOL solver execution
+    ->
+Solution object / numerical output
+    ->
+Endpoint extraction
+    ->
+Verification
+    ->
+Result registry
+    ->
+Figure/table generation
+    ->
+Manuscript result
+
+Any broken link in this chain must be documented.
+
+======================================================================
+4. PATIENT × GRAVITY EXECUTION REGISTRY
+======================================================================
+
+----------------------------------------------------------------------
+P001
+----------------------------------------------------------------------
+
+P001 | 1.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P001 | 0.75 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P001 | 0.50 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P001 | 0.38 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P001 | 0.16 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P001 | 0.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+
+----------------------------------------------------------------------
+P002
+----------------------------------------------------------------------
+
+P002 | 1.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P002 | 0.75 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P002 | 0.50 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P002 | 0.38 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P002 | 0.16 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P002 | 0.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+
+----------------------------------------------------------------------
+P003
+----------------------------------------------------------------------
+
+P003 | 1.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P003 | 0.75 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P003 | 0.50 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P003 | 0.38 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P003 | 0.16 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P003 | 0.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+
+----------------------------------------------------------------------
+P004
+----------------------------------------------------------------------
+
+P004 | 1.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P004 | 0.75 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P004 | 0.50 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P004 | 0.38 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P004 | 0.16 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P004 | 0.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+
+----------------------------------------------------------------------
+P005
+----------------------------------------------------------------------
+
+P005 | 1.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P005 | 0.75 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P005 | 0.50 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P005 | 0.38 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P005 | 0.16 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+P005 | 0.00 g
+Execution status: NOT CURRENTLY EVIDENCED
+Recovered downstream representation: Patient-level gravity-response
+curves/summary representation identified in recovered Figure 6/7 material.
+Native execution artifact: NOT RECOVERED
+Patient-specific result export: NOT RECOVERED
+Solver log: NOT RECOVERED
+Verification record: NOT YET LINKED
+Manuscript status: HOLD
+
+
+======================================================================
+5. DOWNSTREAM NUMERICAL EVIDENCE CURRENTLY RECOVERED
+======================================================================
+
+Recovered documentation contains a six-gravity summary with the
+following reported group-level values:
+
+Gravity | LV volume | Peak stress | Peak strain | Displacement |
+         Strain energy
+
+1.00 g | 141.3 ± 8.7 mL | 91.7 ± 3.9 kPa | 18.4 ± 0.9 % |
+        1.82 ± 0.09 mm | 0.082 ± 0.006 J
+
+0.75 g | 141.8 ± 8.7 mL | 86.4 ± 3.7 kPa | 17.4 ± 0.8 % |
+        1.69 ± 0.09 mm | 0.075 ± 0.005 J
+
+0.50 g | 142.4 ± 8.8 mL | 81.0 ± 3.2 kPa | 16.3 ± 0.7 % |
+        1.57 ± 0.08 mm | 0.067 ± 0.005 J
+
+0.38 g | 142.9 ± 8.8 mL | 77.8 ± 3.1 kPa | 15.6 ± 0.7 % |
+        1.50 ± 0.07 mm | 0.063 ± 0.004 J
+
+0.16 g | 143.5 ± 8.8 mL | 73.0 ± 2.9 kPa | 14.8 ± 0.6 % |
+        1.41 ± 0.07 mm | 0.059 ± 0.003 J
+
+0.00 g | 143.9 ± 8.8 mL | 69.8 ± 2.8 kPa | 14.1 ± 0.6 % |
+        1.36 ± 0.06 mm | 0.054 ± 0.003 J
+
+Current evidence classification:
+
+These values are classified as:
+
+DOCUMENTED / REPORTED
+
+They are NOT automatically classified as:
+
+EXECUTED WITH RECOVERABLE EVIDENCE
+
+and are NOT automatically classified as:
+
+VERIFIED
+
+until their underlying computational execution artifacts are recovered
+and linked.
+
+No numerical value should be altered merely to improve consistency
+between figures and tables.
+
+======================================================================
+6. PATIENT-LEVEL EVIDENCE CURRENTLY RECOVERED
+======================================================================
+
+Recovered Figure 6/7 material includes patient-level gravity-response
+representations for:
+
+P001
+P002
+P003
+P004
+P005
+
+The presence of a patient-level graphical representation establishes
+downstream documentary evidence that patient-level results were represented
+in the recovered figure material.
+
+However, the underlying patient × gravity numerical output files have not
+yet been identified in the current recovery record.
+
+Therefore:
+
+Patient-level graphical representation:
+DOCUMENTED / REPORTED
+
+Underlying numerical execution export:
+NOT CURRENTLY RECOVERED
+
+Native COMSOL solution:
+NOT CURRENTLY RECOVERED
+
+Verification linkage:
+NOT CURRENTLY RECOVERED
+
+======================================================================
+7. PRIMARY OUTPUT TRACEABILITY
+======================================================================
+
+Endpoint 1 — LV cavity volume
+
+Source model output:
+Patient-specific ventricular model
+
+Execution artifact:
+NOT CURRENTLY RECOVERED
+
+Downstream representation:
+RECOVERED IN GRAVITY-RESPONSE MATERIAL
+
+Verification:
+PENDING
+
+Manuscript status:
+HOLD UNTIL TRACEABILITY IS ESTABLISHED
+
+
+Endpoint 2 — Myocardial volume
+
+Source model output:
+Patient-specific ventricular model
+
+Execution artifact:
+NOT CURRENTLY RECOVERED
+
+Downstream representation:
+RECOVERED IN STUDY RESULT MATERIAL
+
+Verification:
+PENDING
+
+Manuscript status:
+HOLD UNTIL TRACEABILITY IS ESTABLISHED
+
+
+Endpoint 3 — Peak myocardial von Mises stress
+
+Source model output:
+Patient-specific ventricular solid mechanics
+
+Execution artifact:
+NOT CURRENTLY RECOVERED
+
+Downstream representation:
+RECOVERED IN FIGURE 6/7 MATERIAL
+
+Verification:
+PENDING
+
+Manuscript status:
+HOLD UNTIL TRACEABILITY IS ESTABLISHED
+
+
+Endpoint 4 — Peak principal strain
+
+Source model output:
+Patient-specific ventricular solid mechanics
+
+Execution artifact:
+NOT CURRENTLY RECOVERED
+
+Downstream representation:
+RECOVERED IN FIGURE 6/7 MATERIAL
+
+Verification:
+PENDING
+
+Manuscript status:
+HOLD UNTIL TRACEABILITY IS ESTABLISHED
+
+
+Endpoint 5 — Maximum ventricular displacement
+
+Source model output:
+Patient-specific ventricular solid mechanics
+
+Execution artifact:
+NOT CURRENTLY RECOVERED
+
+Downstream representation:
+RECOVERED IN FIGURE 6/7 MATERIAL
+
+Verification:
+PENDING
+
+Manuscript status:
+HOLD UNTIL TRACEABILITY IS ESTABLISHED
+
+
+Endpoint 6 — Total ventricular strain energy
+
+Source model output:
+Patient-specific ventricular solid mechanics
+
+Execution artifact:
+NOT CURRENTLY RECOVERED
+
+Downstream representation:
+RECOVERED IN FIGURE 6/7 MATERIAL
+
+Verification:
+PENDING
+
+Manuscript status:
+HOLD UNTIL TRACEABILITY IS ESTABLISHED
+
+
+======================================================================
+8. REQUIRED EXECUTION ARTIFACTS FOR EACH SIMULATION
+======================================================================
+
+For each patient × gravity combination, attempt to recover:
+
+1. Patient ID
+2. Gravity level
+3. Geometry identifier
+4. Mesh identifier
+5. Fiber-field identifier
+6. Material-parameter version
+7. Boundary-condition version
+8. COMSOL model version
+9. Solver execution record
+10. Solution identifier
+11. Convergence status
+12. LV cavity volume
+13. Myocardial volume
+14. Peak von Mises stress
+15. Peak principal strain
+16. Maximum displacement
+17. Total strain energy
+18. Export filename
+19. Export date/time, where available
+20. Verification status
+21. Figure/table destination
+
+Where an item cannot be recovered, record:
+
+NOT CURRENTLY RECOVERED
+
+Do not infer the value.
+
+======================================================================
+9. EXECUTION ARTIFACT NAMING CONTROL
+======================================================================
+
+When execution files are recovered or recreated, each output should use a
+stable naming convention.
+
+Recommended structure:
+
+P001_G1p00_results.csv
+P001_G0p75_results.csv
+P001_G0p50_results.csv
+P001_G0p38_results.csv
+P001_G0p16_results.csv
+P001_G0p00_results.csv
+
+and similarly for:
+
+P002
+P003
+P004
+P005
+
+Recommended verification/log naming:
+
+P001_G1p00_solver.log
+P001_G1p00_verification.txt
+
+etc.
+
+The exact naming convention may be modified if native COMSOL or existing
+repository naming conventions require another structure, but the
+patient/gravity relationship must remain explicit.
+
+======================================================================
+10. FIGURE 6 / FIGURE 7 RELATIONSHIP
+======================================================================
+
+Figure 6 currently represents the aggregate gravity-dependent response
+across patient-specific cardiac digital-twin simulations.
+
+Figure 7 currently represents spatial distributions and patient-level
+gravity-dependent mechanical responses.
+
+These figures are downstream reporting artifacts.
+
+They must ultimately be linked to the corresponding machine-readable
+patient × gravity result registry.
+
+No figure value should be manually transcribed into the execution registry
+without identifying its originating numerical dataset.
+
+======================================================================
+11. EXECUTION VERSUS RECONSTRUCTION RULE
+======================================================================
+
+If a native COMSOL model or numerical result file is recovered:
+
+Classify the corresponding simulation as:
+
+EXECUTED — EVIDENCE RECOVERED
+
+If the recovered output also passes the predefined verification criteria:
+
+Classify as:
+
+VERIFIED
+
+If the verified output is directly linked to the manuscript figure/table:
+
+Classify as:
+
+MANUSCRIPT-REPORTED
+
+If only a figure, table, presentation, or narrative statement remains:
+
+Classify as:
+
+DOCUMENTED / REPORTED
+
+Do not describe such a simulation as independently verified solely on
+the basis of the downstream representation.
+
+======================================================================
+12. MISSING-EVIDENCE RECOVERY PRIORITY
+======================================================================
+
+Priority 1 — Recover final COMSOL .mph model(s)
+
+Priority 2 — Recover patient-specific geometry/mesh files
+
+Priority 3 — Recover gravity-sweep numerical exports
+
+Priority 4 — Recover patient-level result tables
+
+Priority 5 — Recover solver/convergence logs
+
+Priority 6 — Recover sensitivity-analysis outputs
+
+Priority 7 — Reconstruct figure-generation datasets
+
+Priority 8 — Link outputs to verification registry
+
+Priority 9 — Freeze manuscript numerical tables and figures
+
+======================================================================
+13. PROHIBITED RECOVERY PRACTICES
+======================================================================
+
+The following practices are prohibited:
+
+1. Back-calculating patient-level values from group means.
+
+2. Inventing missing COMSOL outputs.
+
+3. Changing reported values solely to make figures and tables agree.
+
+4. Treating graphical appearance as proof of solver execution.
+
+5. Treating a planned simulation as an executed simulation.
+
+6. Treating a documented value as a verified value without evidence.
+
+7. Creating artificial COMSOL logs after the fact and representing them as
+   historical execution logs.
+
+8. Reconstructing an undocumented parameter solely to reproduce a desired
+   numerical result.
+
+9. Calling astronaut or external physiological comparisons "independent
+   validation" without establishing the calibration/validation split.
+
+======================================================================
+14. CURRENT RECOVERY SUMMARY
+======================================================================
+
+Controlled experiment:
+
+5 patient-specific subjects
+×
+6 gravity levels
+=
+30 planned computational combinations
+
+Current documentary evidence:
+
+Patient-level gravity-response representations:
+AVAILABLE IN RECOVERED FIGURE MATERIAL
+
+Group-level six-gravity numerical summary:
+AVAILABLE IN RECOVERED DOCUMENTATION
+
+Underlying machine-readable patient × gravity numerical exports:
+NOT CURRENTLY RECOVERED
+
+Native COMSOL execution model:
+NOT CURRENTLY RECOVERED
+
+Solver logs:
+NOT CURRENTLY RECOVERED
+
+Complete execution trace:
+NOT CURRENTLY ESTABLISHED
+
+Independent verification linkage:
+NOT CURRENTLY ESTABLISHED
+
+Therefore, the present repository status is:
+
+DESIGN ESTABLISHED
++
+DOWNSTREAM RESULTS DOCUMENTED
++
+EXECUTION ARTIFACT RECOVERY PENDING
++
+VERIFICATION LINKAGE PENDING
+
+======================================================================
+15. MANUSCRIPT CONTROL RULE
+======================================================================
+
+Until execution evidence is reconciled, the manuscript should not state
+that every planned patient × gravity combination has been independently
+verified.
+
+The manuscript may describe the controlled experimental design and may
+retain recovered numerical results as provisional documented results,
+provided that their evidentiary status is not overstated.
+
+Before final manuscript freeze, every reported numerical result must be
+traceable to an underlying computational artifact or explicitly classified
+as reconstructed/documented rather than verified.
+
+======================================================================
+16. FINAL EXECUTION-EVIDENCE STATEMENT
+======================================================================
+
+This registry establishes the execution-evidence control framework for the
+patient-specific gravity-dependent cardiac digital-twin experiment.
+
+Its purpose is not to reconstruct missing computational history by
+assumption.
+
+Its purpose is to identify:
+
+what was planned,
+what is documented,
+what execution evidence can be recovered,
+what can be verified,
+and what can ultimately be reported in the manuscript.
+
+The definitive status of each simulation will be updated only when the
+corresponding computational evidence is recovered and checked.
+
+END OF SIMULATION EXECUTION EVIDENCE REGISTRY
+======================================================================
