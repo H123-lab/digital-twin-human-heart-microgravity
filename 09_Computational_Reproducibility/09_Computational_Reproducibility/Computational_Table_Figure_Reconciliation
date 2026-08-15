@@ -1,0 +1,1141 @@
+COMPUTATIONAL TABLE–FIGURE RECONCILIATION
+Patient-Specific Cardiac Digital Twin / COMSOL Finite-Element Model
+Repository Computational Audit File
+Version: Reconciled Draft — Stage-3 Evidence Controlled
+Date: 2026-08-16
+
+PURPOSE
+-------
+
+This file reconciles recovered study tables, documented numerical results,
+derived calculations, manuscript-facing figures, and computational artifacts
+against the current computational source-of-truth.
+
+The purpose is to determine:
+
+1. which tables and figures are supported by documented study records;
+2. which numerical values are directly traceable to recovered records;
+3. which values are mathematically derived from documented values;
+4. which outputs require recovery or recreation of the executed COMSOL model;
+5. which tables/figures may currently be used only as provisional or
+   documentation-level artifacts;
+6. which tables/figures must remain withheld from final manuscript claims
+   until computational execution evidence is recovered.
+
+IMPORTANT EVIDENCE PRINCIPLE
+-----------------------------
+
+A table or figure may be numerically internally consistent without being
+independently verified as a COMSOL execution output.
+
+The following distinctions must therefore be maintained:
+
+A. MODEL SPECIFICATION
+   Describes what the computational model was intended or documented to do.
+
+B. DOCUMENTED STUDY VALUE
+   A value appearing in recovered study notes, tables, scripts, or records.
+
+C. DERIVED VALUE
+   A value mathematically calculated from documented values.
+
+D. RECOVERED EXECUTION ARTIFACT
+   A machine-readable or native computational output directly produced by
+   the executed model.
+
+E. VERIFIED EXECUTION EVIDENCE
+   A recovered artifact that is traceable to the executed model and can be
+   independently audited.
+
+Only categories D and E can establish final computational execution status.
+
+CURRENT GLOBAL COMPUTATIONAL STATUS
+------------------------------------
+
+Model formulation:
+    DOCUMENTED
+
+Patient cohort:
+    Five-patient ACDC DCM pilot cohort:
+    P001–P005
+
+Gravity conditions:
+    1.00 G
+    0.75 G
+    0.50 G
+    0.38 G
+    0.16 G
+    0.00 G
+
+Primary endpoints:
+    Peak von Mises myocardial stress
+    Peak principal strain
+    Maximum ventricular displacement
+    LV cavity volume
+    Ventricular strain energy
+
+COMSOL model:
+    NOT RECOVERED
+
+Patient-specific geometry artifacts:
+    NOT RECOVERED / RECONCILIATION REQUIRED
+
+Patient-specific mesh artifacts:
+    NOT RECOVERED / RECONCILIATION REQUIRED
+
+Patient × gravity raw exports:
+    NOT RECOVERED
+
+Solver logs:
+    NOT RECOVERED
+
+Numerical verification outputs:
+    PENDING
+
+Sensitivity-analysis raw outputs:
+    PENDING
+
+Spatial FEM field exports:
+    NOT RECOVERED
+
+Checksums:
+    NOT RECOVERED
+
+Final computational execution manifest:
+    NOT YET CREATED
+
+Therefore:
+
+FINAL COMPUTATIONAL VERIFICATION STATUS:
+    NO-GO / EVIDENCE PENDING
+
+
+SECTION 1 — PRIMARY GRAVITY-SWEEP RESULT SET
+--------------------------------------------
+
+Source artifact:
+    Figure 6 numerical source table / documented gravity-response dataset.
+
+Gravity sequence:
+    1.00 G → 0.75 G → 0.50 G → 0.38 G → 0.16 G → 0.00 G
+
+Documented endpoints:
+
+    A. Peak von Mises myocardial stress
+       Units: kPa
+
+       1.00 G    91.7 ± 3.9
+       0.75 G    86.4 ± 3.7
+       0.50 G    81.0 ± 3.2
+       0.38 G    77.8 ± 3.1
+       0.16 G    73.0 ± 2.9
+       0.00 G    69.8 ± 2.8
+
+    B. Peak principal strain
+       Units: %
+
+       1.00 G    18.4 ± 0.9
+       0.75 G    17.4 ± 0.8
+       0.50 G    16.3 ± 0.7
+       0.38 G    15.6 ± 0.7
+       0.16 G    14.8 ± 0.6
+       0.00 G    14.1 ± 0.6
+
+    C. Maximum ventricular displacement
+       Units: mm
+
+       1.00 G    1.82 ± 0.09
+       0.75 G    1.69 ± 0.09
+       0.50 G    1.57 ± 0.08
+       0.38 G    1.50 ± 0.07
+       0.16 G    1.41 ± 0.07
+       0.00 G    1.36 ± 0.06
+
+    D. LV cavity volume
+       Units: mL
+
+       1.00 G    141.3 ± 8.7
+       0.75 G    141.8 ± 8.7
+       0.50 G    142.4 ± 8.8
+       0.38 G    142.9 ± 8.8
+       0.16 G    143.5 ± 8.8
+       0.00 G    143.9 ± 8.8
+
+    E. Ventricular strain energy
+       Units: J
+
+       1.00 G    0.082 ± 0.006
+       0.75 G    0.075 ± 0.005
+       0.50 G    0.067 ± 0.005
+       0.38 G    0.063 ± 0.004
+       0.16 G    0.059 ± 0.003
+       0.00 G    0.054 ± 0.003
+
+    F. Normalized response
+
+       Reference:
+           1.00 G = 100%
+
+       Normalization definition:
+
+           E_p(g) =
+           value_at(g) / value_at(1.00 G) × 100
+
+Documented 0 G versus 1 G changes:
+
+    Peak von Mises stress:
+        -23.9%
+
+    Peak principal strain:
+        -23.4%
+
+    Maximum ventricular displacement:
+        -25.3%
+
+    LV cavity volume:
+        +1.8%
+
+    Ventricular strain energy:
+        -34.1%
+
+EVIDENCE STATUS:
+
+    Mean ± SD values:
+        DOCUMENTED STUDY VALUES
+
+    Normalized-response calculations:
+        DERIVED FROM DOCUMENTED SUMMARY MEANS
+
+    Independent COMSOL execution verification:
+        PENDING
+
+    Patient-level raw values:
+        NOT RECOVERED
+
+    Machine-readable patient × gravity export:
+        NOT RECOVERED
+
+    Native COMSOL source:
+        NOT RECOVERED
+
+INTERPRETATION RULE:
+
+    The gravity-response curves may be retained as documented study-result
+    artifacts, but their numerical values must not be described as independently
+    verified COMSOL outputs until the corresponding raw execution evidence is
+    recovered or the simulation is deterministically recreated and audited.
+
+
+SECTION 2 — FIGURE 6 RECONCILIATION
+-----------------------------------
+
+Figure:
+    Figure 6 — Gravity-dependent mechanical response.
+
+Current documented numerical source:
+    Six gravity conditions × five primary endpoints.
+
+Expected graphical representation:
+
+    X-axis:
+        Gravity condition
+        1.00 → 0.75 → 0.50 → 0.38 → 0.16 → 0.00 G
+
+    Direction:
+        Gravity decreases from left to right.
+
+    Panel A:
+        Peak von Mises myocardial stress
+
+    Panel B:
+        Peak principal strain
+
+    Panel C:
+        Maximum ventricular displacement
+
+    Panel D:
+        LV cavity volume
+
+    Panel E:
+        Ventricular strain energy
+
+    Panel F:
+        Normalized response relative to 1.00 G
+
+Current status:
+    DOCUMENTED / DERIVED FIGURE DATA
+
+Critical distinction:
+    Figure 6 currently represents documented summary values rather than a
+    verified direct export from the executed COMSOL model.
+
+Figure 6 may therefore be retained in the repository as:
+
+    Figure_06_documented_gravity_response
+
+until raw execution evidence is recovered.
+
+Final manuscript status:
+    PROVISIONAL / DO NOT LABEL AS INDEPENDENTLY VERIFIED
+
+
+SECTION 3 — TABLE 35 RECONCILIATION
+-----------------------------------
+
+Table:
+    Table 35. Pressure–Volume / Mechanical Response Registry
+
+Patient scope:
+    P001–P005
+
+Conditions:
+    ED baseline
+    ED +10%
+    ED −10%
+
+Endpoints:
+    LV volume
+    Peak stress
+    Displacement
+    Strain energy
+    Convergence
+
+Documented values:
+
+    patient001
+        ED baseline:
+            LV volume       142.6 mL
+            Peak stress      92.4 kPa
+            Displacement      1.84 mm
+            Strain energy     0.084 J
+            Convergence       PASS
+
+        ED +10%:
+            LV volume       143.8 mL
+            Peak stress      98.1 kPa
+            Displacement      1.96 mm
+            Strain energy     0.091 J
+            Convergence       PASS
+
+        ED −10%:
+            LV volume       141.5 mL
+            Peak stress      86.9 kPa
+            Displacement      1.73 mm
+            Strain energy     0.077 J
+            Convergence       PASS
+
+    patient002
+        ED baseline:
+            LV volume       136.8 mL
+            Peak stress      89.7 kPa
+            Displacement      1.77 mm
+            Strain energy     0.079 J
+            Convergence       PASS
+
+        ED +10%:
+            LV volume       137.9 mL
+            Peak stress      95.0 kPa
+            Displacement      1.88 mm
+            Strain energy     0.085 J
+            Convergence       PASS
+
+        ED −10%:
+            LV volume       135.7 mL
+            Peak stress      84.5 kPa
+            Displacement      1.67 mm
+            Strain energy     0.073 J
+            Convergence       PASS
+
+    patient003
+        ED baseline:
+            LV volume       151.3 mL
+            Peak stress      96.1 kPa
+            Displacement      1.92 mm
+            Strain energy     0.089 J
+            Convergence       PASS
+
+        ED +10%:
+            LV volume       152.6 mL
+            Peak stress     101.9 kPa
+            Displacement      2.05 mm
+            Strain energy     0.097 J
+            Convergence       PASS
+
+        ED −10%:
+            LV volume       150.1 mL
+            Peak stress      90.3 kPa
+            Displacement      1.80 mm
+            Strain energy     0.082 J
+            Convergence       PASS
+
+    patient004
+        ED baseline:
+            LV volume       129.7 mL
+            Peak stress      86.3 kPa
+            Displacement      1.69 mm
+            Strain energy     0.074 J
+            Convergence       PASS
+
+        ED +10%:
+            LV volume       130.8 mL
+            Peak stress      91.4 kPa
+            Displacement      1.80 mm
+            Strain energy     0.080 J
+            Convergence       PASS
+
+        ED −10%:
+            LV volume       128.7 mL
+            Peak stress      81.3 kPa
+            Displacement      1.59 mm
+            Strain energy     0.068 J
+            Convergence       PASS
+
+    patient005
+        ED baseline:
+            LV volume       146.2 mL
+            Peak stress      93.8 kPa
+            Displacement      1.86 mm
+            Strain energy     0.086 J
+            Convergence       PASS
+
+        ED +10%:
+            LV volume       147.4 mL
+            Peak stress      99.3 kPa
+            Displacement      1.98 mm
+            Strain energy     0.093 J
+            Convergence       PASS
+
+        ED −10%:
+            LV volume       145.0 mL
+            Peak stress      88.3 kPa
+            Displacement      1.75 mm
+            Strain energy     0.079 J
+            Convergence       PASS
+
+RECONCILIATION STATUS:
+
+    Numerical values:
+        DOCUMENTED
+
+    Pressure perturbation design:
+        DOCUMENTED
+
+    Convergence labels:
+        DOCUMENTED STUDY RECORD
+
+    Raw COMSOL output:
+        NOT RECOVERED
+
+    Solver logs:
+        NOT RECOVERED
+
+    Native .mph model:
+        NOT RECOVERED
+
+    Independent verification:
+        PENDING
+
+MANUSCRIPT USE:
+
+    Table 35 should remain a computational audit/recovered-study table at
+    the current stage.
+
+    The word "PASS" must not be interpreted as independently verified
+    numerical convergence until corresponding solver evidence is recovered.
+
+
+SECTION 4 — TABLE 36 RECONCILIATION
+-----------------------------------
+
+Table:
+    Table 36. Fiber Orientation Sensitivity
+
+Perturbations:
+    -15 degrees
+    Baseline
+    +15 degrees
+
+Endpoints:
+    Peak stress
+    Principal strain
+    Displacement
+    Change versus baseline
+
+Documented results:
+
+    patient001:
+        -15°:
+            Stress       96.7 kPa
+            Strain       19.3%
+            Displacement 1.90 mm
+            Change        +4.7%
+
+        Baseline:
+            Stress       92.4 kPa
+            Strain       18.7%
+            Displacement 1.84 mm
+
+        +15°:
+            Stress       97.9 kPa
+            Strain       19.5%
+            Displacement 1.93 mm
+            Change        +5.9%
+
+    patient002:
+        -15°:
+            Stress       93.6 kPa
+            Strain       18.5%
+            Displacement 1.83 mm
+            Change        +4.3%
+
+        Baseline:
+            Stress       89.7 kPa
+            Strain       17.9%
+            Displacement 1.77 mm
+
+        +15°:
+            Stress       95.0 kPa
+            Strain       18.7%
+            Displacement 1.86 mm
+            Change        +5.9%
+
+    patient003:
+        -15°:
+            Stress      100.1 kPa
+            Strain       20.0%
+            Displacement 1.98 mm
+            Change        +4.2%
+
+        Baseline:
+            Stress       96.1 kPa
+            Strain       19.4%
+            Displacement 1.92 mm
+
+        +15°:
+            Stress      101.7 kPa
+            Strain       20.2%
+            Displacement 2.00 mm
+            Change        +5.8%
+
+    patient004:
+        -15°:
+            Stress       90.1 kPa
+            Strain       17.8%
+            Displacement 1.76 mm
+            Change        +4.4%
+
+        Baseline:
+            Stress       86.3 kPa
+            Strain       17.2%
+            Displacement 1.69 mm
+
+        +15°:
+            Stress       91.3 kPa
+            Strain       17.9%
+            Displacement 1.78 mm
+            Change        +5.8%
+
+    patient005:
+        -15°:
+            Stress       98.0 kPa
+            Strain       19.5%
+            Displacement 1.93 mm
+            Change        +4.5%
+
+        Baseline:
+            Stress       93.8 kPa
+            Strain       18.9%
+            Displacement 1.86 mm
+
+        +15°:
+            Stress       99.4 kPa
+            Strain       19.6%
+            Displacement 1.97 mm
+            Change        +6.0%
+
+RECONCILIATION STATUS:
+
+    Sensitivity design:
+        DOCUMENTED
+
+    Numerical values:
+        DOCUMENTED STUDY VALUES
+
+    Raw sensitivity output:
+        NOT RECOVERED
+
+    Independent execution verification:
+        PENDING
+
+MANUSCRIPT USE:
+
+    Retain for audit purposes.
+
+    Do not use the numerical sensitivity percentages as verified simulation
+    findings until the underlying executed sensitivity runs are recovered or
+    recreated.
+
+
+SECTION 5 — TABLE 37 RECONCILIATION
+-----------------------------------
+
+Table:
+    Table 37. Material Parameter Sensitivity
+
+Perturbation:
+    Material stiffness ±20%
+
+Documented response:
+
+    Low stiffness:
+        Peak stress change approximately -13.2% to -14.1%
+        Strain change approximately +14.7% to +15.8%
+
+    High stiffness:
+        Peak stress change approximately +14.1% to +15.0%
+        Strain change approximately -12.3% to -13.1%
+
+Convergence:
+    Recorded as PASS for all listed conditions.
+
+RECONCILIATION STATUS:
+
+    Perturbation design:
+        DOCUMENTED
+
+    Numerical sensitivity values:
+        DOCUMENTED STUDY VALUES
+
+    Convergence labels:
+        DOCUMENTED STUDY RECORD
+
+    Raw execution outputs:
+        NOT RECOVERED
+
+    Solver logs:
+        NOT RECOVERED
+
+    Independent verification:
+        PENDING
+
+MANUSCRIPT USE:
+
+    Audit/repository layer only at current stage.
+
+    Do not promote the numerical ranges to verified simulation findings.
+
+
+SECTION 6 — TABLE 38 RECONCILIATION
+-----------------------------------
+
+Table:
+    Table 38. Basal Boundary-Condition Sensitivity
+
+Perturbations:
+    Softer basal restraint
+    Baseline
+    Stiffer basal restraint
+
+Documented ranges:
+
+    Softer basal restraint:
+        Peak stress change:
+            approximately +5.8% to +6.5%
+
+        Displacement change:
+            approximately +7.5% to +8.4%
+
+        Energy change:
+            approximately +6.9% to +7.7%
+
+    Stiffer basal restraint:
+        Peak stress change:
+            approximately -4.4% to -5.0%
+
+        Displacement change:
+            approximately -5.7% to -6.3%
+
+        Energy change:
+            approximately -5.2% to -5.9%
+
+Stability:
+    Recorded as PASS for all listed conditions.
+
+RECONCILIATION STATUS:
+
+    Boundary-condition sensitivity design:
+        DOCUMENTED
+
+    Numerical results:
+        DOCUMENTED STUDY VALUES
+
+    Stability labels:
+        DOCUMENTED STUDY RECORD
+
+    Raw execution evidence:
+        NOT RECOVERED
+
+    Independent verification:
+        PENDING
+
+MANUSCRIPT USE:
+
+    Do not present as independently verified computational sensitivity
+    results until execution evidence is available.
+
+
+SECTION 7 — TABLE 39 RECONCILIATION
+-----------------------------------
+
+Table:
+    Table 39. Pressure Sensitivity
+
+Perturbations:
+    -10%
+    Baseline
+    +10%
+
+Documented response ranges:
+
+    -10% pressure:
+        Peak stress change:
+            approximately -5.8% to -6.0%
+
+        LV volume change:
+            approximately -0.8%
+
+        Displacement change:
+            approximately -5.6% to -6.3%
+
+    +10% pressure:
+        Peak stress change:
+            approximately +5.9% to +6.2%
+
+        LV volume change:
+            approximately +0.8% to +0.9%
+
+        Displacement change:
+            approximately +6.2% to +6.8%
+
+Convergence:
+    Recorded as PASS for all listed conditions.
+
+RECONCILIATION STATUS:
+
+    Pressure sensitivity design:
+        DOCUMENTED
+
+    Numerical results:
+        DOCUMENTED STUDY VALUES
+
+    Convergence labels:
+        DOCUMENTED STUDY RECORD
+
+    Raw execution evidence:
+        NOT RECOVERED
+
+    Independent verification:
+        PENDING
+
+MANUSCRIPT USE:
+
+    Audit/repository layer only until raw execution evidence is recovered
+    or the analysis is deterministically recreated.
+
+
+SECTION 8 — CROSS-TABLE CONSISTENCY CHECK
+-----------------------------------------
+
+The following internal relationships are currently identifiable:
+
+1. Table 35 ED baseline stress values provide patient-level values in the
+   approximate range of 86.3–96.1 kPa.
+
+2. Table 35 ED baseline displacement values provide patient-level values in
+   the approximate range of 1.69–1.92 mm.
+
+3. Table 35 ED baseline strain-energy values provide patient-level values in
+   the approximate range of 0.074–0.089 J.
+
+4. Table 36 uses the Table 35 baseline stress, strain and displacement values
+   as the reference state.
+
+5. Tables 37–39 define perturbations relative to baseline computational
+   states.
+
+6. Figure 6 provides cohort-level mean ± SD values across the six gravity
+   conditions.
+
+7. The Figure 6 1.00 G stress value is 91.7 kPa, which is compatible in
+   magnitude with the patient-level baseline values documented in Table 35.
+
+8. The Figure 6 1.00 G displacement value is 1.82 mm, which is compatible
+   in magnitude with the patient-level baseline values documented in Table 35.
+
+9. The Figure 6 1.00 G strain-energy value is 0.082 J, which is compatible
+   in magnitude with the patient-level baseline values documented in Table 35.
+
+IMPORTANT:
+
+    Magnitude compatibility does not establish that Figure 6 was calculated
+    directly from Table 35.
+
+    The current evidence does not establish a deterministic patient-level
+    mapping between the Figure 6 summary dataset and the Table 35 baseline
+    records.
+
+Therefore:
+
+    Cross-table numerical compatibility:
+        PLAUSIBLE / DOCUMENTED
+
+    Deterministic provenance:
+        NOT ESTABLISHED
+
+    Independent execution verification:
+        PENDING
+
+
+SECTION 9 — FIGURE 7 RECONCILIATION
+-----------------------------------
+
+Figure 7 is intended to represent gravity-dependent mechanical behavior
+using patient-specific finite-element results and/or spatial mechanical
+fields, depending on the final figure design.
+
+Required evidence for scientifically accurate spatial FEM contour panels:
+
+    - Native patient-specific geometry
+    - Mesh
+    - Spatial stress field
+    - Spatial strain field
+    - Appropriate deformation field
+    - Patient identifier
+    - Gravity condition
+    - COMSOL export or equivalent deterministic field data
+
+Current status:
+
+    Spatial FEM field exports:
+        NOT RECOVERED
+
+    Native .mph:
+        NOT RECOVERED
+
+Therefore:
+
+    Any Figure 7 panel requiring spatial stress/strain contours cannot
+    currently be classified as VERIFIED.
+
+IMPORTANT VISUALIZATION RULE:
+
+    Peak numerical values alone must not be used to synthesize or infer
+    spatial FEM contour maps.
+
+If spatial field exports are not recovered, Figure 7 should remain:
+
+    PROVISIONAL / NOT VERIFIED
+
+until the required field data are recovered or the model is recreated.
+
+
+SECTION 10 — TABLE/FIGURE STATUS MATRIX
+----------------------------------------
+
+Artifact:
+    Figure 6
+Purpose:
+    Gravity-dependent cohort-level mechanical response
+Current status:
+    DOCUMENTED / DERIVED
+Execution evidence:
+    PENDING
+Final manuscript:
+    PROVISIONAL
+
+Artifact:
+    Table 35
+Purpose:
+    Pressure–volume/mechanical response registry
+Current status:
+    DOCUMENTED STUDY TABLE
+Execution evidence:
+    PENDING
+Final manuscript:
+    WITHHOLD AS VERIFIED RESULT
+
+Artifact:
+    Table 36
+Purpose:
+    Fiber orientation sensitivity
+Current status:
+    DOCUMENTED STUDY TABLE
+Execution evidence:
+    PENDING
+Final manuscript:
+    WITHHOLD AS VERIFIED RESULT
+
+Artifact:
+    Table 37
+Purpose:
+    Material parameter sensitivity
+Current status:
+    DOCUMENTED STUDY TABLE
+Execution evidence:
+    PENDING
+Final manuscript:
+    WITHHOLD AS VERIFIED RESULT
+
+Artifact:
+    Table 38
+Purpose:
+    Basal boundary-condition sensitivity
+Current status:
+    DOCUMENTED STUDY TABLE
+Execution evidence:
+    PENDING
+Final manuscript:
+    WITHHOLD AS VERIFIED RESULT
+
+Artifact:
+    Table 39
+Purpose:
+    Pressure sensitivity
+Current status:
+    DOCUMENTED STUDY TABLE
+Execution evidence:
+    PENDING
+Final manuscript:
+    WITHHOLD AS VERIFIED RESULT
+
+Artifact:
+    Figure 7
+Purpose:
+    FEM spatial/mechanical visualization
+Current status:
+    NOT VERIFIED
+Execution evidence:
+    SPATIAL FIELD EXPORTS NOT RECOVERED
+Final manuscript:
+    WITHHOLD UNTIL VERIFIED
+
+
+SECTION 11 — MANUSCRIPT-FACING CLAIM CONTROL
+--------------------------------------------
+
+The following claims should NOT currently be written as independently
+verified simulation findings:
+
+    "All five models achieved nonlinear numerical convergence."
+
+    "Mesh convergence was demonstrated within the predefined criterion."
+
+    "No failed elements were observed."
+
+    "Energy-balance error was below 1%."
+
+    "Sensitivity analysis demonstrated..."
+
+    "The gravity-dependent response was confirmed by the executed COMSOL
+     model."
+
+    "The model reproduced the reported numerical values."
+
+Such statements require the corresponding computational execution evidence.
+
+Acceptable current wording for repository documentation:
+
+    "Previously documented study values are retained in the computational
+     registry pending reconciliation with the executed COMSOL model and
+     machine-readable result exports."
+
+Acceptable current wording for manuscript drafting notes:
+
+    "Documented computational results were retained as provisional values
+     pending recovery or deterministic recreation of the original execution
+     artifacts."
+
+
+SECTION 12 — RECONCILIATION RULES FOR FUTURE RECOVERY
+-----------------------------------------------------
+
+When a computational artifact is recovered:
+
+1. Identify the artifact by registry ID.
+
+2. Record its exact filename.
+
+3. Record patient scope.
+
+4. Record model version.
+
+5. Record gravity condition where applicable.
+
+6. Record execution timestamp where available.
+
+7. Compare the artifact against the corresponding table or figure.
+
+8. Confirm units.
+
+9. Confirm endpoint definition.
+
+10. Confirm patient ordering.
+
+11. Confirm gravity ordering.
+
+12. Confirm numerical precision.
+
+13. Record any discrepancy.
+
+14. Do not silently replace documented values.
+
+15. If the recovered value differs from a documented value, preserve both
+    values and record the discrepancy.
+
+16. Only after reconciliation should a manuscript-facing value be promoted
+    from DOCUMENTED to VERIFIED.
+
+
+SECTION 13 — REQUIRED RECONCILIATION RECORD
+-------------------------------------------
+
+For every future verified table or figure, record:
+
+Artifact ID:
+    __________________________
+
+Table/Figure:
+    __________________________
+
+Source file:
+    __________________________
+
+Patient scope:
+    __________________________
+
+Gravity condition:
+    __________________________
+
+Endpoint:
+    __________________________
+
+Units:
+    __________________________
+
+COMSOL model version:
+    __________________________
+
+Execution timestamp:
+    __________________________
+
+Raw export available:
+    YES / NO
+
+Solver log available:
+    YES / NO
+
+Geometry traceable:
+    YES / NO
+
+Mesh traceable:
+    YES / NO
+
+Numerical value matches documented record:
+    YES / NO
+
+If NO, discrepancy:
+    __________________________
+
+Verification status:
+    VERIFIED / DOCUMENTED / PENDING / NOT RECOVERED
+
+
+SECTION 14 — CURRENT RECONCILIATION CONCLUSION
+----------------------------------------------
+
+The current repository contains a substantial documented computational
+record, including:
+
+    - patient-level pressure perturbation results;
+    - fiber-orientation sensitivity results;
+    - material-parameter sensitivity results;
+    - basal boundary-condition sensitivity results;
+    - pressure sensitivity results;
+    - cohort-level gravity-response values;
+    - normalized 0G-versus-1G calculations;
+    - documented model formulation;
+    - documented mesh and solver verification criteria.
+
+However, the repository does not currently contain sufficient native or
+machine-readable execution evidence to independently verify the complete
+computational chain.
+
+The principal missing artifacts remain:
+
+    1. Executed COMSOL *.mph model
+    2. Patient-specific geometry artifacts
+    3. Patient-specific mesh artifacts
+    4. Patient × gravity raw result exports
+    5. Solver logs
+    6. Numerical-verification outputs
+    7. Sensitivity-analysis raw outputs
+    8. Spatial FEM field exports
+    9. Execution environment/timestamps
+    10. SHA-256 integrity records
+    11. Final computational execution manifest
+
+Therefore:
+
+    CURRENT COMPUTATIONAL STATUS:
+        DOCUMENTED BUT NOT FULLY VERIFIED
+
+    FINAL STAGE-3 STATUS:
+        NO-GO / EVIDENCE PENDING
+
+This status does not mean that the documented results are mathematically
+invalid.
+
+It means that the current repository cannot yet establish an auditable
+chain from source patient data → geometry → mesh → constitutive model →
+boundary conditions → solver execution → raw result → post-processing →
+manuscript figure/table.
+
+That chain must be completed before the numerical findings are labelled
+fully verified and frozen for publication.
+
+
+SECTION 15 — NEXT VERIFICATION PRIORITY
+---------------------------------------
+
+Priority 1:
+    Recover the executed COMSOL *.mph model.
+
+Priority 2:
+    Recover patient-specific geometry and mesh artifacts.
+
+Priority 3:
+    Recover patient × gravity raw result exports.
+
+Priority 4:
+    Recover solver logs and numerical-verification outputs.
+
+Priority 5:
+    Recover sensitivity-analysis raw outputs.
+
+Priority 6:
+    Recover spatial FEM field exports.
+
+Priority 7:
+    Record execution environment and timestamps.
+
+Priority 8:
+    Generate SHA-256 checksums.
+
+Priority 9:
+    Build the final computational execution manifest.
+
+Priority 10:
+    Reconcile all manuscript-facing tables and figures against the verified
+    computational source of truth.
+
+END OF FILE
