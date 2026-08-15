@@ -1,0 +1,1133 @@
+======================================================================
+STAGE 3 COMSOL VERIFICATION EVIDENCE REGISTRY
+======================================================================
+
+Document status:
+INTERNAL RECOVERY / VERIFICATION-EVIDENCE CONTROL DOCUMENT
+
+Repository location:
+09_Stage_3_Verification/
+
+Purpose:
+This registry defines and controls the verification evidence required for
+the patient-specific cardiac digital-twin finite-element simulations.
+
+The registry records the current evidence status of:
+
+1. Patient-specific geometry integrity
+2. Geometry reconstruction accuracy
+3. Finite-element mesh quality and convergence
+4. Nonlinear solver convergence
+5. Residual error
+6. Failed-element assessment
+7. Energy-balance assessment
+8. Boundary-condition consistency
+9. Gravity-condition consistency
+10. Output extraction integrity
+11. Patient × gravity result traceability
+12. Verification-to-manuscript linkage
+
+This document is an evidence-control registry.
+
+It does not create historical COMSOL execution evidence that is no longer
+available.
+
+======================================================================
+1. VERIFICATION PRINCIPLE
+======================================================================
+
+The verification hierarchy used throughout this repository is:
+
+SPECIFIED
+    ->
+EXECUTED
+    ->
+VERIFIED
+    ->
+MANUSCRIPT-REPORTABLE
+
+A documented verification claim is not automatically a verified result.
+
+A numerical value appearing in a recovered workbook, figure, table,
+presentation, manuscript draft, or narrative document is classified as:
+
+DOCUMENTED / REPORTED
+
+unless the corresponding underlying computational or source artifact can
+be identified and independently checked.
+
+A verification status must therefore be supported by an identifiable
+artifact whenever possible.
+
+======================================================================
+2. STAGE 3 VERIFICATION SCOPE
+======================================================================
+
+Stage 3 verification concerns the computational integrity of the
+patient-specific finite-element cardiac digital-twin simulations.
+
+The controlled verification chain is:
+
+Patient imaging
+    ->
+Segmentation
+    ->
+Surface reconstruction
+    ->
+Patient-specific ventricular geometry
+    ->
+Geometry quality control
+    ->
+Fiber-field assignment
+    ->
+Finite-element mesh
+    ->
+Mesh quality / convergence
+    ->
+Material and boundary-condition assignment
+    ->
+Gravity loading
+    ->
+Nonlinear solver
+    ->
+Residual / convergence assessment
+    ->
+Failed-element assessment
+    ->
+Energy assessment
+    ->
+Primary output extraction
+    ->
+Result traceability
+
+Stage 3 verification does not constitute biological or clinical
+validation.
+
+It establishes computational integrity and numerical robustness of the
+modeling workflow.
+
+======================================================================
+3. SUBJECTS AND CONTROLLED SIMULATION DESIGN
+======================================================================
+
+Patient-specific computational subjects:
+
+P001
+P002
+P003
+P004
+P005
+
+Gravity conditions:
+
+G01 = 1.00 g
+G02 = 0.75 g
+G03 = 0.50 g
+G04 = 0.38 g
+G05 = 0.16 g
+G06 = 0.00 g
+
+Planned computational combinations:
+
+5 subjects × 6 gravity conditions = 30 subject × gravity combinations
+
+Primary mechanical outputs:
+
+1. LV cavity volume
+2. Myocardial volume
+3. Peak myocardial von Mises stress
+4. Peak principal strain
+5. Maximum ventricular displacement
+6. Total ventricular strain energy
+
+======================================================================
+4. VERIFICATION STATUS DEFINITIONS
+======================================================================
+
+STATUS V0 — NOT ASSESSED
+
+No verification evidence has currently been identified.
+
+STATUS V1 — DOCUMENTED / REPORTED
+
+A verification result or numerical value is present in recovered
+documentation, but the underlying source artifact has not yet been
+recovered or linked.
+
+STATUS V2 — EVIDENCE RECOVERED
+
+The underlying computational or source artifact required to assess the
+verification item has been recovered.
+
+STATUS V3 — VERIFIED
+
+The underlying artifact has been reviewed and the corresponding
+verification criterion has been demonstrated.
+
+STATUS V4 — MANUSCRIPT-LINKED
+
+The verification result is traceable to the numerical dataset and is
+appropriate for supporting a manuscript figure, table, or methods claim.
+
+Important:
+
+V1 must not automatically be upgraded to V2.
+
+V2 must not automatically be upgraded to V3.
+
+V3 must not automatically be upgraded to V4.
+
+======================================================================
+5. GEOMETRY VERIFICATION
+======================================================================
+
+Verification objective:
+
+Determine whether the reconstructed patient-specific ventricular geometry
+is sufficiently traceable to the original imaging/segmentation inputs and
+whether the reported geometry-quality assessment can be independently
+supported.
+
+Required evidence:
+
+1. Original ACDC imaging files
+2. Original ED/ES segmentation masks
+3. ACDC Info.cfg metadata
+4. Reconstruction script/workflow
+5. Reconstructed surface/geometry file
+6. Geometry reconstruction log
+7. Geometry-quality calculation
+8. Final geometry identifier/version
+
+Current recovered documentation:
+
+A geometry-error range of approximately:
+
+0.67%–1.08%
+
+has previously been documented in recovered verification material.
+
+Current evidence classification:
+
+DOCUMENTED / REPORTED
+
+Current verification status:
+
+V1 — DOCUMENTED / REPORTED
+
+Underlying geometry-error calculation artifact:
+
+NOT CURRENTLY RECOVERED
+
+Original source NIfTI/Info.cfg linkage:
+
+REQUIRES RECONCILIATION
+
+Patient-specific geometry files:
+
+NOT CURRENTLY RECOVERED IN THE PRESENT EXECUTION-EVIDENCE RECORD
+
+Verification rule:
+
+The reported 0.67%–1.08% geometry-error range must not be described as
+independently verified until the corresponding source geometry, reference
+geometry, calculation method, and resulting quality-control record are
+recovered and checked.
+
+No geometry-error value should be altered solely to improve consistency
+with the manuscript.
+
+======================================================================
+6. GEOMETRY INTEGRITY CHECK
+======================================================================
+
+The following geometry checks should be documented where evidence exists:
+
+1. Patient ID consistency
+2. ED/ES phase consistency
+3. Left-ventricular cavity identification
+4. Myocardial wall identification
+5. Anatomical continuity
+6. Surface closure
+7. Removal of non-cardiac artifacts
+8. Anatomical orientation
+9. Compatibility with finite-element meshing
+10. Reproducibility of reconstructed geometry
+
+Current status:
+
+Patient-specific geometry workflow:
+
+DOCUMENTED
+
+Underlying reconstruction artifacts:
+
+NOT CURRENTLY RECOVERED
+
+Final geometry integrity status:
+
+PENDING ARTIFACT RECOVERY
+
+No PASS designation should be assigned solely from the existence of a
+previous narrative statement.
+
+======================================================================
+7. MESH VERIFICATION
+======================================================================
+
+Verification objective:
+
+Determine whether the finite-element mesh is numerically adequate and
+whether the reported mesh-convergence assessment can be independently
+supported.
+
+Recovered model documentation indicates the use of tetrahedral finite
+elements and a mesh-convergence assessment.
+
+A previously documented mesh-convergence range was:
+
+0.94%–1.63%
+
+Current evidence classification:
+
+DOCUMENTED / REPORTED
+
+Current verification status:
+
+V1 — DOCUMENTED / REPORTED
+
+Underlying coarse/medium/fine mesh files:
+
+NOT CURRENTLY RECOVERED
+
+Mesh statistics:
+
+REQUIRES RECOVERY
+
+Mesh-convergence calculation:
+
+NOT CURRENTLY RECOVERED
+
+Mesh-convergence output/export:
+
+NOT CURRENTLY RECOVERED
+
+Verification criterion:
+
+The reported convergence range must not be converted into a formal PASS
+designation until the corresponding mesh levels, output values, comparison
+method, and convergence calculation are recovered.
+
+======================================================================
+8. MESH QUALITY EVIDENCE REQUIRED
+======================================================================
+
+Where recoverable, the following should be recorded for each final mesh:
+
+1. Patient ID
+2. Gravity condition, where gravity-specific remeshing occurred
+3. Element type
+4. Number of elements
+5. Number of nodes
+6. Minimum element-quality metric
+7. Mean element-quality metric
+8. Maximum element-quality metric
+9. Mesh-generation method
+10. Mesh version
+11. Mesh-generation date, where available
+12. Coarse mesh identifier
+13. Medium mesh identifier
+14. Fine mesh identifier
+15. Convergence metric
+16. Relative difference between mesh levels
+
+If a value cannot be recovered:
+
+NOT CURRENTLY RECOVERED
+
+must be recorded rather than estimated.
+
+======================================================================
+9. SOLVER CONVERGENCE VERIFICATION
+======================================================================
+
+Verification objective:
+
+Determine whether the nonlinear finite-element solution converged
+numerically and whether the reported residual values can be linked to
+actual solver output.
+
+Recovered documentation indicates nonlinear Newton-type solution procedures.
+
+Previously documented solver residuals were reported in the approximate
+range:
+
+5.8 × 10^-7 to 9.1 × 10^-7
+
+Current evidence classification:
+
+DOCUMENTED / REPORTED
+
+Current verification status:
+
+V1 — DOCUMENTED / REPORTED
+
+Underlying solver logs:
+
+NOT CURRENTLY RECOVERED
+
+Native COMSOL convergence record:
+
+NOT CURRENTLY RECOVERED
+
+Exact solver tolerances:
+
+REQUIRE ARTIFACT RECONCILIATION
+
+Number of nonlinear iterations:
+
+NOT CURRENTLY RECOVERED
+
+Number of failed solver steps:
+
+NOT CURRENTLY RECOVERED
+
+Verification rule:
+
+The reported residual range must not be presented as an independently
+verified solver result until the underlying COMSOL solver output or
+equivalent execution artifact has been recovered.
+
+======================================================================
+10. SOLVER VERIFICATION RECORD
+======================================================================
+
+For each recoverable patient × gravity simulation, record:
+
+Patient ID:
+Gravity:
+COMSOL model version:
+Study/solver identifier:
+Nonlinear solver:
+Linear solver, if applicable:
+Relative tolerance:
+Absolute tolerance, if applicable:
+Maximum nonlinear iterations:
+Final residual:
+Number of solver iterations:
+Convergence status:
+Failed solver steps:
+Solution identifier:
+Solver log filename:
+Verification artifact:
+Verification status:
+
+If unavailable:
+
+NOT CURRENTLY RECOVERED
+
+No missing solver parameter should be reconstructed solely from the
+reported numerical result.
+
+======================================================================
+11. FAILED-ELEMENT VERIFICATION
+======================================================================
+
+Verification objective:
+
+Determine whether the final computational solution contained failed,
+invalid, distorted, or otherwise unacceptable finite elements.
+
+Previously recovered documentation reported:
+
+Failed elements:
+ZERO REPORTED
+
+Current evidence classification:
+
+DOCUMENTED / REPORTED
+
+Current verification status:
+
+V1 — DOCUMENTED / REPORTED
+
+Underlying COMSOL element-quality/failed-element report:
+
+NOT CURRENTLY RECOVERED
+
+Verification rule:
+
+The statement "zero failed elements" must remain classified as
+DOCUMENTED / REPORTED until the corresponding final mesh and
+solution-quality artifact are recovered and reviewed.
+
+No artificial failed-element report may be generated retrospectively and
+represented as an historical COMSOL export.
+
+======================================================================
+12. ENERGY-BALANCE VERIFICATION
+======================================================================
+
+Verification objective:
+
+Assess whether the numerical solution satisfies the documented
+energy-balance check.
+
+Previously recovered documentation reported an energy-balance error of:
+
+≤1%
+
+Current evidence classification:
+
+DOCUMENTED / REPORTED
+
+Current verification status:
+
+V1 — DOCUMENTED / REPORTED
+
+Underlying energy-balance calculation:
+
+NOT CURRENTLY RECOVERED
+
+Input/output energy terms:
+
+NOT CURRENTLY RECOVERED
+
+COMSOL energy export:
+
+NOT CURRENTLY RECOVERED
+
+Verification rule:
+
+The reported ≤1% value must not be converted into a verified PASS result
+until the underlying energy quantities and calculation are recovered.
+
+The energy-balance metric must be reported using the same definition and
+units used by the underlying computational model.
+
+======================================================================
+13. BOUNDARY-CONDITION VERIFICATION
+======================================================================
+
+Verification objective:
+
+Confirm that the boundary conditions used during the executed simulation
+match the controlled model specification.
+
+The following items require verification:
+
+1. Ventricular mechanical constraints
+2. Basal constraint
+3. Cavity-pressure condition
+4. Gravity body-force condition
+5. Material assignment
+6. Fiber-orientation assignment
+7. Surface-region assignment
+8. Inflow/outflow definitions, if present in the actual model
+9. Any prescribed displacement or traction conditions
+10. Any spring/damper conditions
+
+Current status:
+
+Model-level boundary-condition specification:
+
+DOCUMENTED
+
+Exact executed boundary-condition record:
+
+NOT CURRENTLY RECOVERED
+
+Exact cavity pressure:
+
+NOT CURRENTLY RECOVERED
+
+Exact basal spring/damper parameters:
+
+NOT CURRENTLY RECOVERED
+
+Boundary-condition verification:
+
+PENDING
+
+Important:
+
+The current solid-mechanics scope must not be expanded to imply execution
+of CFD, FSI, electrophysiology, autonomic control, baroreflex, or
+blood-flow/WSS calculations without separate executable evidence.
+
+======================================================================
+14. GRAVITY-CONDITION VERIFICATION
+======================================================================
+
+The controlled gravity levels are:
+
+1.00 g
+0.75 g
+0.50 g
+0.38 g
+0.16 g
+0.00 g
+
+Verification objective:
+
+Confirm that the gravity multiplier/body-force condition used in each
+simulation corresponds to the predefined experimental design.
+
+Required evidence:
+
+1. Gravity multiplier
+2. Gravity vector/orientation
+3. Units
+4. Patient ID
+5. Simulation ID
+6. COMSOL study/solution identifier
+7. Output file
+8. Execution timestamp, where available
+
+Current design status:
+
+DOCUMENTED
+
+Execution-level gravity verification:
+
+NOT CURRENTLY RECOVERED
+
+No gravity-specific execution status should be upgraded solely from the
+presence of a curve or figure showing a gravity-dependent response.
+
+======================================================================
+15. OUTPUT-EXTRACTION VERIFICATION
+======================================================================
+
+Primary outputs:
+
+1. LV cavity volume
+2. Myocardial volume
+3. Peak myocardial von Mises stress
+4. Peak principal strain
+5. Maximum ventricular displacement
+6. Total ventricular strain energy
+
+For each output, the final verification chain should be:
+
+COMSOL solution
+    ->
+defined numerical expression
+    ->
+patient-level output
+    ->
+gravity-level output
+    ->
+machine-readable export
+    ->
+verification
+    ->
+figure/table
+
+Current machine-readable patient × gravity output registry:
+
+NOT CURRENTLY RECOVERED
+
+Current figure-level representation:
+
+DOCUMENTED
+
+Current numerical traceability:
+
+PENDING
+
+No numerical value should be manually entered into the final results
+registry solely by reading a plotted curve.
+
+======================================================================
+16. CURRENTLY RECOVERED VERIFICATION VALUES
+======================================================================
+
+The following values were previously documented in recovered material:
+
+Geometry error:
+0.67%–1.08%
+
+Mesh convergence:
+0.94%–1.63%
+
+Solver residual:
+5.8 × 10^-7 to 9.1 × 10^-7
+
+Failed elements:
+ZERO REPORTED
+
+Energy-balance error:
+≤1%
+
+Current evidence status for ALL five items:
+
+V1 — DOCUMENTED / REPORTED
+
+Current status:
+
+UNDERLYING EVIDENCE ARTIFACTS PENDING RECOVERY
+
+These values must not be labeled:
+
+VERIFIED
+PASS
+INDEPENDENTLY VALIDATED
+
+until the underlying computational evidence has been recovered and checked.
+
+======================================================================
+17. VERIFICATION MATRIX
+======================================================================
+
+Verification item | Previously reported value | Current evidence status |
+----------------------------------------------------------------------
+Geometry error | 0.67%–1.08% | DOCUMENTED / REPORTED
+Mesh convergence | 0.94%–1.63% | DOCUMENTED / REPORTED
+Solver residual | 5.8×10^-7–9.1×10^-7 | DOCUMENTED / REPORTED
+Failed elements | Zero reported | DOCUMENTED / REPORTED
+Energy-balance error | ≤1% | DOCUMENTED / REPORTED
+Boundary conditions | Model specification recovered | PENDING EXECUTION EVIDENCE
+Gravity assignment | Six gravity levels documented | PENDING EXECUTION EVIDENCE
+Patient-level outputs | Downstream figure representations | PENDING NUMERICAL EXPORT
+Machine-readable results | Not recovered | NOT CURRENTLY RECOVERED
+
+======================================================================
+18. PATIENT-LEVEL VERIFICATION MATRIX
+======================================================================
+
+Patient:
+
+P001
+
+Geometry verification:
+PENDING ARTIFACT RECOVERY
+
+Mesh verification:
+PENDING ARTIFACT RECOVERY
+
+Solver verification:
+PENDING ARTIFACT RECOVERY
+
+Failed-element verification:
+PENDING ARTIFACT RECOVERY
+
+Energy verification:
+PENDING ARTIFACT RECOVERY
+
+Gravity-sweep verification:
+PENDING EXECUTION EVIDENCE
+
+Final verification status:
+NOT CURRENTLY VERIFIED
+
+
+Patient:
+
+P002
+
+Geometry verification:
+PENDING ARTIFACT RECOVERY
+
+Mesh verification:
+PENDING ARTIFACT RECOVERY
+
+Solver verification:
+PENDING ARTIFACT RECOVERY
+
+Failed-element verification:
+PENDING ARTIFACT RECOVERY
+
+Energy verification:
+PENDING ARTIFACT RECOVERY
+
+Gravity-sweep verification:
+PENDING EXECUTION EVIDENCE
+
+Final verification status:
+NOT CURRENTLY VERIFIED
+
+
+Patient:
+
+P003
+
+Geometry verification:
+PENDING ARTIFACT RECOVERY
+
+Mesh verification:
+PENDING ARTIFACT RECOVERY
+
+Solver verification:
+PENDING ARTIFACT RECOVERY
+
+Failed-element verification:
+PENDING ARTIFACT RECOVERY
+
+Energy verification:
+PENDING ARTIFACT RECOVERY
+
+Gravity-sweep verification:
+PENDING EXECUTION EVIDENCE
+
+Final verification status:
+NOT CURRENTLY VERIFIED
+
+
+Patient:
+
+P004
+
+Geometry verification:
+PENDING ARTIFACT RECOVERY
+
+Mesh verification:
+PENDING ARTIFACT RECOVERY
+
+Solver verification:
+PENDING ARTIFACT RECOVERY
+
+Failed-element verification:
+PENDING ARTIFACT RECOVERY
+
+Energy verification:
+PENDING ARTIFACT RECOVERY
+
+Gravity-sweep verification:
+PENDING EXECUTION EVIDENCE
+
+Final verification status:
+NOT CURRENTLY VERIFIED
+
+
+Patient:
+
+P005
+
+Geometry verification:
+PENDING ARTIFACT RECOVERY
+
+Mesh verification:
+PENDING ARTIFACT RECOVERY
+
+Solver verification:
+PENDING ARTIFACT RECOVERY
+
+Failed-element verification:
+PENDING ARTIFACT RECOVERY
+
+Energy verification:
+PENDING ARTIFACT RECOVERY
+
+Gravity-sweep verification:
+PENDING EXECUTION EVIDENCE
+
+Final verification status:
+NOT CURRENTLY VERIFIED
+
+======================================================================
+19. VERIFICATION ARTIFACT RECOVERY PRIORITY
+======================================================================
+
+Priority 1:
+
+Recover original patient imaging and segmentation source files.
+
+Priority 2:
+
+Recover patient-specific reconstructed geometry files.
+
+Priority 3:
+
+Recover final COMSOL .mph model.
+
+Priority 4:
+
+Recover final mesh files and mesh-convergence outputs.
+
+Priority 5:
+
+Recover COMSOL solver/convergence logs.
+
+Priority 6:
+
+Recover failed-element and mesh-quality reports.
+
+Priority 7:
+
+Recover energy-balance calculations.
+
+Priority 8:
+
+Recover patient × gravity numerical exports.
+
+Priority 9:
+
+Recover sensitivity-analysis outputs.
+
+Priority 10:
+
+Link all recovered artifacts to the result-lineage registry.
+
+======================================================================
+20. VERIFICATION ARTIFACT NAMING CONTROL
+======================================================================
+
+When artifacts are recovered, each should be assigned a stable identifier.
+
+Recommended examples:
+
+P001_geometry_QC.txt
+P001_mesh_QC.txt
+P001_G1p00_solver.log
+P001_G1p00_verification.txt
+P001_G1p00_results.csv
+
+P001_G0p75_solver.log
+P001_G0p75_verification.txt
+P001_G0p75_results.csv
+
+and similarly for all patient × gravity combinations.
+
+If original filenames exist, they should be preserved where possible.
+
+A new repository identifier may be added without destroying the original
+filename.
+
+======================================================================
+21. PROHIBITED VERIFICATION PRACTICES
+======================================================================
+
+The following practices are prohibited:
+
+1. Calling a documented numerical value "verified" without evidence.
+
+2. Creating a historical COMSOL solver log that did not actually exist.
+
+3. Creating artificial mesh-convergence results solely to reproduce a
+   previously reported percentage.
+
+4. Back-calculating residuals from figure values.
+
+5. Back-calculating energy-balance error from aggregate results.
+
+6. Inferring zero failed elements from a visually acceptable figure.
+
+7. Treating a manuscript figure as equivalent to a native COMSOL solution.
+
+8. Treating the planned six-gravity design as proof that all six gravity
+   simulations were executed.
+
+9. Treating patient-level graphical representations as proof of recoverable
+   machine-readable numerical output.
+
+10. Changing a previously reported verification value merely to improve
+    consistency between tables and figures.
+
+11. Generating missing numerical values from group means.
+
+12. Upgrading a verification status without recording the supporting artifact.
+
+======================================================================
+22. RELATIONSHIP TO OTHER REPOSITORY FILES
+======================================================================
+
+This verification registry must remain synchronized with:
+
+05_COMSOL_Model/
+COMSOL_Model_Evidence_Recovery_and_Scope_Lock.txt
+
+05_COMSOL_Model/
+COMSOL_Model_Parameter_and_Boundary_Condition_Registry.txt
+
+06_Simulation_Design/
+Gravity_Simulation_Experiment_Design_Recovery.txt
+
+07_Simulation_Execution/
+Simulation_Execution_Evidence_Registry.txt
+
+08_Simulation_Results/
+Digital_Twin_Simulation_Result_Lineage.txt
+
+10_Methods_and_Supplementary/
+Methods_COMSOL_Reproducibility_Specification.txt
+
+The dependency structure is:
+
+MODEL SPECIFICATION
+        ->
+EXPERIMENTAL DESIGN
+        ->
+EXECUTION EVIDENCE
+        ->
+VERIFICATION
+        ->
+RESULT LINEAGE
+        ->
+MANUSCRIPT FIGURES / TABLES
+
+A downstream artifact must not be used to retroactively establish an
+upstream execution or verification claim.
+
+======================================================================
+23. RELATIONSHIP TO FIGURES AND TABLES
+======================================================================
+
+Figure 5:
+
+Patient-specific geometry and/or reconstruction workflow.
+
+Verification dependency:
+
+Geometry source
++
+reconstruction record
++
+geometry-quality assessment.
+
+
+Figure 6:
+
+Gravity-dependent quantitative mechanical response.
+
+Verification dependency:
+
+Patient × gravity numerical output
++
+solver execution
++
+output extraction
++
+verification.
+
+
+Figure 7:
+
+Spatial and/or patient-level mechanical field representation.
+
+Verification dependency:
+
+Patient-specific solution fields
++
+field extraction
++
+appropriate COMSOL solution state
++
+figure-generation dataset.
+
+
+Supplementary verification figures/tables:
+
+Must be linked to the corresponding verification artifact rather than
+treated as independent evidence.
+
+No figure should be used as the sole evidence for its own computational
+validity.
+
+======================================================================
+24. MANUSCRIPT REPORTING CONTROL
+======================================================================
+
+Until the underlying verification artifacts are recovered, manuscript
+wording should distinguish:
+
+"reported in the recovered computational documentation"
+
+from:
+
+"verified from the underlying computational output."
+
+The manuscript should not state that:
+
+"all simulations passed verification"
+
+unless the corresponding evidence has been recovered and checked.
+
+Likewise, the manuscript should not state:
+
+"mesh convergence was demonstrated"
+
+unless the mesh levels, numerical outputs, comparison method, and
+supporting artifact can be identified.
+
+The same principle applies to:
+
+geometry accuracy
+solver convergence
+failed-element assessment
+energy balance
+gravity assignment
+sensitivity analysis
+
+======================================================================
+25. FINAL STAGE 3 VERIFICATION STATUS
+======================================================================
+
+Current repository state:
+
+MODEL SPECIFICATION:
+ESTABLISHED
+
+EXPERIMENTAL DESIGN:
+ESTABLISHED
+
+DOWNSTREAM NUMERICAL DOCUMENTATION:
+RECOVERED IN PART
+
+GEOMETRY VERIFICATION ARTIFACTS:
+NOT CURRENTLY RECOVERED
+
+MESH VERIFICATION ARTIFACTS:
+NOT CURRENTLY RECOVERED
+
+SOLVER LOGS:
+NOT CURRENTLY RECOVERED
+
+FAILED-ELEMENT REPORT:
+NOT CURRENTLY RECOVERED
+
+ENERGY-BALANCE CALCULATION:
+NOT CURRENTLY RECOVERED
+
+PATIENT × GRAVITY MACHINE-READABLE RESULTS:
+NOT CURRENTLY RECOVERED
+
+FORMAL STAGE 3 VERIFICATION:
+NOT CURRENTLY ESTABLISHED
+
+The currently documented verification values remain preserved as
+historical/recovered documentation but are not promoted to verified
+status.
+
+======================================================================
+26. FINAL VERIFICATION CONTROL STATEMENT
+======================================================================
+
+Stage 3 verification is controlled by evidence rather than by narrative
+consistency.
+
+The purpose of this registry is to preserve the previously documented
+verification information while preventing unsupported conversion of
+reported values into verified computational claims.
+
+The definitive verification status of each item will be updated only when
+the underlying computational or source artifact is recovered, inspected,
+and linked to the corresponding patient, simulation condition, and
+numerical result.
+
+Until then:
+
+DOCUMENTED / REPORTED
+does not mean
+VERIFIED.
+
+The repository therefore retains a transparent distinction between:
+
+what the model was designed to do,
+what was previously reported,
+what execution evidence can be recovered,
+what can be independently checked,
+and what can ultimately support the manuscript.
+
+END OF STAGE 3 COMSOL VERIFICATION EVIDENCE REGISTRY
+======================================================================
