@@ -1,0 +1,827 @@
+======================================================================
+GRAVITY SIMULATION EXPERIMENT DESIGN RECOVERY
+======================================================================
+
+Project:
+Patient-Specific Physics-Informed Cardiac Digital Twin for
+Gravity-Dependent Ventricular Solid-Mechanics Analysis
+
+Repository location:
+06_Simulation_Design/
+
+Document status:
+Internal experimental-design recovery and scope-control document
+
+Purpose:
+This document defines the controlled experimental design for the
+gravity-dependent finite-element solid-mechanics study and establishes
+the common experimental structure that must be used consistently across
+the simulation execution records, verification records, numerical
+results, manuscript tables, figures, supplementary materials, and
+reviewer-response documentation.
+
+This document is a design/recovery specification. It does not by itself
+constitute evidence that every specified simulation was executed.
+
+
+======================================================================
+1. DEFINITIVE STUDY QUESTION
+======================================================================
+
+The primary computational question is:
+
+How does progressive reduction in gravitational loading alter
+patient-specific ventricular mechanical behavior?
+
+The definitive mechanical response sequence is:
+
+Patient-specific cardiac imaging
+        ->
+Patient-specific ventricular geometry
+        ->
+Finite-element solid-mechanics model
+        ->
+Myocardial stress
+        ->
+Myocardial strain
+        ->
+Ventricular displacement
+        ->
+LV cavity volume
+        ->
+Myocardial volume
+        ->
+Strain energy
+        ->
+Gravity-dependent response
+        ->
+Sensitivity/robustness assessment
+
+
+======================================================================
+2. STUDY POPULATION FOR THE COMPUTATIONAL EXPERIMENT
+======================================================================
+
+The recovered computational documentation identifies five patient-level
+computational subjects:
+
+P001
+P002
+P003
+P004
+P005
+
+These subjects represent the patient-specific computational models used
+for the gravity-response analysis.
+
+The patient-specific geometry is derived from the corresponding cardiac
+imaging/segmentation workflow documented elsewhere in the repository.
+
+No additional patients should be added to the quantitative gravity
+experiment without updating:
+
+- the patient inventory;
+- geometry reconstruction registry;
+- digital-twin execution registry;
+- simulation execution registry;
+- results workbook;
+- manuscript cohort description.
+
+
+======================================================================
+3. GRAVITY CONDITIONS
+======================================================================
+
+The recovered simulation design specifies six gravitational loading
+conditions:
+
+Condition 1:
+1.00 g
+Earth / terrestrial reference
+
+Condition 2:
+0.75 g
+Intermediate reduced-gravity condition
+
+Condition 3:
+0.50 g
+Intermediate reduced-gravity condition
+
+Condition 4:
+0.38 g
+Mars-equivalent gravitational loading
+
+Condition 5:
+0.16 g
+Moon-equivalent gravitational loading
+
+Condition 6:
+0.00 g
+Microgravity / zero-gravity computational condition
+
+Reference gravitational acceleration:
+
+1 g = 9.81 m/s^2
+
+Corresponding nominal gravitational accelerations:
+
+1.00 g = 9.81 m/s^2
+0.75 g = 7.3575 m/s^2
+0.50 g = 4.9050 m/s^2
+0.38 g = 3.7278 m/s^2
+0.16 g = 1.5696 m/s^2
+0.00 g = 0.0000 m/s^2
+
+The gravitational conditions are treated as predefined experimental
+inputs and are not fitted to observed validation data.
+
+
+======================================================================
+4. GRAVITY PARAMETERIZATION
+======================================================================
+
+The gravity experiment uses a gravity multiplier applied to the
+specified gravitational loading within the computational solid-mechanics
+framework.
+
+The experimental multiplier is:
+
+gamma = {1.00, 0.75, 0.50, 0.38, 0.16, 0.00}
+
+The gravity-dependent computational experiment therefore changes the
+specified gravitational loading while maintaining the underlying
+patient-specific anatomical representation and the predefined
+computational model configuration.
+
+Unless explicitly documented in the simulation-execution registry,
+gravity changes must not be interpreted as independently recalibrating:
+
+- myocardial material properties;
+- fiber orientation;
+- geometry;
+- solver settings;
+- mesh density;
+- basal constraints;
+- cavity-pressure parameters;
+- constitutive parameters.
+
+Any parameter that changes across gravity conditions must be explicitly
+recorded as a gravity-dependent model input.
+
+
+======================================================================
+5. PRIMARY EXPERIMENTAL UNIT
+======================================================================
+
+The fundamental experimental unit is:
+
+Patient × Gravity Condition
+
+Therefore:
+
+5 patients × 6 gravity conditions = 30 patient-gravity simulations
+
+planned computational combinations.
+
+The complete design matrix is:
+
+P001 × 1.00 g
+P001 × 0.75 g
+P001 × 0.50 g
+P001 × 0.38 g
+P001 × 0.16 g
+P001 × 0.00 g
+
+P002 × 1.00 g
+P002 × 0.75 g
+P002 × 0.50 g
+P002 × 0.38 g
+P002 × 0.16 g
+P002 × 0.00 g
+
+P003 × 1.00 g
+P003 × 0.75 g
+P003 × 0.50 g
+P003 × 0.38 g
+P003 × 0.16 g
+P003 × 0.00 g
+
+P004 × 1.00 g
+P004 × 0.75 g
+P004 × 0.50 g
+P004 × 0.38 g
+P004 × 0.16 g
+P004 × 0.00 g
+
+P005 × 1.00 g
+P005 × 0.75 g
+P005 × 0.50 g
+P005 × 0.38 g
+P005 × 0.16 g
+P005 × 0.00 g
+
+Status of the 30 combinations must be established from the actual
+simulation-execution evidence registry.
+
+A planned combination must not automatically be classified as executed.
+
+
+======================================================================
+6. DEFINITIVE PRIMARY ENDPOINTS
+======================================================================
+
+The core mechanical endpoints are:
+
+6.1 Peak myocardial von Mises stress
+
+Definition:
+Maximum von Mises stress within the modeled ventricular myocardium
+according to the final analysis definition.
+
+Unit:
+kPa
+
+Role:
+Primary tissue-level mechanical loading endpoint.
+
+
+6.2 Peak principal strain
+
+Definition:
+Maximum principal myocardial strain according to the predefined
+post-processing convention.
+
+Unit:
+%
+
+Role:
+Primary tissue-deformation endpoint.
+
+
+6.3 Maximum ventricular displacement
+
+Definition:
+Maximum displacement magnitude within the modeled ventricular
+structure.
+
+Unit:
+mm
+
+Role:
+Primary structural-deformation endpoint.
+
+
+6.4 LV cavity volume
+
+Definition:
+Computed left-ventricular cavity volume according to the geometry/
+post-processing definition used in the computational workflow.
+
+Unit:
+mL
+
+Role:
+Primary chamber-level structural endpoint.
+
+
+6.5 Myocardial volume
+
+Definition:
+Volume of the modeled ventricular myocardial tissue.
+
+Unit:
+mL
+
+Role:
+Structural/remodeling-related geometric endpoint where applicable.
+
+Important:
+Myocardial-volume changes caused by the computational deformation
+state must not automatically be described as biological remodeling.
+
+
+6.6 Total ventricular strain energy
+
+Definition:
+Integrated strain energy of the modeled ventricular myocardium.
+
+Unit:
+J
+
+Role:
+Primary energetic/mechanical endpoint.
+
+
+======================================================================
+7. SECONDARY / DERIVED GRAVITY-RESPONSE METRICS
+======================================================================
+
+Where appropriate and supported by the underlying numerical outputs,
+gravity-response quantities may be expressed relative to the 1.00 g
+reference condition.
+
+For endpoint X:
+
+Normalized response:
+
+X_normalized(gamma)
+=
+X(gamma) / X(1.00 g) × 100
+
+Relative change from 1.00 g:
+
+Delta_X(%)
+=
+[X(gamma) - X(1.00 g)] / X(1.00 g) × 100
+
+The 1.00 g condition is therefore the within-model reference condition
+for gravity-response normalization.
+
+Relative changes must be calculated from the underlying patient-level
+values and not manually adjusted to reproduce a target percentage.
+
+
+======================================================================
+8. PATIENT-LEVEL ANALYSIS
+======================================================================
+
+Patient-level values should be retained for every endpoint and every
+gravity condition whenever the corresponding simulation has been
+executed and the output is available.
+
+The preferred analytical structure is:
+
+Patient
+Gravity
+LV volume
+Myocardial volume
+Peak von Mises stress
+Peak principal strain
+Maximum displacement
+Total strain energy
+
+The patient-level records should allow reconstruction of all reported
+means, standard deviations, normalized responses, and gravity-response
+plots.
+
+
+======================================================================
+9. GROUP-LEVEL SUMMARY
+======================================================================
+
+For each gravity condition and each endpoint, the primary descriptive
+summary should be calculated across the available patient-level
+computational subjects.
+
+Preferred reporting format:
+
+Mean ± SD
+
+where SD represents between-patient variation for the corresponding
+patient-level simulation outputs.
+
+The number of contributing patient-level simulations must always be
+reported or recoverable.
+
+No group-level mean or SD should be generated independently of the
+patient-level records.
+
+
+======================================================================
+10. GRAVITY-RESPONSE FIGURE STRUCTURE
+======================================================================
+
+The primary quantitative gravity-response figure should be organized
+around the six definitive mechanical endpoints.
+
+Recommended panels:
+
+A:
+Peak myocardial von Mises stress versus gravity
+
+B:
+Peak principal strain versus gravity
+
+C:
+Maximum ventricular displacement versus gravity
+
+D:
+LV cavity volume versus gravity
+
+E:
+Total ventricular strain energy versus gravity
+
+F:
+Normalized gravity-response summary
+
+If myocardial volume is retained as a primary manuscript endpoint, it
+should either be included in the principal figure or reported clearly
+in the corresponding primary/supplementary table.
+
+The same underlying patient-level data must be used to generate:
+
+- primary figures;
+- supplementary figures;
+- primary tables;
+- supplementary tables.
+
+
+======================================================================
+11. SPATIAL FIELD ANALYSIS
+======================================================================
+
+Where spatial finite-element fields are available, the following
+quantities may be visualized:
+
+- myocardial von Mises stress;
+- principal strain;
+- displacement magnitude;
+- strain-energy distribution.
+
+Spatial visualizations should use:
+
+- identical anatomical orientation where applicable;
+- identical gravity labels;
+- consistent units;
+- consistent color-scale definitions;
+- clearly stated common or condition-specific scales.
+
+If a common color scale is used across gravity conditions, the caption
+must state that the scale is common.
+
+Spatial figures are descriptive/model-derived outputs and should not be
+described as experimentally measured tissue stress or strain unless
+independent measurements are available.
+
+
+======================================================================
+12. EARTH, MARS, LUNAR, AND MICROGRAVITY INTERPRETATION
+======================================================================
+
+The predefined gravity conditions permit interpretation of:
+
+1.00 g:
+Earth reference
+
+0.38 g:
+Mars-equivalent condition
+
+0.16 g:
+Moon-equivalent condition
+
+0.00 g:
+Microgravity computational condition
+
+The 0.75 g and 0.50 g conditions provide intermediate points for
+characterizing the response trajectory.
+
+The intermediate conditions must not be removed from the computational
+experiment merely because they are not associated with a specific
+planetary environment.
+
+
+======================================================================
+13. GRAVITY-RESPONSE TREND ANALYSIS
+======================================================================
+
+The principal scientific interpretation should focus on the direction
+and magnitude of mechanical response across decreasing gravity.
+
+The analysis should determine whether decreasing gravity is associated
+with changes in:
+
+- myocardial stress;
+- myocardial strain;
+- ventricular displacement;
+- LV cavity volume;
+- myocardial volume;
+- strain energy.
+
+Any statement regarding monotonicity must be supported by the actual
+patient-level numerical outputs.
+
+If a variable does not change monotonically, the manuscript must report
+the observed pattern rather than impose a monotonic interpretation.
+
+
+======================================================================
+14. ROBUSTNESS / SENSITIVITY EXPERIMENTS
+======================================================================
+
+Sensitivity analyses are separate from the primary gravity sweep.
+
+The primary gravity experiment must use the locked baseline model
+configuration.
+
+Sensitivity analyses may subsequently vary predefined assumptions
+according to the corresponding sensitivity-analysis design.
+
+The recovered supplementary structure identifies:
+
+- fiber-orientation sensitivity;
+- material-parameter sensitivity;
+- basal boundary-condition sensitivity;
+- cavity-pressure sensitivity.
+
+These analyses should determine whether the qualitative gravity-response
+conclusions remain stable under reasonable changes in model assumptions.
+
+
+======================================================================
+15. BASELINE MODEL REQUIREMENT
+======================================================================
+
+The baseline gravity experiment must use one locked computational
+configuration.
+
+The following should remain fixed across the primary gravity sweep
+unless explicitly defined as gravity-dependent:
+
+- patient-specific geometry;
+- mesh;
+- fiber-orientation mapping;
+- constitutive formulation;
+- material parameters;
+- cavity-pressure specification;
+- basal mechanical constraints;
+- solver configuration;
+- convergence criteria;
+- post-processing definitions.
+
+Any deviation must be recorded in the simulation-execution registry.
+
+
+======================================================================
+16. MESH AND NUMERICAL CONFIGURATION
+======================================================================
+
+The final mesh selected through the predefined mesh-convergence procedure
+must be used for the primary gravity-response experiment.
+
+Mesh selection must precede the final gravity comparison.
+
+A gravity condition should not use a different mesh solely because that
+condition produces a different result.
+
+Any gravity-specific remeshing must be explicitly documented and treated
+as a separate computational condition.
+
+
+======================================================================
+17. SOLVER AND CONVERGENCE REQUIREMENTS
+======================================================================
+
+Each patient-gravity simulation must satisfy the predefined numerical
+convergence criteria documented in the COMSOL model and verification
+registry.
+
+For every executed simulation, the execution record should retain, where
+available:
+
+- solver status;
+- nonlinear convergence status;
+- residual;
+- iteration information;
+- failed-element information;
+- relevant numerical warnings;
+- final exported endpoint values.
+
+A simulation that does not satisfy the predefined convergence criteria
+must not be silently included as a successful final simulation.
+
+
+======================================================================
+18. EXECUTION STATUS CLASSIFICATION
+======================================================================
+
+Every patient × gravity combination must be classified using the
+following evidence categories:
+
+PLANNED
+The combination belongs to the predefined experimental design.
+
+EXECUTED
+A corresponding computational run was actually performed and an
+execution artifact exists.
+
+VERIFIED
+The execution passed the predefined numerical/quality-control criteria.
+
+MANUSCRIPT-REPORTABLE
+The result is traceable from patient input through execution and
+verification to a machine-readable numerical output.
+
+A planned simulation is not automatically executed.
+
+An executed simulation is not automatically verified.
+
+A verified simulation is not automatically manuscript-reportable unless
+the numerical result can be traced to the underlying output artifact.
+
+
+======================================================================
+19. PRIMARY RESULT TRACEABILITY
+======================================================================
+
+Every quantitative result used in the manuscript should be traceable as:
+
+Patient ID
+    ->
+Imaging/segmentation source
+    ->
+Patient-specific geometry
+    ->
+Digital-twin model
+    ->
+Gravity condition
+    ->
+Solver execution
+    ->
+Numerical output
+    ->
+Verification
+    ->
+Patient-level result
+    ->
+Group-level summary
+    ->
+Figure/table
+    ->
+Manuscript statement
+
+
+======================================================================
+20. CONTROL OF PRIMARY FIGURES AND TABLES
+======================================================================
+
+The following manuscript components must use the same underlying
+patient-level computational result dataset:
+
+Primary Figure 6:
+Gravity-dependent ventricular mechanical response
+
+Primary Figure 7:
+Spatial distribution and gravity-dependent changes in stress, strain,
+displacement, and strain energy
+
+Supplementary Tables:
+Gravity-specific response tables and sensitivity analyses
+
+Any additional primary or supplementary quantitative figure/table must
+be generated from the same controlled result source.
+
+No independently typed numerical values should be introduced into a
+manuscript table or figure if the underlying patient-level result is
+available.
+
+
+======================================================================
+21. PROHIBITED RESULT CONVERSIONS
+======================================================================
+
+The following practices are prohibited:
+
+- inventing patient-level results to fill missing cells;
+- modifying values to match a figure;
+- modifying values to match a previously drafted table;
+- replacing unexpected numerical results with "expected" values;
+- back-calculating individual patient results from a group mean;
+- changing SD values to make them appear more plausible;
+- changing R² or error metrics to improve apparent performance;
+- treating planned simulations as executed;
+- treating a model assumption as an observed physiological finding.
+
+
+======================================================================
+22. VALIDATION DISTINCTION
+======================================================================
+
+This gravity experiment is separate from calibration and external
+validation.
+
+The gravity conditions are experimental model inputs.
+
+They are not validation targets.
+
+If an independent validation dataset is subsequently established, it
+must be documented separately through the calibration/model-lock and
+independent-validation registries.
+
+External physiological observations must not be used to alter the
+gravity-response results after the primary model has been locked.
+
+
+======================================================================
+23. LIMITATION CONTROL
+
+The present experiment is a finite-element ventricular
+solid-mechanics study.
+
+Therefore, unless independently supported by executable model evidence,
+the gravity experiment should not be represented as demonstrating:
+
+- complete cardiovascular adaptation;
+- systemic circulatory adaptation;
+- autonomic adaptation;
+- baroreflex resetting;
+- chronic biological remodeling;
+- astronaut-specific physiological prediction;
+- blood-flow dynamics;
+- wall shear stress;
+- full fluid-structure interaction;
+- electrophysiological adaptation.
+
+The present computational experiment establishes gravity-dependent
+mechanical behavior within the modeled ventricular solid-mechanics
+framework.
+
+
+======================================================================
+24. MANUSCRIPT-READY EXPERIMENTAL DESCRIPTION
+======================================================================
+
+The gravity-response experiment was designed using patient-specific
+finite-element ventricular models derived from publicly available
+cardiac imaging data. Each computational subject was evaluated under six
+predefined gravitational loading conditions (1.00, 0.75, 0.50, 0.38,
+0.16, and 0.00 g). The baseline patient-specific geometry, mesh,
+constitutive formulation, fiber-orientation mapping, material parameters,
+and numerical configuration were held fixed across the primary gravity
+sweep unless explicitly specified as gravity-dependent model inputs.
+Primary mechanical outputs included peak myocardial von Mises stress,
+peak principal strain, maximum ventricular displacement, LV cavity
+volume, myocardial volume, and total ventricular strain energy.
+Patient-level outputs were retained for each executed simulation and
+were subsequently summarized across subjects using descriptive
+statistics. Sensitivity analyses were performed separately to assess
+the robustness of gravity-dependent conclusions to predefined
+uncertainties in fiber orientation, material parameters, basal
+constraints, and cavity-pressure assumptions.
+
+
+======================================================================
+25. EVIDENCE STATUS OF THIS RECOVERY DOCUMENT
+======================================================================
+
+This document establishes the controlled experimental design.
+
+It does NOT independently establish execution of all 30
+patient × gravity simulations.
+
+Execution status must be established using:
+
+07_Simulation_Execution/
+Simulation_Execution_Evidence_Registry.txt
+
+Verification status must be established using:
+
+09_Stage_3_Verification/
+Stage_3_COMSOL_Verification_Evidence_Registry.txt
+
+Numerical result traceability must be established using:
+
+08_Simulation_Results/
+Digital_Twin_Simulation_Result_Lineage.txt
+
+
+======================================================================
+26. FINAL EXPERIMENTAL SCOPE LOCK
+======================================================================
+
+The definitive gravity experiment is:
+
+5 patient-specific computational subjects
+×
+6 predefined gravitational conditions
+×
+6 primary mechanical endpoints
+
+The principal scientific response chain is:
+
+Gravity
+    ->
+Mechanical loading
+    ->
+Myocardial stress
+    ->
+Myocardial strain
+    ->
+Ventricular displacement
+    ->
+LV cavity volume / myocardial volume
+    ->
+Strain energy
+    ->
+Gravity-dependent mechanical response
+    ->
+Sensitivity / robustness
+
+All manuscript tables, figures, supplementary materials, and reviewer
+responses must remain consistent with this controlled experimental
+design.
+
+Any deviation from this design must be documented before being reflected
+in the manuscript.
+
+END OF GRAVITY SIMULATION EXPERIMENT DESIGN RECOVERY
+======================================================================
