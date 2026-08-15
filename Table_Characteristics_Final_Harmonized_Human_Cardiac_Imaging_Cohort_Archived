@@ -1,0 +1,25 @@
+Table 1. Characteristics of the Final Harmonized Human Cardiac Imaging Cohort Used for Patient-Specific Digital Twin Construction
+Characteristic	ACDC	Sunnybrook Cardiac MRI	CAMUS	Combined Cohort
+Dataset Overview				
+Subjects included, n (%)	100 (15.5%)	45 (7.0%)	500 (77.5%)	645 (100%)
+Role in study	Cardiac MRI development cohort	Independent MRI cohort	Large-scale echocardiography cohort	Final harmonized analytical cohort
+Institution	University Hospital of Dijon	Sunnybrook Health Sciences Centre	University Hospital of Saint-Étienne	—
+Country	France	Canada	France	Three institutions
+Number of centers	1	1	1	3
+Imaging Characteristics				
+Imaging modality	Cine cardiac MRI	Cine cardiac MRI	Transthoracic echocardiography	MRI (145); Echocardiography (500)
+Acquisition views	Short-axis stack	Short-axis stack	Apical 2CH and 4CH	—
+Scanner vendor	Siemens	GE Healthcare	GE Healthcare	—
+Scanner model	Siemens Area / Trio Tim	GE Signa	GE Vivid E95 (M5S probe)	—
+Field strength	1.5T / 3.0T*	1.5T	N/A†	—
+Image format	NIfTI	DICOM	MHD (official release)	—
+Cine acquisition	full 4D cine	~20 phases	≥1 full cycle per view	Yes
+Clinical Metadata				
+Diagnosis	Available	Available	Cohort-level only‡	—
+Disease groups	5 (NOR, DCM, HCM, MINF, RV)	4 (Normal, HYP, HF, HF-I)	Mixed clinical cohort	9 disease categories across MRI datasets plus mixed echocardiography cohort
+Segmentation Resources				
+Manual expert segmentation	100/100	45/45	450/500 (90 %) §	595/645 (92.2 %)
+Segmentation coverage	LV, RV, myocardium	LV endocardium (ED & ES); epicardium (ED only)	LV endocardium and epicardium	—
+Geometry reconstruction feasible	Yes	Yes	Yes	Yes
+Access & Provenance	Bernard et al., IEEE TMI 37(11):2514–2525, 2018	Radau et al., MIDAS Journal, 2009	Leclerc et al., IEEE TMI 38(9):2198–2210, 2019	—
+Citation
