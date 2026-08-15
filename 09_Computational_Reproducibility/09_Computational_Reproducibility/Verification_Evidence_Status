@@ -1,0 +1,717 @@
+VERIFICATION EVIDENCE STATUS
+Patient-Specific Cardiac Digital Twin / COMSOL Finite-Element Model
+Repository Computational Reproducibility Layer
+Version: Stage-3 Evidence-Controlled Audit
+Date: 2026-08-16
+
+
+PURPOSE
+-------
+This file provides the current verification dashboard for the computational
+workflow.
+
+It distinguishes between:
+
+    documented methodological specifications,
+    documented numerical study values,
+    derived calculations,
+    recovered execution artifacts,
+    and independently verified execution evidence.
+
+The dashboard is intended to prevent unsupported computational claims from
+being promoted into the manuscript.
+
+
+STATUS DEFINITIONS
+------------------
+
+GREEN — VERIFIED
+    Required artifact and supporting evidence are present and traceable.
+
+BLUE — DOCUMENTED
+    Information is explicitly recorded in the recovered study materials,
+    but independent execution verification is not yet complete.
+
+YELLOW — PENDING
+    The analysis/artifact is required or documented, but supporting execution
+    evidence remains incomplete.
+
+RED — NOT RECOVERED
+    The required original computational artifact is currently unavailable
+    in the recovered repository materials.
+
+GRAY — NOT APPLICABLE
+    The artifact is not required for the specific computational stage.
+
+
+GLOBAL STATUS
+-------------
+Overall computational specification:
+    DOCUMENTED
+
+Overall execution verification:
+    INCOMPLETE
+
+Current Stage-3 computational status:
+    NO-GO / EVIDENCE PENDING
+
+
+A. SOURCE DATA AND PATIENT PROVENANCE
+-------------------------------------
+
+A01 — ACDC source dataset
+Status:
+    BLUE — DOCUMENTED / SOURCE-ACCESS CONTROLLED
+
+Evidence currently available:
+    ACDC is documented as the primary source of the patient-specific cardiac
+    MRI and expert segmentation data for the five-patient cohort.
+
+Remaining requirement:
+    Exact source-data linkage for P001–P005.
+
+
+A02 — Patient-specific ED/ES segmentation
+Status:
+    YELLOW — EXECUTION EVIDENCE PENDING
+
+Required evidence:
+    Exact source mask identifiers linked to P001–P005.
+
+
+A03 — Patient-level provenance chain
+Status:
+    YELLOW — PENDING
+
+Required evidence:
+    Patient_ID → source mask → geometry → mesh → model version.
+
+
+B. GEOMETRY RECONSTRUCTION
+--------------------------
+
+B01 — Surface reconstruction
+Status:
+    YELLOW — PENDING
+
+Required evidence:
+    Final surface geometry files for P001–P005.
+
+
+B02 — Surface-to-mask volume discrepancy
+Status:
+    YELLOW — VERIFICATION PENDING
+
+Documented criterion:
+    ≤1.5%
+
+Previously documented range:
+    0.67–1.08%
+
+Interpretation:
+    Retain as documented study evidence only.
+
+Required evidence:
+    Original surface QC exports linked to the corresponding geometry.
+
+
+B03 — Manifold/topological integrity
+Status:
+    YELLOW — VERIFICATION PENDING
+
+Required evidence:
+    Patient-level surface-QC records.
+
+
+B04 — CAD/solid geometry
+Status:
+    RED — NOT RECOVERED
+
+Required evidence:
+    Final patient-specific closed solid/volumetric geometry.
+
+
+C. FIBER ORIENTATION
+--------------------
+
+C01 — Fiber orientation definition
+Status:
+    BLUE — DOCUMENTED
+
+Documented:
+    Endocardial helix angle = +60°
+    Epicardial helix angle = -60°
+    Continuous transmural interpolation.
+
+
+C02 — Executed fiber-field implementation
+Status:
+    YELLOW — PENDING
+
+Required evidence:
+    Actual COMSOL implementation and/or exported fiber field.
+
+
+C03 — Fiber orientation sensitivity
+Status:
+    YELLOW — EXECUTION EVIDENCE PENDING
+
+Documented perturbations:
+    -15°
+    Baseline
+    +15°
+
+Documented numerical table:
+    Table 36.
+
+Interpretation:
+    Table 36 is retained as documented study data but is not independently
+    verified.
+
+
+D. CONSTITUTIVE MODEL
+---------------------
+
+D01 — Constitutive formulation
+Status:
+    BLUE — DOCUMENTED
+
+Specification:
+    Anisotropic Holzapfel–Ogden-type hyperelastic formulation.
+
+
+D02 — Nearly incompressible treatment
+Status:
+    BLUE — DOCUMENTED
+
+
+D03 — Exact executed material parameters
+Status:
+    YELLOW — PENDING
+
+Required evidence:
+    Complete numerical parameter registry with units and COMSOL variable
+    mapping.
+
+
+D04 — Executed constitutive implementation
+Status:
+    YELLOW — PENDING
+
+Required evidence:
+    Executed .mph model or equivalent implementation record.
+
+
+E. MESHING AND NUMERICAL DISCRETIZATION
+---------------------------------------
+
+E01 — Coarse mesh
+Status:
+    BLUE — DOCUMENTED / EXPORT NOT RECOVERED
+
+
+E02 — Medium mesh
+Status:
+    BLUE — DOCUMENTED / EXPORT NOT RECOVERED
+
+
+E03 — Fine mesh
+Status:
+    BLUE — DOCUMENTED / EXPORT NOT RECOVERED
+
+
+E04 — Mesh quality
+Status:
+    YELLOW — VERIFICATION PENDING
+
+Required evidence:
+    Mesh-quality metrics and corresponding mesh files.
+
+
+E05 — Mesh independence
+Status:
+    YELLOW — VERIFICATION PENDING
+
+Documented criterion:
+    Fine-versus-medium variation ≤2%.
+
+Previously documented range:
+    0.94–1.63%.
+
+Interpretation:
+    This range remains a documented study value until the actual mesh
+    realizations and executed solutions are recovered or recreated.
+
+
+F. LOADING AND BOUNDARY CONDITIONS
+----------------------------------
+
+F01 — Gravity sweep
+Status:
+    BLUE — DOCUMENTED
+
+Conditions:
+    1.00 G
+    0.75 G
+    0.50 G
+    0.38 G
+    0.16 G
+    0.00 G
+
+
+F02 — Effective gravity definition
+Status:
+    BLUE — DOCUMENTED
+
+Definition:
+    g_eff = γ × 9.81 m/s²
+
+
+F03 — Cavity-pressure loading
+Status:
+    YELLOW — NUMERICAL IMPLEMENTATION PENDING
+
+Required evidence:
+    Exact pressure values, application surfaces, loading sequence and units.
+
+
+F04 — Basal boundary condition
+Status:
+    BLUE — DOCUMENTED / EXECUTION CONFIGURATION PENDING
+
+
+F05 — Epicardial boundary condition
+Status:
+    BLUE — DOCUMENTED
+
+Interpretation:
+    No additional displacement constraint unless explicitly implemented in
+    the executed model.
+
+
+G. SOLVER EXECUTION
+-------------------
+
+G01 — COMSOL Multiphysics 6.4
+Status:
+    BLUE — DOCUMENTED
+
+
+G02 — Executed .mph model
+Status:
+    RED — NOT RECOVERED
+
+This is a critical missing artifact.
+
+
+G03 — Solver configuration
+Status:
+    YELLOW — EXECUTION CONFIGURATION PENDING
+
+
+G04 — Solver log
+Status:
+    YELLOW — VERIFICATION PENDING
+
+Documented residual range:
+    5.8 × 10^-7 to 9.1 × 10^-7.
+
+Interpretation:
+    The values are retained as documented study values.
+
+They must not be described as independently verified solver residuals until
+the raw solver logs are recovered or the model is recreated and executed.
+
+
+G05 — Nonlinear convergence
+Status:
+    YELLOW — VERIFICATION PENDING
+
+Important:
+    Tables 35, 37 and 39 contain "PASS" convergence labels. These labels are
+    retained as documented study records but cannot independently establish
+    solver convergence without corresponding execution evidence.
+
+
+G06 — Failed-element assessment
+Status:
+    YELLOW — VERIFICATION PENDING
+
+Documented result:
+    0 failed elements.
+
+Required evidence:
+    Mesh/solver diagnostic output.
+
+
+G07 — Energy balance
+Status:
+    YELLOW — VERIFICATION PENDING
+
+Documented criterion:
+    Energy-balance error ≤1%.
+
+Required evidence:
+    Executed solver/energy audit output.
+
+
+H. PRIMARY SIMULATION RESULTS
+----------------------------
+
+H01 — Baseline 1G patient-level results
+Status:
+    YELLOW — RAW EXECUTION EXPORT PENDING
+
+Required endpoints:
+    Peak von Mises stress
+    Peak principal strain
+    Maximum displacement
+    LV cavity volume
+    Strain energy
+
+
+H02 — Gravity-sweep patient-level results
+Status:
+    RED — RAW EXPORT NOT RECOVERED
+
+Required structure:
+    5 patients × 6 gravity states × 5 endpoints
+    = 150 patient-level endpoint-condition records.
+
+
+H03 — Figure 6 summary values
+Status:
+    BLUE — DOCUMENTED SUMMARY VALUES
+
+Documented cohort means ± SD:
+
+    Peak von Mises stress:
+        91.7 ± 3.9 kPa at 1.00 G
+        69.8 ± 2.8 kPa at 0.00 G
+
+    Peak principal strain:
+        18.4 ± 0.9% at 1.00 G
+        14.1 ± 0.6% at 0.00 G
+
+    Maximum displacement:
+        1.82 ± 0.09 mm at 1.00 G
+        1.36 ± 0.06 mm at 0.00 G
+
+    LV cavity volume:
+        141.3 ± 8.7 mL at 1.00 G
+        143.9 ± 8.8 mL at 0.00 G
+
+    Strain energy:
+        0.082 ± 0.006 J at 1.00 G
+        0.054 ± 0.003 J at 0.00 G
+
+Evidence limitation:
+    Raw patient-level COMSOL exports are not currently recovered.
+
+
+H04 — Figure 6 normalized response
+Status:
+    BLUE — DERIVED FROM DOCUMENTED SUMMARY VALUES
+
+Definition:
+    E_p(g) = value_at(g) / value_at(1.00 G) × 100
+
+Documented 0G versus 1G changes:
+    Stress:
+        -23.9%
+
+    Principal strain:
+        -23.4%
+
+    Maximum displacement:
+        -25.3%
+
+    LV cavity volume:
+        +1.8%
+
+    Strain energy:
+        -34.1%
+
+Mathematical status:
+    VERIFIED FROM THE DOCUMENTED SUMMARY VALUES.
+
+Execution status:
+    NOT independently verified.
+
+
+H05 — Spatial FEM stress/strain fields
+Status:
+    RED — NOT RECOVERED
+
+Important:
+    Peak numerical values cannot be used to reconstruct scientifically valid
+    spatial contour maps.
+
+
+I. SENSITIVITY ANALYSES
+-----------------------
+
+I01 — Pressure sensitivity
+Status:
+    YELLOW — DOCUMENTED VALUES / EXECUTION EVIDENCE PENDING
+
+Perturbation:
+    ±10%
+
+Source:
+    Table 35 and Table 39.
+
+
+I02 — Fiber orientation sensitivity
+Status:
+    YELLOW — DOCUMENTED VALUES / EXECUTION EVIDENCE PENDING
+
+Perturbation:
+    ±15°
+
+Source:
+    Table 36.
+
+
+I03 — Material stiffness sensitivity
+Status:
+    YELLOW — DOCUMENTED VALUES / EXECUTION EVIDENCE PENDING
+
+Perturbation:
+    ±20%
+
+Source:
+    Table 37.
+
+
+I04 — Basal boundary-condition sensitivity
+Status:
+    YELLOW — DOCUMENTED VALUES / EXECUTION EVIDENCE PENDING
+
+Source:
+    Table 38.
+
+
+I05 — Sensitivity-analysis execution artifacts
+Status:
+    YELLOW — PENDING
+
+Required:
+    Machine-readable outputs for every perturbation, patient and endpoint.
+
+
+J. REPRODUCIBILITY METADATA
+---------------------------
+
+J01 — Execution timestamp
+Status:
+    RED — NOT RECOVERED
+
+
+J02 — Operating environment
+Status:
+    YELLOW — PARTIALLY DOCUMENTED
+
+
+J03 — COMSOL version
+Status:
+    BLUE — DOCUMENTED
+
+Version:
+    COMSOL Multiphysics 6.4
+
+
+J04 — Hardware/GPU configuration
+Status:
+    YELLOW — PENDING
+
+
+J05 — External scripts
+Status:
+    YELLOW — REPOSITORY RECONCILIATION PENDING
+
+
+J06 — SHA-256 checksums
+Status:
+    RED — NOT RECOVERED
+
+Required files:
+    .mph
+    geometry
+    meshes
+    solver logs
+    gravity outputs
+    sensitivity outputs
+    post-processing scripts.
+
+
+K. COMPUTATIONAL ARTIFACT MANIFEST
+----------------------------------
+
+K01 — Master patient/model/result manifest
+Status:
+    YELLOW — PENDING
+
+Required mapping:
+
+    Patient_ID
+        →
+    source segmentation
+        →
+    geometry version
+        →
+    mesh version
+        →
+    fiber-field version
+        →
+    model version
+        →
+    solver execution
+        →
+    gravity/perturbation condition
+        →
+    raw result
+        →
+    derived result
+        →
+    figure/table
+        →
+    checksum.
+
+
+CURRENT EVIDENCE MATRIX
+-----------------------
+
+Artifact / analysis                    Status
+
+ACDC provenance                        BLUE
+Patient segmentation                   YELLOW
+Surface geometry                       YELLOW
+Surface QC                             YELLOW
+CAD/solid geometry                     RED
+Fiber orientation specification        BLUE
+Fiber-field implementation             YELLOW
+Constitutive formulation               BLUE
+Material parameters                    YELLOW
+Boundary conditions                    YELLOW
+Cavity pressure implementation         YELLOW
+Gravity definition                     BLUE
+Coarse mesh                            BLUE/YELLOW
+Medium mesh                            BLUE/YELLOW
+Fine mesh                              BLUE/YELLOW
+Mesh quality                           YELLOW
+Mesh independence                      YELLOW
+COMSOL .mph                            RED
+Solver configuration                   YELLOW
+Solver logs                            YELLOW
+Failed-element assessment              YELLOW
+Energy balance                         YELLOW
+Baseline 1G raw output                 YELLOW
+Gravity raw output                     RED
+Figure 6 summary                       BLUE
+Figure 6 normalization                 BLUE/DERIVED
+Spatial FEM fields                     RED
+Pressure sensitivity                   YELLOW
+Fiber sensitivity                     YELLOW
+Material sensitivity                   YELLOW
+Boundary sensitivity                   YELLOW
+Sensitivity raw outputs                YELLOW
+Execution timestamp                    RED
+Environment metadata                   YELLOW
+Checksums                              RED
+Master execution manifest              YELLOW
+
+
+CRITICAL MISSING ARTIFACTS
+--------------------------
+The following artifacts currently prevent final computational GO status:
+
+    1. Executed COMSOL *.mph model.
+    2. Patient-specific raw gravity-sweep exports.
+    3. Patient-specific geometry artifacts.
+    4. Mesh exports and mesh-quality records.
+    5. Solver logs.
+    6. Failed-element diagnostics.
+    7. Energy-balance outputs.
+    8. Spatial FEM field exports.
+    9. Sensitivity-analysis raw outputs.
+    10. Execution metadata.
+    11. SHA-256 checksums.
+
+
+CURRENT STAGE-3 DECISION
+------------------------
+Decision:
+    NO-GO / EVIDENCE PENDING.
+
+Reason:
+    The methodological framework and documented numerical records are
+    sufficiently structured for computational reconstruction, but the
+    executable COMSOL model and several underlying execution artifacts have
+    not yet been recovered or independently verified.
+
+
+MANUSCRIPT CLAIM CONTROL
+------------------------
+Until the missing execution evidence is recovered or recreated:
+
+    DO:
+        Report the computational framework and model specification.
+        Preserve documented numerical tables in the repository.
+        Report derived calculations only as derived from documented values.
+        Clearly identify computational verification as pending.
+
+    DO NOT:
+        State that all simulations independently converged.
+        State that mesh independence has been independently verified.
+        State that zero failed elements were independently confirmed.
+        State that energy balance was independently confirmed.
+        Present Tables 35–39 as independently verified COMSOL results.
+        Present spatial FEM contours reconstructed from peak values.
+        Claim complete computational reproducibility.
+
+
+NEXT VERIFICATION PRIORITY
+--------------------------
+Priority 1:
+    Recover the executed COMSOL *.mph model.
+
+Priority 2:
+    Recover patient-specific geometry and mesh artifacts.
+
+Priority 3:
+    Recover patient × gravity raw result exports.
+
+Priority 4:
+    Recover solver logs and numerical-verification outputs.
+
+Priority 5:
+    Recover sensitivity-analysis raw outputs.
+
+Priority 6:
+    Recover spatial FEM field exports.
+
+Priority 7:
+    Record execution environment and timestamps.
+
+Priority 8:
+    Generate SHA-256 checksums.
+
+Priority 9:
+    Build the final computational execution manifest.
+
+Priority 10:
+    Reconcile all manuscript-facing tables and figures against the verified
+    computational source of truth.
+
+
+REPOSITORY PRINCIPLE
+--------------------
+The repository must preserve the distinction between:
+
+    documented,
+    derived,
+    recovered,
+    and verified.
+
+END OF FILE
