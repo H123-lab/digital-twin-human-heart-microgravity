@@ -1,0 +1,904 @@
+SIMULATION RESULT LINEAGE
+Patient-Specific Cardiac Digital Twin / COMSOL Finite-Element Model
+Repository File 7
+Version: Reconciled Draft — Stage-3 Evidence Controlled
+Date: 2026-08-16
+
+
+PURPOSE
+-------
+This file defines the provenance and lineage of numerical simulation results,
+derived quantities, tables, and figures associated with the patient-specific
+cardiac digital-twin workflow.
+
+The purpose of this registry is to establish a traceable relationship between:
+
+    source patient data
+        ↓
+    segmentation inputs
+        ↓
+    reconstructed geometry
+        ↓
+    finite-element mesh
+        ↓
+    constitutive/material model
+        ↓
+    fiber-orientation field
+        ↓
+    boundary conditions and loading
+        ↓
+    COMSOL execution
+        ↓
+    patient-level numerical outputs
+        ↓
+    cohort-level summary statistics
+        ↓
+    derived quantities
+        ↓
+    manuscript tables and figures
+
+This file is a lineage/audit record and does not independently establish
+execution validity.
+
+
+EVIDENCE CONTROL PRINCIPLE
+--------------------------
+The repository distinguishes between:
+
+    1. Model specification
+    2. Documented study values
+    3. Derived calculations
+    4. Recovered execution artifacts
+    5. Independently verified execution evidence
+
+A result may be retained as a documented study value while its underlying
+execution evidence remains pending.
+
+No numerical value is designated VERIFIED solely because it appears in a
+manuscript table, figure, study note, reconstructed table, or previously
+reported result.
+
+Where the underlying COMSOL model, raw export, solver log, mesh artifact,
+field export, or checksum has not been recovered, the lineage status remains
+PENDING or NOT RECOVERED.
+
+
+STUDY SCOPE
+-----------
+Cohort:
+    Five patient-specific models:
+    P001
+    P002
+    P003
+    P004
+    P005
+
+Primary source:
+    ACDC cine cardiac MRI with expert segmentation.
+
+Primary modeled system:
+    Patient-specific ventricular finite-element cardiac model.
+
+Software specification:
+    COMSOL Multiphysics 6.4.
+
+Gravity conditions:
+    1.00 G
+    0.75 G
+    0.50 G
+    0.38 G
+    0.16 G
+    0.00 G
+
+Primary endpoints:
+    1. Peak von Mises myocardial stress
+    2. Peak principal strain
+    3. Maximum ventricular displacement
+    4. LV cavity volume
+    5. Ventricular strain energy
+
+
+LINEAGE CHAIN
+-------------
+
+L0 — SOURCE DATA
+---------------
+Source:
+    ACDC cine cardiac MRI and expert ED/ES segmentation records.
+
+Patient scope:
+    P001–P005.
+
+Input information:
+    De-identified subject identifier;
+    ED/ES phase information;
+    ventricular and myocardial segmentation masks;
+    associated diagnostic/metadata information where available.
+
+Evidence status:
+    DOCUMENTED / SOURCE-ACCESS CONTROLLED.
+
+Required traceability:
+    Each patient-specific model must be linked to the exact source
+    segmentation record used for geometry reconstruction.
+
+
+L1 — SEGMENTATION INPUT
+-----------------------
+Artifact:
+    Patient-specific ED/ES segmentation masks.
+
+Patient scope:
+    P001–P005.
+
+Input role:
+    Anatomical basis for reconstruction of patient-specific cardiac geometry.
+
+Required lineage:
+    Patient_ID
+    →
+    source record
+    →
+    ED/ES mask identifier
+    →
+    geometry version.
+
+Current status:
+    DOCUMENTED / EXECUTION EVIDENCE PENDING.
+
+Required evidence:
+    Exact source mask identifiers and corresponding patient-level records.
+
+
+L2 — SURFACE RECONSTRUCTION
+---------------------------
+Artifact:
+    Patient-specific reconstructed ventricular/cardiac surfaces.
+
+Patient scope:
+    P001–P005.
+
+Processing:
+    Segmentation masks
+        →
+    3D surface reconstruction
+        →
+    surface quality control.
+
+Expected artifact:
+    STL and/or STEP/IGES or equivalent surface representation.
+
+Required quality checks:
+    Surface-mask volume agreement.
+    Manifold integrity.
+    Topological integrity.
+    Geometric continuity.
+
+Documented criterion:
+    Surface-to-mask volume discrepancy ≤1.5%.
+
+Previously documented range:
+    0.67–1.08%.
+
+Current status:
+    PENDING VERIFICATION.
+
+Important:
+    The reported 0.67–1.08% range remains a documented study value until
+    corresponding source geometry and QC exports are recovered or recreated.
+
+
+L3 — CAD / SOLID GEOMETRY
+------------------------
+Artifact:
+    Patient-specific closed solid/volumetric geometry.
+
+Processing:
+    Reconstructed surface
+        →
+    surface repair
+        →
+    CAD/solid generation
+        →
+    volumetric computational domain.
+
+Patient scope:
+    P001–P005.
+
+Required evidence:
+    Final solid geometry file.
+    Geometry version.
+    Conversion/reconstruction record.
+
+Current status:
+    PENDING / EXECUTION ARTIFACT NOT RECOVERED.
+
+
+L4 — FIBER-ORIENTATION FIELD
+----------------------------
+Artifact:
+    Patient-specific/model-defined myocardial fiber field.
+
+Specification:
+    Continuous transmural helical interpolation.
+
+Documented orientation:
+    Endocardial helix angle: +60 degrees.
+    Epicardial helix angle: -60 degrees.
+
+Processing:
+    Local myocardial coordinate construction
+        →
+    transmural interpolation
+        →
+    fiber assignment
+        →
+    orientation/continuity QC.
+
+Current status:
+    DOCUMENTED / IMPLEMENTATION ARTIFACT PENDING.
+
+Required evidence:
+    Fiber-field implementation record and/or exported orientation field.
+
+
+L5 — FINITE-ELEMENT MESH
+------------------------
+Artifact:
+    Patient-specific three-dimensional tetrahedral FEM mesh.
+
+Mesh levels:
+    Coarse
+    Medium
+    Fine
+
+Patient scope:
+    P001–P005.
+
+Processing:
+    Solid geometry
+        →
+    mesh generation
+        →
+    mesh-quality assessment
+        →
+    mesh-convergence assessment.
+
+Current status:
+    DOCUMENTED / MESH EXPORTS NOT RECOVERED.
+
+Required evidence:
+    Mesh files.
+    Patient identifier.
+    Element counts.
+    Mesh-quality metrics.
+    Mesh version.
+
+
+L6 — MESH-INDEPENDENCE ASSESSMENT
+---------------------------------
+Artifact:
+    Coarse/medium/fine mesh comparison.
+
+Documented criterion:
+    Fine-versus-medium variation ≤2%.
+
+Previously documented range:
+    0.94–1.63%.
+
+Current status:
+    PENDING EXECUTION VERIFICATION.
+
+Required evidence:
+    Actual coarse, medium, and fine mesh definitions.
+    Corresponding executed solutions.
+    Machine-readable convergence comparison.
+
+Important:
+    The previously documented 0.94–1.63% range must not be described as
+    independently verified mesh convergence until the underlying evidence
+    is recovered or recreated.
+
+
+L7 — CONSTITUTIVE MODEL
+-----------------------
+Artifact:
+    Myocardial material-model implementation.
+
+Specification:
+    Anisotropic Holzapfel–Ogden-type hyperelastic formulation with:
+
+    - isotropic matrix contribution;
+    - anisotropic fiber contribution;
+    - nearly incompressible treatment.
+
+Required implementation information:
+    Constitutive equations.
+    Material parameters.
+    Units.
+    Parameter-to-variable mapping.
+    COMSOL implementation syntax.
+
+Current status:
+    DOCUMENTED / EXECUTION ARTIFACT PENDING.
+
+
+L8 — BOUNDARY CONDITIONS
+-----------------------
+Artifact:
+    Patient-specific mechanical boundary-condition implementation.
+
+Documented specification:
+    Anatomically defined basal mechanical constraint intended to prevent
+    nonphysical rigid-body motion while allowing physiological deformation.
+
+Epicardial condition:
+    No additional displacement constraint unless explicitly implemented
+    in the executed model.
+
+Current status:
+    DOCUMENTED / EXECUTION CONFIGURATION PENDING.
+
+Required evidence:
+    Exact COMSOL boundary-condition definitions and constrained degrees
+    of freedom.
+
+
+L9 — CAVITY-PRESSURE LOADING
+----------------------------
+Artifact:
+    Prescribed ventricular cavity-pressure loading.
+
+Documented specification:
+    Pressure according to the implemented model loading protocol.
+
+Units:
+    mmHg and/or Pa according to executed implementation.
+
+Pressure sensitivity conditions:
+    -10%
+    Baseline
+    +10%
+
+Current status:
+    DOCUMENTED / NUMERICAL IMPLEMENTATION PENDING.
+
+Required evidence:
+    Exact pressure values.
+    Pressure sequence/ramp.
+    Application surfaces.
+    Unit conversion.
+    Executed model mapping.
+
+
+L10 — GRAVITY LOADING
+--------------------
+Artifact:
+    Gravity multiplier.
+
+Conditions:
+    γ = 1.00, 0.75, 0.50, 0.38, 0.16, 0.00.
+
+Effective gravity:
+    g_eff = γ × g0
+
+Reference gravitational acceleration:
+    g0 = 9.81 m/s².
+
+Processing:
+    Gravity condition
+        →
+    model body-force/loading definition
+        →
+    nonlinear finite-element solution.
+
+Current status:
+    DOCUMENTED.
+
+Required execution evidence:
+    COMSOL model variable definition.
+    Gravity-sweep study settings.
+    Patient-level output for every gravity condition.
+
+
+L11 — SOLVER EXECUTION
+---------------------
+Artifact:
+    Patient-specific COMSOL finite-element execution.
+
+Software:
+    COMSOL Multiphysics 6.4.
+
+Documented solver formulation:
+    Geometrically nonlinear finite-element solution using Newton-type
+    nonlinear iteration.
+
+Required evidence:
+    Executed *.mph model.
+    Solver configuration.
+    Solver log.
+    Residual/convergence information.
+    Execution metadata.
+
+Current status:
+    NOT RECOVERED / EXECUTION EVIDENCE PENDING.
+
+
+L12 — PRIMARY PATIENT-LEVEL OUTPUTS
+----------------------------------
+Each patient × gravity condition should generate at minimum:
+
+    Patient_ID
+    Gravity_G
+    LV_volume_mL
+    Peak_von_Mises_kPa
+    Peak_principal_strain_percent
+    Maximum_displacement_mm
+    Strain_energy_J
+
+Expected record structure:
+
+    5 patients
+    ×
+    6 gravity conditions
+    ×
+    5 primary endpoints
+
+    = 150 patient-level endpoint-condition records.
+
+Current raw-export status:
+    NOT RECOVERED.
+
+Important:
+    The expected structure defines the required computational lineage. It
+    does not establish that all 150 raw records are currently available.
+
+
+L13 — BASELINE 1G RESULTS
+------------------------
+Condition:
+    1.00 G.
+
+Primary endpoints:
+    Peak von Mises stress.
+    Peak principal strain.
+    Maximum displacement.
+    LV cavity volume.
+    Strain energy.
+
+Current evidence:
+    Documented cohort summary values are available.
+
+Current status:
+    DOCUMENTED NUMERICAL VALUES / RAW EXECUTION EXPORT PENDING.
+
+Required evidence:
+    Patient-level machine-readable COMSOL output linked to the executed
+    model and patient geometry.
+
+
+L14 — GRAVITY-SWEEP RESULTS
+--------------------------
+Conditions:
+    1.00 G
+    0.75 G
+    0.50 G
+    0.38 G
+    0.16 G
+    0.00 G
+
+Endpoints:
+    Peak von Mises stress.
+    Peak principal strain.
+    Maximum displacement.
+    LV cavity volume.
+    Strain energy.
+
+Current documented cohort-level summary:
+
+    Panel A — Peak von Mises myocardial stress
+        1.00 G: 91.7 ± 3.9 kPa
+        0.75 G: 86.4 ± 3.7 kPa
+        0.50 G: 81.0 ± 3.2 kPa
+        0.38 G: 77.8 ± 3.1 kPa
+        0.16 G: 73.0 ± 2.9 kPa
+        0.00 G: 69.8 ± 2.8 kPa
+
+    Panel B — Peak principal strain
+        1.00 G: 18.4 ± 0.9 %
+        0.75 G: 17.4 ± 0.8 %
+        0.50 G: 16.3 ± 0.7 %
+        0.38 G: 15.6 ± 0.7 %
+        0.16 G: 14.8 ± 0.6 %
+        0.00 G: 14.1 ± 0.6 %
+
+    Panel C — Maximum ventricular displacement
+        1.00 G: 1.82 ± 0.09 mm
+        0.75 G: 1.69 ± 0.09 mm
+        0.50 G: 1.57 ± 0.08 mm
+        0.38 G: 1.50 ± 0.07 mm
+        0.16 G: 1.41 ± 0.07 mm
+        0.00 G: 1.36 ± 0.06 mm
+
+    Panel D — LV cavity volume
+        1.00 G: 141.3 ± 8.7 mL
+        0.75 G: 141.8 ± 8.7 mL
+        0.50 G: 142.4 ± 8.8 mL
+        0.38 G: 142.9 ± 8.8 mL
+        0.16 G: 143.5 ± 8.8 mL
+        0.00 G: 143.9 ± 8.8 mL
+
+    Panel E — Ventricular strain energy
+        1.00 G: 0.082 ± 0.006 J
+        0.75 G: 0.075 ± 0.005 J
+        0.50 G: 0.067 ± 0.005 J
+        0.38 G: 0.063 ± 0.004 J
+        0.16 G: 0.059 ± 0.003 J
+        0.00 G: 0.054 ± 0.003 J
+
+Current status:
+    DOCUMENTED SUMMARY VALUES / RAW PATIENT-LEVEL EXECUTION EXPORT
+    NOT RECOVERED.
+
+Important:
+    These cohort-level values are retained as documented study values.
+    They must not be represented as independently verified raw COMSOL
+    execution results until the underlying patient-level exports and
+    executed model are available.
+
+
+L15 — NORMALIZED GRAVITY RESPONSE
+--------------------------------
+Definition:
+
+    E_p(g) = value_at(g) / value_at(1.00 G) × 100
+
+Reference:
+    1.00 G = 100%.
+
+Documented 0 G versus 1 G changes:
+
+    Peak von Mises stress:
+        -23.9%
+
+    Peak principal strain:
+        -23.4%
+
+    Maximum displacement:
+        -25.3%
+
+    LV cavity volume:
+        +1.8%
+
+    Strain energy:
+        -34.1%
+
+Sanity calculation from reported means:
+    Stress: approximately -23.88%
+    Strain: approximately -23.37%
+    Displacement: approximately -25.27%
+    LV volume: approximately +1.84%
+    Strain energy: approximately -34.15%
+
+Current status:
+    DERIVED CALCULATION VERIFIED FROM REPORTED SUMMARY VALUES.
+
+Evidence limitation:
+    Mathematical verification of these percentages does not independently
+    verify the underlying COMSOL execution.
+
+
+L16 — FIGURE 6
+-------------
+Artifact:
+    Gravity-dependent mechanical response figure.
+
+Expected source:
+    Cohort-level summary of patient-specific simulation outputs.
+
+Gravity axis:
+    1.00 → 0.75 → 0.50 → 0.38 → 0.16 → 0.00 G.
+
+Expected visual behavior:
+    Mechanical response curves descend from terrestrial gravity toward
+    microgravity for stress, strain, displacement, and strain energy,
+    while LV cavity volume shows a modest increase.
+
+Panel structure:
+    A — Peak von Mises myocardial stress
+    B — Peak principal strain
+    C — Maximum ventricular displacement
+    D — LV cavity volume
+    E — Ventricular strain energy
+    F — Normalized response / 0G-versus-1G change annotation
+
+Current status:
+    DOCUMENTED FIGURE SOURCE / UNDERLYING RAW EXECUTION DATA PENDING.
+
+Important:
+    Figure 6 does not independently establish spatial FEM field results.
+
+
+L17 — SPATIAL FEM FIELD OUTPUTS
+------------------------------
+Artifact:
+    Stress and strain spatial field exports.
+
+Required data:
+    Element/node-level or equivalent COMSOL field data sufficient to
+    reproduce scientifically accurate contour maps.
+
+Current status:
+    NOT RECOVERED.
+
+Important:
+    Peak numerical values cannot be used to reconstruct or infer spatial
+    stress/strain contours.
+
+
+L18 — PRESSURE SENSITIVITY
+-------------------------
+Artifact:
+    Pressure–volume / mechanical response registry.
+
+Perturbations:
+    -10%
+    Baseline
+    +10%
+
+Documented Table 35 values:
+    Patient-specific ED baseline, +10%, and -10% pressure states.
+
+Current evidence status:
+    DOCUMENTED STUDY VALUES / EXECUTION EVIDENCE PENDING.
+
+Required verification:
+    Executed model or raw sensitivity-analysis output linked to the
+    corresponding patient and pressure condition.
+
+
+L19 — FIBER-ORIENTATION SENSITIVITY
+----------------------------------
+Artifact:
+    Fiber orientation sensitivity registry.
+
+Perturbations:
+    -15°
+    Baseline
+    +15°
+
+Documented Table 36:
+    Patient-specific stress, principal strain, displacement and change
+    relative to baseline.
+
+Current status:
+    DOCUMENTED STUDY VALUES / EXECUTION EVIDENCE PENDING.
+
+Required verification:
+    Raw sensitivity-analysis exports and executed model configuration.
+
+
+L20 — MATERIAL-PARAMETER SENSITIVITY
+-----------------------------------
+Artifact:
+    Material parameter sensitivity registry.
+
+Perturbations:
+    Material stiffness -20%
+    Baseline
+    Material stiffness +20%
+
+Documented Table 37:
+    Patient-specific peak stress and strain changes.
+
+Current status:
+    DOCUMENTED STUDY VALUES / EXECUTION EVIDENCE PENDING.
+
+
+L21 — BASAL BOUNDARY-CONDITION SENSITIVITY
+------------------------------------------
+Artifact:
+    Basal boundary-condition sensitivity registry.
+
+Conditions:
+    Softer basal restraint.
+    Baseline.
+    Stiffer basal restraint.
+
+Documented Table 38:
+    Patient-specific stress, displacement and energy changes.
+
+Current status:
+    DOCUMENTED STUDY VALUES / EXECUTION EVIDENCE PENDING.
+
+
+L22 — SENSITIVITY ANALYSIS AGGREGATE
+-----------------------------------
+Sensitivity dimensions documented in the study:
+
+    Fiber orientation:
+        ±15°
+
+    Material stiffness:
+        ±20%
+
+    Basal constraint stiffness:
+        ±20%
+
+    Cavity pressure:
+        ±10%
+
+Current status:
+    DOCUMENTED ANALYSIS DESIGN / EXECUTION OUTPUTS PENDING.
+
+Important:
+    Sensitivity-analysis values should only be presented as final simulation
+    results after corresponding execution evidence is recovered or recreated.
+
+
+L23 — COHORT SUMMARY STATISTICS
+------------------------------
+Primary aggregation:
+    Patient-level outputs
+        →
+    cohort mean ± standard deviation
+        →
+    manuscript/figure summary.
+
+Required aggregation rule:
+    Patient-level numerical outputs must be preserved before calculation
+    of cohort-level summary statistics.
+
+Current status:
+    DOCUMENTED SUMMARY VALUES AVAILABLE / RAW PATIENT-LEVEL DATA PENDING.
+
+Important:
+    Cohort means and standard deviations cannot substitute for missing
+    patient-level execution exports.
+
+
+L24 — MANUSCRIPT TABLE LINEAGE
+-----------------------------
+The computational lineage currently supports the following documented
+manuscript-facing result structures:
+
+    Figure 6:
+        Gravity-dependent mechanical response.
+
+    Table 35:
+        Pressure–Volume / Mechanical Response Registry.
+
+    Table 36:
+        Fiber Orientation Sensitivity.
+
+    Table 37:
+        Material Parameter Sensitivity.
+
+    Table 38:
+        Basal Boundary-Condition Sensitivity.
+
+    Table 39:
+        Pressure Sensitivity.
+
+These records are retained as documented study values pending execution
+evidence verification.
+
+
+L25 — MANUSCRIPT CLAIM CONTROL
+-----------------------------
+The following claims require recovered or recreated execution evidence
+before being presented as verified computational results:
+
+    - All five models achieved nonlinear numerical convergence.
+    - Mesh independence was demonstrated.
+    - Solver residuals were within the documented range.
+    - Zero failed elements were observed.
+    - Energy-balance error was ≤1%.
+    - Sensitivity analyses were successfully executed.
+    - Patient-level gravity outputs were generated by the executed COMSOL
+      model.
+    - Spatial FEM contours accurately represent the executed model.
+
+The following may currently be described as documented or derived:
+
+    - Model formulation.
+    - Gravity conditions.
+    - Endpoint definitions.
+    - Documented study tables.
+    - Figure 6 summary values.
+    - Normalized-response calculations derived from those summary values.
+
+
+LINEAGE STATUS SUMMARY
+----------------------
+
+Source imaging:
+    DOCUMENTED / SOURCE-ACCESS CONTROLLED
+
+Segmentation:
+    DOCUMENTED / EXECUTION EVIDENCE PENDING
+
+Surface geometry:
+    PENDING
+
+Surface QC:
+    PENDING VERIFICATION
+
+CAD/solid geometry:
+    PENDING
+
+Fiber field:
+    DOCUMENTED / IMPLEMENTATION PENDING
+
+Constitutive model:
+    DOCUMENTED / EXECUTION IMPLEMENTATION PENDING
+
+Mesh:
+    DOCUMENTED / EXPORT NOT RECOVERED
+
+Mesh convergence:
+    PENDING
+
+COMSOL .mph:
+    NOT RECOVERED
+
+Solver configuration:
+    DOCUMENTED / EXECUTION CONFIGURATION PENDING
+
+Solver logs:
+    PENDING
+
+Baseline 1G raw outputs:
+    NOT RECOVERED
+
+Gravity-sweep raw outputs:
+    NOT RECOVERED
+
+Figure 6 summary values:
+    DOCUMENTED
+
+Figure 6 normalized calculations:
+    DERIVED / MATHEMATICALLY VERIFIED FROM REPORTED MEANS
+
+Spatial FEM fields:
+    NOT RECOVERED
+
+Sensitivity tables:
+    DOCUMENTED STUDY VALUES / EXECUTION EVIDENCE PENDING
+
+Checksums:
+    NOT RECOVERED
+
+FINAL LINEAGE STATUS:
+    COMPUTATIONAL LINEAGE DEFINED;
+    EXECUTION EVIDENCE INCOMPLETE.
+
+
+REPOSITORY PRINCIPLE
+--------------------
+Every manuscript-facing numerical result should ultimately be traceable to:
+
+    Patient_ID
+        →
+    source segmentation
+        →
+    geometry version
+        →
+    mesh version
+        →
+    model version
+        →
+    gravity/perturbation condition
+        →
+    solver execution
+        →
+    raw output
+        →
+    derived calculation
+        →
+    table/figure.
+
+Until this chain is complete, the corresponding result remains
+DOCUMENTED or PENDING rather than VERIFIED.
+
+END OF FILE
