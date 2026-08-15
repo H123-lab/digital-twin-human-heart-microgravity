@@ -3,108 +3,103 @@ METHODS — COMSOL REPRODUCIBILITY SPECIFICATION
 ======================================================================
 
 Document status:
-MANUSCRIPT-FACING COMPUTATIONAL REPRODUCIBILITY SPECIFICATION
+INTERNAL RECOVERY / MANUSCRIPT-INTEGRATION CONTROL DOCUMENT
 
 Repository location:
 10_Methods_and_Supplementary/
 
 Purpose:
-This document provides the controlled reproducibility specification for
-the patient-specific cardiac digital-twin finite-element simulations
-described in the manuscript.
+This document provides the controlled computational-method specification
+for the patient-specific cardiac digital-twin simulations and establishes
+the information required for reproducibility, manuscript integration,
+supplementary-material preparation, and final evidence review.
 
-It consolidates the computational scope, patient-specific inputs,
-geometry reconstruction, myocardial constitutive formulation, fiber
-orientation, boundary conditions, gravity conditions, numerical outputs,
-normalization procedures, result organization, figure-generation
-requirements, and evidence-control rules.
+This document consolidates the recovered computational framework from:
 
-This document is intended to ensure that the computational methods,
-simulation design, numerical outputs, figures, supplementary materials,
-and manuscript text remain internally consistent.
+05_COMSOL_Model/
+06_Simulation_Design/
+07_Simulation_Execution/
+08_Simulation_Results/
+09_Stage_3_Verification/
 
-It does not create or imply historical COMSOL execution evidence that is
-not currently recoverable.
+It is intended to provide a controlled bridge between the computational
+repository and the manuscript.
+
+A distinction is maintained throughout between:
+
+1. SPECIFIED
+2. EXECUTED / EVIDENCE RECOVERED
+3. VERIFIED
+4. MANUSCRIPT-REPORTED
+
+A documented parameter or numerical value must not be interpreted as
+verified execution evidence unless the corresponding computational artifact
+has been recovered and linked.
 
 ======================================================================
 1. COMPUTATIONAL STUDY SCOPE
 ======================================================================
 
-The present computational study is defined as a patient-specific
-finite-element cardiac solid-mechanics investigation of gravity-dependent
-ventricular mechanical response.
+The present computational study is defined as a patient-specific,
+finite-element ventricular solid-mechanics investigation of
+gravity-dependent myocardial mechanical response.
 
 The controlled computational workflow is:
 
-Patient-specific cardiac imaging
-        ->
+Cardiac imaging
+    ->
 Patient-specific ventricular segmentation
-        ->
-Three-dimensional geometry reconstruction
-        ->
-Finite-element mesh generation
-        ->
+    ->
+3D ventricular geometry reconstruction
+    ->
 Fiber-orientation assignment
-        ->
-Anisotropic myocardial constitutive formulation
-        ->
-Mechanical boundary-condition assignment
-        ->
+    ->
+Finite-element mesh generation
+    ->
+Anisotropic myocardial solid-mechanics model
+    ->
+Boundary/loading definition
+    ->
 Gravity-dependent loading
-        ->
+    ->
 Nonlinear finite-element solution
-        ->
+    ->
 Mechanical endpoint extraction
-        ->
-Gravity-response analysis
-        ->
-Sensitivity / robustness assessment
-        ->
-Figure and table generation
+    ->
+Verification / sensitivity assessment
+    ->
+Result aggregation
+    ->
+Figure/table generation.
 
-The primary mechanistic question is:
+The principal mechanistic question is:
 
 How does progressive reduction in gravitational loading alter
 patient-specific ventricular mechanical response?
 
-The principal computational response variables are:
+The primary response variables are:
 
 1. Peak myocardial von Mises stress
 2. Peak principal strain
 3. Maximum ventricular displacement
 4. LV cavity volume
-5. Ventricular strain energy
+5. Myocardial volume
+6. Ventricular strain energy
 
-The controlled experiment also retains myocardial volume where available
-within the simulation-result framework.
-
-The present computational scope is limited to ventricular solid mechanics.
-
-Unless independently documented and executable evidence is recovered, the
-present model must not be represented as having executed:
-
-- computational fluid dynamics (CFD)
-- fluid–structure interaction (FSI)
-- electrophysiological simulation
-- baroreflex control
-- autonomic feedback
-- chronic ventricular remodeling
-- astronaut-specific physiological personalization
-- astronaut-specific validation
-- pressure-volume loop simulation
-- blood-flow prediction
-- wall-shear-stress (WSS) prediction
-
-These processes may be discussed as biological context or future model
-extensions but are not part of the controlled computational scope of the
-present finite-element experiment.
+The present reproducibility specification does not establish execution of
+fluid–structure interaction, CFD, electrophysiology, baroreflex/autonomic
+control, chronic remodeling, blood-flow/WSS prediction, or astronaut-specific
+physiological validation unless independent executable evidence is recovered.
 
 ======================================================================
-2. COMPUTATIONAL SUBJECTS
+2. PATIENT-SPECIFIC INPUT DATA
 ======================================================================
 
-The controlled computational cohort consists of five patient-specific
-subjects:
+The primary cardiac imaging source identified for the present workflow is:
+
+ACDC (Automated Cardiac Diagnosis Challenge).
+
+The computational cohort currently controlled in the repository consists of:
 
 P001
 P002
@@ -112,199 +107,185 @@ P003
 P004
 P005
 
-Each subject represents a patient-specific cardiac geometry derived from
-the designated cardiac imaging dataset and associated segmentation
-information.
+Patient-specific ventricular geometry was derived from cardiac imaging and
+ventricular segmentation information.
 
-Patient-specific inputs are controlled through the repository structure:
+The controlled input sequence is:
+
+ACDC cine cardiac MRI
+    ->
+end-diastolic / end-systolic phase identification
+    ->
+ventricular segmentation
+    ->
+segmentation quality control
+    ->
+3D surface reconstruction
+    ->
+patient-specific computational geometry.
+
+The exact source-data release/version, DOI/persistent identifier, and
+original source files must be retained in:
 
 01_Dataset_and_Cohort/
-
 02_Input_Provenance/
 
-03_Geometry_Reconstruction/
+No external dataset is considered part of the final computational cohort
+unless its actual use in the present workflow is independently documented.
 
-The patient-specific geometry and associated source-data identifiers
-should be retained so that each computational result can be traced to
-its originating subject.
-
-No patient-level result should be reassigned between subjects.
+Sunnybrook Cardiac Data and CAMUS may be retained as reference resources
+only if their actual incorporation into the final computational workflow
+can be demonstrated.
 
 ======================================================================
-3. IMAGING AND GEOMETRY INPUTS
+3. GEOMETRY RECONSTRUCTION
 ======================================================================
 
-The patient-specific computational geometry is based on cardiac imaging
-and ventricular segmentation data.
+Patient-specific ventricular geometries were generated from the available
+end-diastolic/end-systolic ventricular segmentation data.
 
-The controlled reconstruction workflow consists of:
+The recovered reconstruction framework includes:
 
-1. Identification of eligible patient imaging data
-2. Identification of end-diastolic (ED) and end-systolic (ES)
-   segmentation masks where applicable
-3. Verification of patient and source-data identifiers
-4. Three-dimensional surface reconstruction
-5. Anatomical quality-control assessment
-6. Conversion to a computational geometry suitable for finite-element
-   analysis
-7. Mesh generation
+- segmentation-derived ventricular surfaces
+- three-dimensional surface reconstruction
+- patient-specific ventricular geometry
+- geometry quality-control assessment
+- conversion to a finite-element computational domain.
 
-The geometry reconstruction workflow is documented in:
+The reconstruction workflow is documented in:
 
 03_Geometry_Reconstruction/
+ACDC_Stage_1-2_Source_Geometry_Reconstruction.txt
+Reconstruction_Mesh_Execution_Workbook.txt
 
-The following source artifacts should ultimately be retained:
+The geometry identifier, source imaging identifier, segmentation source,
+and reconstruction version should remain linked for every patient.
 
-- Original imaging data
-- Original segmentation masks
-- Source metadata / Info.cfg where applicable
-- Geometry-reconstruction record
-- Reconstructed ventricular surface
-- Final computational geometry
-- Geometry quality-control record
-
-A geometry appearing in a downstream figure does not by itself establish
-that the original source imaging and reconstruction artifacts remain
-available.
+Geometry execution and verification status must be established from the
+underlying source files and reconstruction artifacts.
 
 ======================================================================
-4. MYOCARDIAL GEOMETRY
+4. FIBER-ORIENTATION REPRESENTATION
 ======================================================================
 
-The computational domain represents the patient-specific ventricular
-myocardium and associated ventricular anatomical surfaces required by the
-solid-mechanics formulation.
-
-The ventricular geometry is treated as a three-dimensional deformable
-continuum.
-
-The final computational domain must retain an explicit identifier linking
-the geometry to:
-
-- patient ID
-- source imaging
-- segmentation source
-- reconstruction stage
-- geometry version
-- mesh version
-
-The geometry identifier should remain stable throughout the simulation
-and result-lineage workflow.
-
-======================================================================
-5. FIBER-ORIENTATION REPRESENTATION
-======================================================================
-
-The recovered model specification uses a rule-based / atlas-based
-myocardial fiber-orientation representation.
+The recovered model documentation specifies a rule-/atlas-based myocardial
+fiber-orientation field.
 
 The documented transmural fiber-angle specification is:
 
 Endocardial fiber angle:
-approximately +60 degrees
++60 degrees
 
 Epicardial fiber angle:
-approximately -60 degrees
+-60 degrees
 
-The fiber field is therefore represented by a prescribed transmural
-orientation gradient rather than subject-specific diffusion-tensor
-magnetic-resonance imaging (DT-MRI) fiber mapping.
+The fiber field is therefore represented using a prescribed transmural
+orientation rule rather than subject-specific diffusion-tensor MRI.
 
-This limitation must remain explicit in the manuscript.
+This limitation must be stated transparently in the manuscript.
 
-The fiber orientation should be treated as a controlled model input and
-must remain fixed across the primary gravity sweep unless a specific
-sensitivity analysis changes the fiber-orientation assumption.
+The fiber field should be versioned and linked to the corresponding
+patient-specific computational geometry.
 
-Fiber-field provenance should ultimately be linked to:
+Evidence status:
 
-- fiber-generation method
-- orientation convention
-- transmural interpolation method
-- geometry version
-- fiber-field version
+Fiber-orientation specification:
+SPECIFIED / DOCUMENTED
+
+Subject-specific DT-MRI fiber field:
+NOT ESTABLISHED
 
 ======================================================================
-6. CONSTITUTIVE MODEL
+5. CONSTITUTIVE MODEL
 ======================================================================
 
-The recovered computational specification uses an anisotropic
-hyperelastic myocardial solid-mechanics formulation based on a
-Holzapfel–Ogden-type constitutive representation.
+The recovered COMSOL documentation specifies an anisotropic,
+Holzapfel–Ogden-type myocardial solid-mechanics formulation.
 
-The formulation represents the nonlinear mechanical behavior of
-myocardial tissue using an isotropic matrix contribution together with
-direction-dependent fiber-related mechanical behavior.
+The computational representation is intended to capture passive
+anisotropic myocardial mechanical behavior within a finite-element
+framework.
 
-The myocardial material is treated using a nearly incompressible
-formulation.
+The formulation is treated as nearly incompressible.
 
-The exact numerical material parameters must be taken from the controlled
-parameter registry and/or the final executable COMSOL model.
+The exact numerical material coefficients must be taken from the
+controlled model implementation/parameter record.
 
-No material parameter should be invented or back-calculated solely to
-reproduce a recovered manuscript value.
-
-The definitive parameter record is maintained in:
-
-05_COMSOL_Model/
-COMSOL_Model_Parameter_and_Boundary_Condition_Registry.txt
-
-======================================================================
-7. MECHANICAL BOUNDARY CONDITIONS
-======================================================================
-
-The computational model applies prescribed mechanical constraints to
-provide a physically controlled ventricular solid-mechanics problem.
-
-The basal region is treated using the documented basal mechanical
-constraint formulation.
-
-Where spring/damper-type basal constraints are used, the exact numerical
-coefficients must be obtained from the recovered model or parameter
-record.
-
-If those exact coefficients cannot be recovered, they must be reported
-internally as:
+Where an exact coefficient cannot be recovered from an executable model,
+native COMSOL file, or authoritative parameter record, it must remain
+classified as:
 
 NOT CURRENTLY RECOVERED
 
-They must not be reconstructed solely from downstream numerical results.
-
-The computational boundary-condition configuration must remain unchanged
-across the primary gravity sweep unless explicitly designated as a
-gravity-dependent parameter.
+No material parameter should be reconstructed solely from a desired
+manuscript result.
 
 ======================================================================
-8. CAVITY-PRESSURE CONDITION
+6. COMPUTATIONAL DOMAIN
 ======================================================================
 
-The ventricular cavity-pressure condition is part of the mechanical
-loading specification.
+The computational domain consists of the patient-specific ventricular
+solid geometry represented as a volumetric finite-element model.
 
-The exact numerical cavity-pressure parameter was not recovered in the
-current documentation.
+Anatomically defined ventricular and great-vessel surfaces may be
+partitioned into regions for application of the prescribed mechanical
+and loading conditions.
+
+The computational domain and boundary definitions should remain fixed
+across the primary gravity sweep unless a specific sensitivity analysis
+explicitly modifies the relevant parameter.
+
+Figure 2 / Supplementary Figure S2 should describe the actual implemented
+computational domain and boundary surfaces.
+
+The figure must not contain boundary-condition labels such as:
+
+"z-periodic"
+"y-periodic"
+"x-radiative"
+
+unless those conditions are confirmed to exist in the actual COMSOL model.
+
+The manuscript-facing description should instead identify the actual
+anatomical boundary regions and their corresponding mechanical/loading
+roles.
+
+======================================================================
+7. BOUNDARY CONDITIONS AND LOADING
+======================================================================
+
+The recovered computational framework includes:
+
+- ventricular mechanical constraints
+- anatomically defined basal constraint(s)
+- cavity loading
+- gravity-dependent body-force loading.
+
+The exact implementation of the basal constraint and any spring/damper
+parameters must be reconciled with the final COMSOL model before being
+reported as exact numerical model parameters.
+
+The exact cavity-pressure parameter is also not currently recovered in the
+available documentation.
 
 Therefore:
 
-Cavity-pressure numerical value:
-NOT CURRENTLY RECOVERED
+Cavity pressure:
+SPECIFIED AS A MODEL INPUT
+EXACT NUMERICAL VALUE: NOT CURRENTLY RECOVERED
 
-The cavity-pressure value must not be inferred from the reported Figure 6
-results.
+Basal mechanical constraint:
+SPECIFIED AS A MODEL COMPONENT
+EXACT NUMERICAL IMPLEMENTATION: REQUIRES RECONCILIATION
 
-If the native COMSOL model, parameter workbook, or execution artifact
-recovers the value, that value becomes the authoritative parameter.
-
-Until then, the reproducibility record should identify cavity pressure as
-a controlled model input whose exact historical numerical value remains
-pending recovery.
+No unsupported numerical value should be inserted into the manuscript.
 
 ======================================================================
-9. GRAVITY EXPERIMENT
+8. GRAVITY EXPERIMENT
 ======================================================================
 
-The primary experiment evaluates six predefined gravitational conditions:
+The controlled gravity experiment consists of six predefined gravitational
+conditions:
 
 G01 = 1.00 g
 G02 = 0.75 g
@@ -313,91 +294,277 @@ G04 = 0.38 g
 G05 = 0.16 g
 G06 = 0.00 g
 
-The gravity axis is conventionally ordered:
+The primary comparison therefore progresses from terrestrial gravity toward
+microgravity:
 
-1.00 g
-    ->
-0.75 g
-    ->
-0.50 g
-    ->
-0.38 g
-    ->
-0.16 g
-    ->
+1.00
+ ->
+0.75
+ ->
+0.50
+ ->
+0.38
+ ->
+0.16
+ ->
 0.00 g
 
-This corresponds to progressively reduced gravitational loading from
-terrestrial conditions toward microgravity.
+For visualization, the gravity axis is ordered from 1.00 g to 0.00 g,
+descending left to right.
 
-For the primary gravity sweep, the baseline patient-specific geometry,
-mesh, fiber representation, material formulation, and numerical
-configuration are intended to remain fixed unless explicitly identified
-as a gravity-dependent input.
+The gravity-dependent loading is introduced through the predefined
+gravitational body-force condition / gravity multiplier.
 
-Gravity is introduced through the predefined gravitational body-force
-condition / gravity multiplier.
+The principal patient-specific model configuration is held constant across
+the primary gravity sweep unless a controlled sensitivity analysis
+explicitly modifies a model parameter.
 
-The controlled experimental design is therefore:
+======================================================================
+9. CONTROLLED EXPERIMENTAL MATRIX
+======================================================================
+
+The planned computational matrix is:
 
 5 patient-specific subjects
-×
+x
 6 gravity conditions
-
 =
-30 planned subject × gravity combinations.
+30 planned patient × gravity combinations.
 
-Execution status of the individual combinations is controlled separately
-by:
+Subjects:
+
+P001
+P002
+P003
+P004
+P005
+
+Gravity:
+
+1.00 g
+0.75 g
+0.50 g
+0.38 g
+0.16 g
+0.00 g
+
+The experimental design does not by itself establish that all 30
+computational combinations were executed.
+
+Execution status must be established using:
 
 07_Simulation_Execution/
 Simulation_Execution_Evidence_Registry.txt
 
 ======================================================================
-10. PRIMARY MECHANICAL ENDPOINTS
+10. FINITE-ELEMENT DISCRETIZATION
 ======================================================================
 
-The primary endpoints used in the recovered Figure 6 result structure are:
+The recovered computational framework specifies volumetric tetrahedral
+finite-element discretization.
+
+The mesh-generation workflow includes:
+
+patient-specific geometry
+    ->
+volumetric mesh generation
+    ->
+mesh quality assessment
+    ->
+mesh-convergence assessment
+    ->
+final computational mesh.
+
+The repository contains a mesh/reconstruction execution framework in:
+
+03_Geometry_Reconstruction/
+
+and verification documentation in:
+
+09_Stage_3_Verification/
+
+Mesh-independence/convergence should be reported only when the corresponding
+mesh-comparison outputs are available.
+
+Previously documented mesh-convergence percentages are treated as
+DOCUMENTED / REPORTED until the underlying mesh exports and convergence
+records are recovered.
+
+======================================================================
+11. NONLINEAR SOLVER
+======================================================================
+
+The recovered computational framework specifies a Newton-type nonlinear
+solution strategy for the finite-element model.
+
+Solver convergence should be evaluated using the predefined numerical
+convergence criteria and residual assessment.
+
+Previously documented residual values are not automatically treated as
+verified solver outputs.
+
+The underlying solver log or equivalent COMSOL execution record should be
+retained where available.
+
+======================================================================
+12. PRIMARY COMPUTATIONAL OUTPUTS
+======================================================================
+
+The six primary computational endpoints are:
 
 A. Peak von Mises myocardial stress
-
-Units:
-kPa
+   Units: kPa
 
 B. Peak principal strain
-
-Units:
-%
+   Units: %
 
 C. Maximum ventricular displacement
-
-Units:
-mm
+   Units: mm
 
 D. LV cavity volume
-
-Units:
-mL
+   Units: mL
 
 E. Ventricular strain energy
+   Units: J
 
-Units:
-J
+F. Normalized response
+   Units: %
 
-The recovered study framework also retains myocardial volume where
-available as a computational output.
+The normalized response is calculated relative to the 1.00 g value:
 
-Each endpoint must be extracted using the same definition across gravity
-conditions.
+Normalized response =
+value at specified gravity /
+value at 1.00 g
+x 100.
 
-Endpoint definitions must not be changed between the primary simulation,
-result registry, figure generation, and manuscript reporting.
+For the baseline condition:
+
+1.00 g = 100% reference.
+
+This normalization must use the corresponding endpoint's value at 1.00 g
+as its denominator.
 
 ======================================================================
-11. FIGURE 6 PANEL STRUCTURE
+13. RECOVERED GRAVITY-RESPONSE NUMERICAL SUMMARY
 ======================================================================
 
-The recovered Figure 6 computational output is organized into six panels.
+The following numerical values are present in the recovered study material
+and are retained as DOCUMENTED / REPORTED values pending complete
+execution-artifact reconciliation.
+
+Endpoint                              1.00 g       0.75 g       0.50 g
+                                      0.38 g       0.16 g       0.00 g
+
+Peak von Mises stress (kPa)
+                                      91.7±3.9     86.4±3.7     81.0±3.2
+                                      77.8±3.1     73.0±2.9     69.8±2.8
+
+Peak principal strain (%)
+                                      18.4±0.9     17.4±0.8     16.3±0.7
+                                      15.6±0.7     14.8±0.6     14.1±0.6
+
+Maximum ventricular displacement (mm)
+                                      1.82±0.09    1.69±0.09    1.57±0.08
+                                      1.50±0.07    1.41±0.07    1.36±0.06
+
+LV cavity volume (mL)
+                                      141.3±8.7    141.8±8.7    142.4±8.8
+                                      142.9±8.8    143.5±8.8    143.9±8.8
+
+Ventricular strain energy (J)
+                                      0.082±0.006  0.075±0.005  0.067±0.005
+                                      0.063±0.004  0.059±0.003  0.054±0.003
+
+These values must not be independently recalculated or modified merely to
+improve agreement between figures, tables, or narrative text.
+
+Before manuscript freeze, the numerical source and computational lineage
+must be established through:
+
+patient input
+ ->
+geometry
+ ->
+model parameters
+ ->
+boundary conditions
+ ->
+gravity condition
+ ->
+mesh
+ ->
+solver execution
+ ->
+numerical output
+ ->
+verification
+ ->
+figure/table.
+
+======================================================================
+14. RECOVERED 0 G VERSUS 1 G NORMALIZED RESPONSES
+======================================================================
+
+The recovered Figure 6 build output documents the following 0 g versus
+1.00 g changes:
+
+Peak von Mises myocardial stress:
+-23.9 %
+
+Peak principal strain:
+-23.4 %
+
+Maximum ventricular displacement:
+-25.3 %
+
+LV cavity volume:
++1.8 %
+
+Ventricular strain energy:
+-34.1 %
+
+The underlying sanity calculation reported in the recovered build was:
+
+Stress:
+-23.88 %
+
+Strain:
+-23.37 %
+
+Displacement:
+-25.27 %
+
+LV cavity volume:
++1.84 %
+
+Strain energy:
+-34.15 %
+
+These values agree with the manuscript-facing rounded annotations.
+
+The normalized responses are mathematically derived from the recovered
+gravity-response values using the 1.00 g denominator.
+
+They remain classified as DOCUMENTED / REPORTED until the underlying
+patient-level numerical result source is reconciled.
+
+======================================================================
+15. FIGURE 6 INTEGRATION
+======================================================================
+
+Current Figure 6 is defined as the aggregate gravity-dependent mechanical
+response figure.
+
+The six gravity conditions must appear in the following order:
+
+1.00 g
+0.75 g
+0.50 g
+0.38 g
+0.16 g
+0.00 g
+
+The figure should retain the following endpoint structure:
 
 Panel A:
 Peak von Mises myocardial stress
@@ -415,672 +582,660 @@ Panel E:
 Ventricular strain energy
 
 Panel F:
-Normalized response, % of 1G
+Normalized response / 1.00 g reference
 
-The gravity x-axis is plotted in descending gravitational magnitude:
-
-1.00 g -> 0.75 g -> 0.50 g -> 0.38 g -> 0.16 g -> 0.00 g
-
-Therefore, responses that decrease with decreasing gravity are visually
-represented as descending curves from left to right.
+The figure should not describe the numerical results as independently
+validated unless the underlying validation evidence is established.
 
 ======================================================================
-12. RECOVERED FIGURE 6 NUMERICAL SUMMARY
+16. FIGURE 7 INTEGRATION
 ======================================================================
 
-The recovered Figure 6 result table contains the following group-level
-summary values.
+Figure 7 should remain focused on spatial/mechanistic visualization of the
+patient-specific ventricular mechanical response.
 
-Panel A — Peak von Mises myocardial stress
+The figure should be consistent with:
 
-Units: kPa
+- patient-specific ventricular geometry
+- gravity-dependent mechanical loading
+- myocardial stress
+- myocardial strain
+- ventricular displacement
+- strain-energy distribution where shown.
 
-1.00 g: 91.7 ± 3.9
-0.75 g: 86.4 ± 3.7
-0.50 g: 81.0 ± 3.2
-0.38 g: 77.8 ± 3.1
-0.16 g: 73.0 ± 2.9
-0.00 g: 69.8 ± 2.8
+Figure 7 must not introduce an endpoint or model component that is absent
+from the controlled computational scope.
 
-
-Panel B — Peak principal strain
-
-Units: %
-
-1.00 g: 18.4 ± 0.9
-0.75 g: 17.4 ± 0.8
-0.50 g: 16.3 ± 0.7
-0.38 g: 15.6 ± 0.7
-0.16 g: 14.8 ± 0.6
-0.00 g: 14.1 ± 0.6
-
-
-Panel C — Maximum ventricular displacement
-
-Units: mm
-
-1.00 g: 1.82 ± 0.09
-0.75 g: 1.69 ± 0.09
-0.50 g: 1.57 ± 0.08
-0.38 g: 1.50 ± 0.07
-0.16 g: 1.41 ± 0.07
-0.00 g: 1.36 ± 0.06
-
-
-Panel D — LV cavity volume
-
-Units: mL
-
-1.00 g: 141.3 ± 8.7
-0.75 g: 141.8 ± 8.7
-0.50 g: 142.4 ± 8.8
-0.38 g: 142.9 ± 8.8
-0.16 g: 143.5 ± 8.8
-0.00 g: 143.9 ± 8.8
-
-
-Panel E — Ventricular strain energy
-
-Units: J
-
-1.00 g: 0.082 ± 0.006
-0.75 g: 0.075 ± 0.005
-0.50 g: 0.067 ± 0.005
-0.38 g: 0.063 ± 0.004
-0.16 g: 0.059 ± 0.003
-0.00 g: 0.054 ± 0.003
-
-These values are classified within the repository as:
-
-DOCUMENTED / REPORTED
-
-until the underlying numerical execution artifacts are recovered and
-linked.
-
-They must not automatically be classified as independently verified
-COMSOL outputs.
+Spatial color scales, units, and gravity labels must correspond to the
+actual computational output represented.
 
 ======================================================================
-13. NORMALIZED RESPONSE CALCULATION
+17. SUPPLEMENTARY FIGURE S2
 ======================================================================
 
-Panel F uses the 1.00 g value as the reference denominator.
+Recommended title:
 
-For each endpoint:
+Supplementary Figure S2. Computational domain, boundary surfaces, and
+physiological loading conditions used in the cardiac digital-twin
+simulations.
 
-Normalized response (%) =
-[value at gravity condition / value at 1.00 g] × 100
+Recommended legend:
 
-Formally:
+(A) Patient-specific ventricular computational domain with anatomically
+defined boundary surfaces used for application of mechanical and loading
+conditions. (B) Partitioning of ventricular and great-vessel surfaces into
+the modeled inflow, outflow, basal, epicardial, and other anatomically
+defined regions, as applicable to the implemented model. (C) Gravity-
+dependent loading represented through the predefined gravitational
+body-force conditions. The computational domain and boundary definitions
+were held fixed across the primary gravity sweep unless otherwise specified
+in sensitivity analyses.
 
-E_p(g) = [E(g) / E(1.00 g)] × 100
+Footnote:
 
-where:
-
-E(g) =
-endpoint value at the specified gravitational condition
-
-E(1.00 g) =
-corresponding endpoint value under terrestrial 1.00 g loading.
-
-Therefore:
-
-At 1.00 g:
-
-E_p = 100%
-
-The normalization must be performed separately for each endpoint.
-
-No alternative denominator may be used for Panel F.
+Boundary-condition labels and terminology shown in the graphical
+representation must correspond to the actual COMSOL implementation.
+Terms such as "z-periodic," "y-periodic," or "x-radiative" should not be
+used unless those boundary conditions are confirmed in the executable
+model.
 
 ======================================================================
-14. RECOVERED 0 G VERSUS 1 G RESPONSE
+18. SUPPLEMENTARY FIGURE S4
 ======================================================================
 
-The recovered Figure 6 calculation produced the following 0 g versus
-1.00 g changes.
+Recommended title:
 
-Peak von Mises stress:
--23.9 %
+Supplementary Figure S4. External reference comparison and performance
+assessment of the cardiac digital twin.
 
-Peak principal strain:
--23.4 %
+The figure should distinguish between:
 
-Maximum ventricular displacement:
--25.3 %
+1. External/reference comparison
+2. Performance assessment
+3. Independent validation
 
-LV cavity volume:
-+1.8 %
+Only the third category should be labelled "independent validation" when
+the calibration dataset, model-lock point, and independent validation
+dataset have been explicitly established.
 
-Ventricular strain energy:
--34.1 %
+Recommended legend:
 
-The underlying calculation uses:
+Supplementary Figure S4. External reference comparison and performance
+assessment of the cardiac digital twin. (A) Comparison of model-derived
+ventricular mechanical quantities with available human physiological or
+imaging reference observations. (B) Comparison of model-derived
+cardiovascular responses with external reference observations where the
+corresponding dataset was not used for parameter calibration. (C) Summary
+of prespecified agreement metrics, including R², RMSE, MAE, and bias, for
+variables and datasets for which the required observations were available.
+(D) Data-provenance representation showing the relationship between model
+calibration information, model locking, and external/reference datasets.
 
-Percentage change =
-[(value at 0.00 g - value at 1.00 g)
- /
- value at 1.00 g]
-× 100
+Footnote:
 
-The recovered computational sanity calculation produced:
+Calibration and validation/reference datasets were treated as distinct
+only when their provenance and use history could be independently
+established. Comparisons for which independence could not be demonstrated
+are reported as external/reference comparisons rather than formal
+independent validation.
 
-Stress:
--23.88 %
-
-Strain:
--23.37 %
-
-Displacement:
--25.27 %
-
-LV cavity volume:
-+1.84 %
-
-Strain energy:
--34.15 %
-
-These values correspond to the rounded manuscript annotations.
-
-No numerical value should be altered solely to improve visual or textual
-agreement.
+The statement "all R² > 0.9" must not be retained unless the underlying
+calculations have been independently reproduced from the final datasets.
 
 ======================================================================
-15. INTERPRETATION OF THE RECOVERED GRAVITY RESPONSE
+19. SUPPLEMENTARY TABLE S1
 ======================================================================
 
-The recovered numerical pattern indicates that progressive reduction in
-gravity is associated with lower modeled:
+Recommended title:
 
-- peak myocardial von Mises stress
-- peak principal strain
-- maximum ventricular displacement
-- ventricular strain energy
+Supplementary Table S1. Dataset and input-data provenance for
+patient-specific cardiac digital-twin construction.
 
-while the modeled LV cavity volume shows a small increase across the
-gravity sequence.
+Controlled version:
 
-The principal qualitative response pattern is therefore:
+Dataset / resource | Role in study | Data type / input |
+Patient-level information used | Processing stage | Version / release |
+DOI / persistent identifier | Access / provenance
 
-Reduced gravity
-    ->
-Reduced modeled mechanical loading
-    ->
-Reduced stress / strain / displacement
-    ->
-Reduced strain energy
+ACDC |
+Primary cardiac imaging source for patient-specific modeling |
+Cine cardiac MRI and expert ventricular segmentation |
+Subject identifier, ED/ES phase information, diagnosis/category where
+available, ventricular masks |
+Cohort selection -> segmentation QC -> geometry reconstruction |
+Record exact release used |
+Record DOI/identifier corresponding to actual release |
+Public research dataset; source and access conditions retained in repository
 
-with a comparatively small increase in modeled LV cavity volume.
+Sunnybrook Cardiac Data |
+Reference cardiac imaging dataset, IF INCLUDED IN FINAL WORKFLOW |
+Cine cardiac MRI and ventricular segmentation |
+Dataset-specific subject metadata and segmentation information where available |
+Input-data/reference assessment |
+Record exact release used |
+Record DOI/identifier corresponding to actual release |
+Include only if actual use is documented
 
-This interpretation is restricted to the modeled solid-mechanics response.
+CAMUS |
+Reference cardiac imaging dataset, IF INCLUDED IN FINAL WORKFLOW |
+Echocardiographic imaging and ventricular segmentation |
+Dataset-specific subject metadata and segmentation information where available |
+Reference/benchmark assessment |
+Record exact release used |
+Record DOI/identifier corresponding to actual release |
+Include only if actual use is documented
 
-It must not be interpreted as direct prediction of systemic
-cardiovascular adaptation, blood-flow redistribution, autonomic
-adaptation, or chronic physiological remodeling.
+Patient-specific derived geometry |
+Computational model input |
+Reconstructed 3D ventricular surfaces/volumes |
+Patient identifier linked to source imaging |
+Geometry reconstruction |
+Study-generated |
+Repository-controlled identifier |
+Derived from source imaging and retained in study repository
 
-======================================================================
-16. STATISTICAL PRESENTATION
-======================================================================
+Finite-element mesh |
+Computational model input |
+Volumetric tetrahedral mesh |
+Patient identifier and mesh version |
+Mesh generation/QC |
+Study-generated |
+Repository-controlled identifier |
+Derived computational artifact
 
-Recovered Figure 6 values are presented as:
+Fiber-orientation field |
+Constitutive-model input |
+Rule-/atlas-based myocardial fiber orientation |
+Patient identifier and model version |
+Material/fiber assignment |
+Study-generated |
+Repository-controlled identifier |
+Derived computational artifact
 
-mean ± standard deviation
+Footnote:
 
-where the corresponding patient-level results are summarized across the
-five patient-specific computational subjects.
-
-The underlying patient-level observations should remain available in the
-result-lineage framework whenever recoverable.
-
-No patient-level value should be back-calculated from the reported mean
-and standard deviation.
-
-No additional inferential statistical quantity should be introduced into
-the manuscript unless it is calculated directly from the underlying
-patient-level data.
-
-======================================================================
-17. RESULT-LINEAGE REQUIREMENT
-======================================================================
-
-Every manuscript numerical value must ultimately be traceable through:
-
-Patient ID
-    ->
-Source imaging
-    ->
-Segmentation
-    ->
-Reconstructed geometry
-    ->
-Geometry version
-    ->
-Fiber-field version
-    ->
-Material-parameter version
-    ->
-Boundary-condition version
-    ->
-Gravity condition
-    ->
-Mesh version
-    ->
-COMSOL model version
-    ->
-Solver execution
-    ->
-Solution object
-    ->
-Endpoint extraction
-    ->
-Numerical result
-    ->
-Verification
-    ->
-Figure/table dataset
-    ->
-Manuscript value
-
-The result-lineage record is maintained in:
-
-08_Simulation_Results/
-Digital_Twin_Simulation_Result_Lineage.txt
-
-A downstream figure must not be treated as a substitute for an underlying
-numerical result export.
+Dataset entries are included according to their actual role in the present
+study. Public dataset availability does not imply that all datasets were
+used to construct the final computational cohort. Exact release/version
+identifiers, persistent identifiers, and access conditions must correspond
+to the source data actually used. Derived geometry, mesh, and fiber-field
+artifacts are study-generated computational products and should be linked
+to their corresponding patient-level provenance records.
 
 ======================================================================
-18. COMSOL MODEL AND NUMERICAL CONFIGURATION
+20. SUPPLEMENTARY TABLE S2
 ======================================================================
 
-The definitive COMSOL implementation should document:
+Recommended title:
 
-- model version
-- COMSOL version
-- geometry version
-- mesh version
-- material model
-- material parameters
-- fiber-field implementation
-- cavity-pressure condition
-- basal mechanical constraint
-- gravity definition
-- solver configuration
-- convergence criteria
-- output definitions
-- sensitivity configuration
+Supplementary Table S2. Simulation input parameters and boundary conditions
+for the patient-specific cardiac digital-twin model.
 
-Where a parameter is not currently recoverable, the registry must state:
+Controlled manuscript table:
 
-NOT CURRENTLY RECOVERED
+Parameter category |
+Model parameter |
+Specification used in computational framework |
+Units |
+Application / role |
+Evidence status
 
-rather than supplying an estimated or reconstructed value.
+Geometry |
+Ventricular geometry |
+Patient-specific reconstructed ventricular geometry |
+— |
+Computational domain |
+Specified / execution evidence pending
 
-The principal implementation record is maintained in:
+Geometry |
+ED/ES phase |
+Patient-specific end-diastolic/end-systolic segmentation |
+— |
+Geometry definition |
+Specified
 
-05_COMSOL_Model/
-COMSOL_Model_Implementation_Workbook.xlsx
+Mesh |
+Element type |
+Tetrahedral volumetric finite-element mesh |
+— |
+Spatial discretization |
+Specified
 
-and
+Constitutive model |
+Myocardial mechanics |
+Anisotropic Holzapfel–Ogden-type solid-mechanics formulation |
+— |
+Passive myocardial response |
+Specified
 
-05_COMSOL_Model/
-COMSOL_Model_Parameter_and_Boundary_Condition_Registry.txt
+Compressibility |
+Material representation |
+Nearly incompressible myocardial formulation |
+— |
+Material behavior |
+Specified
+
+Fiber orientation |
+Endocardial angle |
++60 |
+degrees |
+Fiber-field definition |
+Specified
+
+Fiber orientation |
+Epicardial angle |
+-60 |
+degrees |
+Fiber-field definition |
+Specified
+
+Loading |
+Gravity multiplier |
+1.00, 0.75, 0.50, 0.38, 0.16, 0.00 |
+g |
+Gravity sweep |
+Specified
+
+Loading |
+Cavity pressure |
+Patient/model-specific prescribed pressure |
+Model-dependent |
+Ventricular loading |
+Exact numerical value not currently recovered
+
+Boundary condition |
+Basal constraint |
+Anatomically defined basal mechanical constraint |
+— |
+Mechanical boundary condition |
+Exact implementation requires reconciliation
+
+Boundary condition |
+Epicardial constraint |
+Defined according to implemented model |
+— |
+Mechanical boundary condition |
+Requires reconciliation
+
+Solver |
+Nonlinear solution |
+Newton-type nonlinear solver |
+— |
+Model solution |
+Specified
+
+Verification |
+Mesh convergence |
+Prespecified mesh-comparison framework |
+— |
+Numerical verification |
+Execution evidence pending
+
+Verification |
+Solver residual |
+Prespecified residual assessment |
+— |
+Numerical convergence |
+Execution evidence pending
+
+Verification |
+Failed elements |
+Element-quality/failure assessment |
+— |
+Numerical integrity |
+Execution evidence pending
+
+Verification |
+Energy balance |
+Energy-consistency assessment |
+— |
+Numerical integrity |
+Execution evidence pending
+
+Footnote:
+
+Evidence status describes the current repository evidence state and should
+not be interpreted as a judgment that a specified computational component
+was not implemented. Exact numerical parameters should be reported only
+when supported by the final executable model or authoritative computational
+record.
 
 ======================================================================
-19. MESH AND NUMERICAL VERIFICATION
+21. VERIFICATION FRAMEWORK
 ======================================================================
 
-The computational workflow requires verification of:
+The computational verification framework includes:
 
 1. Geometry integrity
-2. Mesh quality
-3. Mesh convergence
-4. Nonlinear solver convergence
-5. Residual behavior
-6. Failed-element status
-7. Energy consistency
-8. Boundary-condition consistency
-9. Gravity-condition consistency
-10. Output-extraction integrity
+2. Geometry reconstruction accuracy
+3. Mesh quality
+4. Mesh convergence / independence
+5. Nonlinear solver convergence
+6. Residual assessment
+7. Failed-element assessment
+8. Energy-balance assessment
+9. Boundary-condition consistency
+10. Gravity-condition consistency
+11. Output extraction integrity
+12. Patient × gravity result traceability.
 
-Verification evidence is controlled in:
+The definitive verification evidence is controlled in:
 
 09_Stage_3_Verification/
 Stage_3_COMSOL_Verification_Evidence_Registry.txt
 
-Reported verification values must not be reproduced as verified results
-unless the underlying evidence is available.
+Previously documented values for geometry error, mesh convergence,
+solver residuals, failed elements, and energy balance must remain
+classified as DOCUMENTED / REPORTED until corresponding supporting
+artifacts are recovered or reproducibly regenerated.
+
+No historical verification record may be fabricated.
 
 ======================================================================
-20. SENSITIVITY ANALYSIS
+22. SENSITIVITY ANALYSIS
 ======================================================================
 
-Sensitivity analyses are intended to evaluate robustness of the modeled
-gravity-dependent response to predefined uncertainty in selected model
-inputs.
+Sensitivity analyses are retained as an important component of the
+computational robustness framework.
 
-Potential sensitivity dimensions include:
+The recovered design identifies sensitivity assessment of uncertainties
+including:
 
 - fiber orientation
 - material parameters
-- basal mechanical constraints
-- cavity-pressure assumptions
+- basal constraints
+- cavity-pressure assumptions.
 
-The exact sensitivity ranges must be taken from the controlled simulation
-design and parameter registries.
+Sensitivity-analysis outputs should be reported only when actual
+computational outputs are available.
 
-Sensitivity results must be retained separately from the primary gravity
-sweep.
+A sensitivity analysis listed in the design does not establish that the
+analysis was executed.
 
-A sensitivity analysis must not be used to alter the primary reported
-result.
-
-======================================================================
-21. REPRODUCIBLE FIGURE GENERATION
-======================================================================
-
-Figure 6 must be generated from a machine-readable result table rather
-than manual transcription.
-
-The controlled input table should contain, at minimum:
-
-Patient_ID
-Gravity_g
-Peak_von_Mises_stress_kPa
-Peak_principal_strain_percent
-Maximum_displacement_mm
-LV_cavity_volume_mL
-Ventricular_strain_energy_J
-
-Where available, myocardial volume should also be retained.
-
-The figure-generation script must:
-
-1. Sort gravity conditions in the controlled order:
-   1.00, 0.75, 0.50, 0.38, 0.16, 0.00 g
-
-2. Calculate group-level summary statistics from patient-level values.
-
-3. Generate Panels A–E using the same endpoint definitions.
-
-4. Calculate Panel F using the 1.00 g denominator.
-
-5. Calculate 0 g versus 1 g percentage changes directly from the
-   corresponding endpoint values.
-
-6. Insert annotations using the calculated values rather than manually
-   typed values.
-
-7. Preserve the units shown in the controlled endpoint registry.
-
-8. Export the final figure without changing the underlying numerical
-   dataset.
-
-The figure-generation code and input data should ultimately be retained
-in the repository if available.
-
-======================================================================
-22. FIGURE 6 REPRODUCIBILITY CHECK
-======================================================================
-
-The following internal checks must pass before Figure 6 is frozen:
-
-CHECK 1:
-Gravity ordering is:
-1.00 -> 0.75 -> 0.50 -> 0.38 -> 0.16 -> 0.00 g
-
-CHECK 2:
-Panel F uses:
-value at gravity / value at 1.00 g × 100
-
-CHECK 3:
-1.00 g is displayed as:
-100% reference
-
-CHECK 4:
-The 0 g versus 1 g annotations reproduce the calculated values.
-
-CHECK 5:
-Units are consistent across panels.
-
-CHECK 6:
-The numerical values in Figure 6 agree with the controlled result
-dataset.
-
-CHECK 7:
-No value is manually altered after figure generation.
-
-CHECK 8:
-The figure is traceable to the result-lineage registry.
-
-======================================================================
-23. CURRENT FIGURE 6 STATUS
-======================================================================
-
-Recovered Figure 6 numerical dataset:
-AVAILABLE
-
-Gravity conditions:
-DOCUMENTED
-
-Endpoint definitions:
-DOCUMENTED
-
-Normalization procedure:
-DOCUMENTED
-
-0 g versus 1 g percentage calculations:
-REPRODUCIBLE FROM RECOVERED VALUES
-
-Figure 6 panel structure:
-DOCUMENTED
-
-Underlying patient-level numerical export:
-NOT CURRENTLY RECOVERED
-
-Native COMSOL solution:
-NOT CURRENTLY RECOVERED
-
-Solver execution record:
-NOT CURRENTLY RECOVERED
-
-Independent verification linkage:
-PENDING
-
-Therefore the current evidence classification of the numerical Figure 6
-dataset is:
-
-DOCUMENTED / REPORTED
-
-not:
-
-INDEPENDENTLY VERIFIED COMSOL EXECUTION
-
-This distinction must be preserved until the underlying computational
-artifacts are recovered or the model is transparently rerun and the new
-execution is independently checked.
-
-======================================================================
-24. MANUSCRIPT REPORTING CONTROL
-======================================================================
-
-The manuscript may describe:
-
-- the patient-specific finite-element framework
-- the six predefined gravitational conditions
-- the modeled mechanical endpoints
-- the observed/recovered gravity-response pattern
-- the normalized response methodology
-- the reported numerical values, provided their evidentiary status is
-  accurately represented
-
-The manuscript must not claim:
-
-- experimental physiological validation
-- astronaut-specific validation
-- independent external validation
-- prospective clinical validation
-- clinical prediction
-- direct systemic cardiovascular adaptation
-
-unless additional evidence independently establishes those claims.
-
-The model represents a computational mechanical response rather than a
-complete physiological cardiovascular simulation.
-
-======================================================================
-25. REPRODUCIBILITY ARTIFACT CHECKLIST
-======================================================================
-
-Before final manuscript freeze, the repository should contain or link:
-
-01_Dataset_and_Cohort/
-- Final cohort selection
-- Patient-level source-data identification
-
-02_Input_Provenance/
-- Patient input provenance
-- Analytical cohort record
-
-03_Geometry_Reconstruction/
-- Geometry reconstruction documentation
-- Mesh execution documentation
-
-04_Digital_Twin_Construction/
-- Digital-twin construction protocol
-- Patient-specific execution pipeline
-
-05_COMSOL_Model/
-- COMSOL model implementation record
-- Parameter and boundary-condition registry
-- Final native COMSOL .mph model when recovered
+If sensitivity outputs are recovered, they should be linked to:
 
 06_Simulation_Design/
-- Gravity experiment design
-
 07_Simulation_Execution/
-- Simulation execution evidence registry
-- Patient × gravity execution records
+08_Simulation_Results/
+09_Stage_3_Verification/
+
+as appropriate.
+
+======================================================================
+23. RESULT LINEAGE REQUIREMENT
+======================================================================
+
+Every quantitative manuscript value must ultimately be traceable through:
+
+Source imaging
+    ->
+patient identifier
+    ->
+segmentation
+    ->
+geometry identifier
+    ->
+fiber-field version
+    ->
+material-parameter version
+    ->
+boundary-condition version
+    ->
+gravity condition
+    ->
+mesh identifier
+    ->
+COMSOL model version
+    ->
+solver execution
+    ->
+solution/output identifier
+    ->
+endpoint extraction
+    ->
+verification
+    ->
+result table
+    ->
+figure/table
+    ->
+manuscript.
+
+The result-lineage control document is:
 
 08_Simulation_Results/
-- Numerical result workbook
-- Result-lineage registry
-- Figure-generation input data
+Digital_Twin_Simulation_Result_Lineage.txt
 
-09_Stage_3_Verification/
-- Geometry verification
-- Mesh verification
-- Solver verification
-- Energy checks
-- Output traceability
-
-10_Methods_and_Supplementary/
-- This reproducibility specification
-- Methods/supplementary computational documentation
+No manuscript numerical value should be entered into the final frozen
+results table without an identifiable source in this lineage.
 
 ======================================================================
-26. PROHIBITED RECONSTRUCTION PRACTICES
+24. REPOSITORY ARTIFACTS REQUIRED FOR FINAL REPRODUCIBILITY
 ======================================================================
 
-The following are prohibited:
+The final repository should retain, where available:
 
-1. Inventing missing COMSOL outputs.
+1. Original ACDC imaging data or controlled references to the source data
+2. Original segmentation masks
+3. ACDC metadata / Info.cfg
+4. Patient-specific geometry
+5. Geometry reconstruction record
+6. Fiber-field generation record
+7. Final volumetric mesh
+8. Mesh-quality/convergence outputs
+9. Final COMSOL .mph model
+10. COMSOL model version/date
+11. Exact material parameters
+12. Exact cavity-pressure parameter
+13. Exact basal constraint implementation
+14. Gravity-sweep configuration
+15. Solver settings
+16. Solver logs
+17. Patient × gravity numerical exports
+18. Sensitivity-analysis outputs, if executed
+19. Verification records
+20. Figure-generation datasets
+21. Manuscript table-generation datasets.
 
-2. Back-calculating patient-level values from group means.
+If an artifact cannot be recovered, the repository should explicitly record:
 
-3. Creating artificial historical solver logs.
+NOT CURRENTLY RECOVERED
 
-4. Assigning "verified" status based only on a figure.
-
-5. Treating a reported value as proof of execution.
-
-6. Changing numerical values to improve agreement between figures and
-   tables.
-
-7. Reconstructing undocumented model parameters solely to reproduce a
-   desired result.
-
-8. Describing external reference comparisons as independent validation
-   without establishing the calibration/validation relationship.
-
-9. Representing planned simulations as completed simulations.
-
-10. Representing a reconstructed computational workflow as historical
-    execution unless the evidence supports that statement.
-
-======================================================================
-27. FINAL REPRODUCIBILITY PRINCIPLE
-======================================================================
-
-The computational study must remain reproducible through a continuous
-chain:
-
-INPUT
- ->
-GEOMETRY
- ->
-MODEL
- ->
-PARAMETERS
- ->
-BOUNDARY CONDITIONS
- ->
-GRAVITY
- ->
-MESH
- ->
-SOLVER
- ->
-OUTPUT
- ->
-VERIFICATION
- ->
-RESULT DATA
- ->
-FIGURE/TABLE
- ->
-MANUSCRIPT
-
-The repository is therefore treated as an evidence-controlled
-computational record rather than merely a collection of descriptive
-files.
-
-The distinction between:
-
-SPECIFIED
-
-EXECUTED
-
-VERIFIED
-
-MANUSCRIPT-REPORTED
-
-must be maintained throughout the repository and manuscript.
+rather than generating a replacement artifact and presenting it as
+historical execution evidence.
 
 ======================================================================
-28. FINAL COMPUTATIONAL SCOPE STATEMENT
+25. MANUSCRIPT CLAIM CONTROL
 ======================================================================
 
-The definitive computational model is a patient-specific ventricular
-finite-element solid-mechanics model used to investigate the mechanical
-response of cardiac tissue under six predefined gravitational loading
-conditions.
+The manuscript should describe the model as:
 
-The principal modeled response variables are myocardial stress,
-myocardial strain, ventricular displacement, LV cavity volume, and
-ventricular strain energy.
+A patient-specific finite-element cardiac digital twin for investigating
+gravity-dependent ventricular mechanical response.
 
-The recovered Figure 6 dataset demonstrates a consistent modeled
-reduction in stress, strain, displacement, and strain energy with
-progressive reduction in gravity, together with a small increase in
-modeled LV cavity volume.
+The central result should be framed around changes in:
 
-These findings describe the behavior of the computational model under
-the specified loading conditions.
+- myocardial stress
+- myocardial strain
+- ventricular displacement
+- LV cavity volume
+- ventricular strain energy
 
-They should not be interpreted as direct evidence of systemic
-cardiovascular adaptation in humans without additional physiological
-validation.
+across predefined gravity conditions.
+
+The manuscript should not imply that the model currently provides:
+
+- full cardiovascular fluid dynamics
+- blood-flow/WSS prediction
+- electrophysiology
+- autonomic/baroreflex simulation
+- chronic remodeling
+- astronaut-specific personalization
+- formal independent validation
+
+unless corresponding evidence is independently established.
+
+======================================================================
+26. FINAL REPRODUCIBILITY STATUS
+======================================================================
+
+Current status:
+
+COMPUTATIONAL DESIGN:
+ESTABLISHED
+
+PATIENT-SPECIFIC COHORT:
+DOCUMENTED
+
+GRAVITY DESIGN:
+ESTABLISHED
+
+PRIMARY ENDPOINTS:
+ESTABLISHED
+
+MODEL FORMULATION:
+DOCUMENTED
+
+FIBER-ORIENTATION SPECIFICATION:
+DOCUMENTED
+
+EXACT CAVITY PRESSURE:
+NOT CURRENTLY RECOVERED
+
+EXACT BASAL CONSTRAINT PARAMETERS:
+NOT CURRENTLY RECOVERED
+
+NATIVE FINAL COMSOL MODEL:
+NOT CURRENTLY RECOVERED
+
+PATIENT × GRAVITY MACHINE-READABLE EXPORTS:
+NOT CURRENTLY RECOVERED
+
+SOLVER LOGS:
+NOT CURRENTLY RECOVERED
+
+VERIFICATION ARTIFACTS:
+PENDING RECONCILIATION
+
+RECOVERED FIGURE 6 NUMERICAL SUMMARY:
+DOCUMENTED / REPORTED
+
+RECOVERED 0 G VS 1 G NORMALIZED RESPONSES:
+DOCUMENTED / DERIVED FROM RECOVERED VALUES
+
+FIGURE 6:
+RETAIN — SUBJECT TO RESULT-LINEAGE FREEZE
+
+FIGURE 7:
+RETAIN — SUBJECT TO RESULT-LINEAGE FREEZE
+
+SUPPLEMENTARY FIGURE S2:
+RETAIN — BOUNDARY-LABEL REVISION REQUIRED
+
+SUPPLEMENTARY FIGURE S4:
+RETAIN — EXTERNAL-REFERENCE TERMINOLOGY REQUIRED
+
+SUPPLEMENTARY TABLE S1:
+RETAIN — REMOVE/SEPARATE ANY DATASET NOT ACTUALLY USED
+
+SUPPLEMENTARY TABLE S2:
+RETAIN — USE CONTROLLED PARAMETER/EVIDENCE-STATUS FORMAT
+
+======================================================================
+27. FINAL CONTROL PRINCIPLE
+======================================================================
+
+The purpose of this document is reproducibility and evidence control.
+
+It does not reconstruct missing computational history by assumption.
+
+The definitive manuscript will contain only computational claims that are
+supported by the corresponding computational evidence or are explicitly
+identified as documented/recovered rather than independently verified.
+
+The final study narrative must remain internally consistent across:
+
+Repository
+    ->
+Methods
+    ->
+Results
+    ->
+Tables
+    ->
+Figures
+    ->
+Supplementary materials
+    ->
+Reviewer responses.
 
 END OF METHODS — COMSOL REPRODUCIBILITY SPECIFICATION
+
 ======================================================================
+
+
+ 
+   
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
