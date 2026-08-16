@@ -1,0 +1,302 @@
+LOCKED EXECUTION ENVIRONMENT SIGNATURE
+======================================
+
+Project:
+Patient-Specific Cardiac Digital Twin Under Altered Gravity
+
+Study type:
+Patient-specific finite-element cardiac mechanics / altered-gravity simulation
+
+Purpose:
+This file documents the computational environment specified for the study and
+the execution configuration recorded in the project documentation. It is
+intended to support computational provenance and reproducibility.
+
+IMPORTANT EVIDENCE STATUS
+-------------------------
+This file documents the execution environment/configuration available in the
+project records. It does NOT by itself constitute independent verification that
+every listed hardware component, COMSOL module, solver option, or GPU
+acceleration mode was used for every patient-specific simulation.
+
+Where a native COMSOL *.mph model, native COMSOL log, system execution record,
+or equivalent machine-generated artifact is not available, the corresponding
+configuration is classified as DOCUMENTED rather than DIRECTLY VERIFIED.
+
+1. SOFTWARE ENVIRONMENT
+-----------------------
+
+COMSOL Multiphysics:
+    Version: 6.4
+    Build: 6.4.0.293
+    Release information recorded in project documentation: May 2026
+
+Operating-system environments documented:
+    Ubuntu Linux 22.04 LTS
+    RHEL 9.2
+
+The exact operating system associated with each individual patient execution
+has not been independently reconstructed from native execution logs and should
+therefore not be interpreted as patient-level verified metadata unless supported
+by an execution artifact.
+
+2. COMPUTATIONAL HARDWARE
+-------------------------
+
+Documented CPU configuration:
+    2 × AMD EPYC 7763
+    64 physical cores per socket
+    128 threads total
+
+Documented memory configuration:
+    Approximately 256 GB ECC server memory
+
+Documented GPU configuration:
+    NVIDIA A100, 80 GB PCIe
+
+Alternative hardware configuration appearing in project planning records:
+    NVIDIA H100 GPU
+
+IMPORTANT:
+    The presence of an A100/H100-capable environment in project documentation
+    does not establish that GPU acceleration was used during every simulation.
+
+3. COMSOL PHYSICS / MODULES
+---------------------------
+
+Documented modules relevant to the computational framework:
+
+    Structural Mechanics Module
+    Nonlinear Structural Materials Module
+
+An optimization/parameter-sensitivity capability is documented for sensitivity
+analysis.
+
+The exact module activation state for each historical patient execution should
+be considered verified only when recoverable from the corresponding COMSOL
+model or execution record.
+
+4. FINITE-ELEMENT MODEL
+-----------------------
+
+The documented model framework includes:
+
+    Patient-specific cardiac geometry
+    Three-dimensional volumetric finite-element discretization
+    Nearly incompressible myocardial mechanics
+    Anisotropic hyperelastic myocardial formulation
+    Transmural myocardial fiber orientation
+    Patient/model-specific cavity loading
+    Basal mechanical constraint
+    Gravity-dependent body-force loading
+    Nonlinear stationary solution procedure
+
+5. GRAVITY PARAMETERIZATION
+---------------------------
+
+The study design specifies a gravity multiplier represented by:
+
+    gamma = 0.00 g
+    gamma = 0.16 g
+    gamma = 0.38 g
+    gamma = 0.50 g
+    gamma = 0.75 g
+    gamma = 1.00 g
+
+Additional gravity values may have been explored during model development or
+verification. Only values supported by the final executed model should be
+reported as completed experimental conditions.
+
+6. NUMERICAL SOLVER
+-------------------
+
+Documented nonlinear solution framework:
+
+    Newton-type nonlinear finite-element solution
+    Fully coupled nonlinear mechanics formulation
+    Sparse direct solution strategy
+
+PARDISO is documented as the primary CPU sparse-direct solver configuration.
+
+cuDSS/GPU acceleration is documented as a possible COMSOL 6.4 computational
+option. It must not be described as having been used for the final simulations
+unless confirmed by native COMSOL execution records.
+
+7. NUMERICAL VERIFICATION FRAMEWORK
+-----------------------------------
+
+The project defines the following verification quantities:
+
+    Mesh convergence
+    Element quality / Jacobian quality
+    Inverted or degenerate element detection
+    Nonlinear residual convergence
+    Energy consistency
+    Geometric volume preservation
+    Pressure-response consistency
+    Gravity-response reproducibility
+    Sensitivity to fiber orientation
+    Sensitivity to material parameters
+    Sensitivity to basal boundary conditions
+    Sensitivity to cavity pressure
+
+Documented acceptance criteria include:
+
+    Geometric volume divergence:
+        Delta V (%) = |V_mask - V_mesh| / V_mask × 100
+
+    Target:
+        Delta V <= 1.5%
+
+    Minimum Jacobian-quality threshold:
+        > 0.35
+
+    Nonlinear residual:
+        normalized residual below the predefined solver tolerance
+
+A strict target tolerance of 1e-5 was specified during the verification design.
+The actual tolerance used for a specific execution must be confirmed from the
+native COMSOL model or solver record.
+
+8. PATIENT COHORT
+-----------------
+
+The final patient-specific computational cohort documented in the project
+contains five de-identified study subjects:
+
+    patient002
+    patient007
+    patient015
+    patient020
+    patient027
+
+These identifiers are study-level de-identified identifiers and are not
+intended to expose source-dataset personal identifiers.
+
+The exact diagnostic labels, phase frames, mesh statistics, and patient-level
+model properties should be reported only where they can be reconciled against
+the finalized cohort and execution records.
+
+9. DOCUMENTED COMPUTATIONAL OUTPUTS
+-----------------------------------
+
+The project records currently document the intended or partially recovered
+existence of:
+
+    Patient-specific geometry
+    Finite-element meshes
+    Gravity-dependent simulations
+    Solver convergence records
+    Spatial FEM field exports
+    Sensitivity-analysis outputs
+    Simulation result tables
+    Execution registries
+    Provenance records
+
+However, the following distinction is maintained:
+
+    DOCUMENTED
+        The item is specified or recorded in project documentation.
+
+    PARTIALLY RECOVERED
+        Some output or evidence has been recovered, but the complete native
+        computational artifact has not yet been independently verified.
+
+    VERIFIED
+        The artifact has been physically recovered and its contents can be
+        directly traced to the executed computational model.
+
+At the current repository-freeze stage, the project should not classify the
+entire computational pipeline as VERIFIED until the native source artifacts
+have been reconciled.
+
+10. PRIMARY SOURCE-OF-TRUTH STATUS
+----------------------------------
+
+Native COMSOL master model (*.mph):
+    NOT YET VERIFIED / RECOVERY PENDING
+
+Patient-specific geometry artifacts:
+    PARTIALLY DOCUMENTED / RECOVERY STATUS TO BE CONFIRMED
+
+Patient-specific mesh artifacts:
+    PARTIALLY DOCUMENTED / RECOVERY STATUS TO BE CONFIRMED
+
+Patient × gravity raw exports:
+    PARTIALLY RECOVERED / COMPLETENESS NOT YET ESTABLISHED
+
+Native solver logs:
+    PARTIALLY DOCUMENTED / NATIVE SOURCE VERIFICATION PENDING
+
+Sensitivity-analysis raw outputs:
+    PARTIALLY DOCUMENTED / SOURCE VERIFICATION PENDING
+
+Spatial FEM field exports:
+    PARTIALLY RECOVERED / COMPLETENESS NOT YET ESTABLISHED
+
+Execution environment:
+    DOCUMENTED
+
+SHA-256 checksums:
+    NOT YET GENERATED FROM VERIFIED PHYSICAL ARTIFACTS
+
+Final computational execution manifest:
+    DRAFT / RECONCILIATION PENDING
+
+11. REPRODUCIBILITY PRINCIPLE
+-----------------------------
+
+The repository is designed to preserve reproducibility without redistributing
+the underlying source imaging datasets.
+
+Source datasets remain subject to their original access and redistribution
+conditions.
+
+Only de-identified study records, derived computational artifacts, model
+documentation, parameter specifications, execution registries, and verified
+results should be placed in the public repository.
+
+12. MANUSCRIPT RECONCILIATION RULE
+----------------------------------
+
+No manuscript-facing numerical result should be treated as a final measured
+COMSOL result solely because it appears in a planning table, example output,
+draft solver log, illustrative CSV, or expected-result registry.
+
+Final numerical values must be reconciled against the verified computational
+source of truth.
+
+The reconciliation hierarchy is:
+
+    Native COMSOL *.mph model
+            ↓
+    Native solver / execution records
+            ↓
+    Patient-specific geometry and mesh artifacts
+            ↓
+    Raw patient × gravity exports
+            ↓
+    Derived numerical summaries
+            ↓
+    Manuscript tables
+            ↓
+    Manuscript figures
+            ↓
+    Results and Discussion text
+
+13. CURRENT STATUS
+------------------
+
+The computational framework, cohort structure, model specification,
+verification strategy, and execution-environment documentation are sufficiently
+defined to support manuscript organization and repository preparation.
+
+The remaining computational-evidence task is source-artifact verification,
+particularly recovery and reconciliation of the native COMSOL model and
+patient-level raw outputs.
+
+Until that reconciliation is completed, draft numerical values should be
+classified as EXPECTED, DOCUMENTED, or PARTIALLY RECOVERED rather than presented
+as independently verified final measurements.
+
+End of file.
