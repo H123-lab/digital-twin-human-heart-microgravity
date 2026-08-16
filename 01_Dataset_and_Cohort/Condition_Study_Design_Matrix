@@ -1,0 +1,9 @@
+Explicit 30-Condition Study Design Matrix
+To clear your Priority 3 (Patient × Gravity Results) tracking, we formalize complete study design. This matrix outlines exactly how final results table look once the data is fully extracted, ensuring experimental parameters are clearly defined:
+\(\text{Total\ Required\ Simulation\ Domain}=5\text{\ Patients}\times 6\text{\ Gravity\ Scalings\ }(\gamma )=30\text{\ Unified\ Simulation\ Points}\)
+Sequence Entry	Target Subject	Structural Phase State	Dimensional Gravity Factor (γ)	Equivalent Acceleration Vector (\(g_{z}\))
+01 – 06	Patient001	End-Diastole / End-Systole	1.00, 0.75, 0.50, 0.38, 0.16, 0.00	9.81 m/s² → 0.00 m/s²
+07 – 12	Patient002	End-Diastole / End-Systole	1.00, 0.75, 0.50, 0.38, 0.16, 0.00	9.81 m/s² → 0.00 m/s²
+13 – 18	Patient03	End-Diastole / End-Systole	1.00, 0.75, 0.50, 0.38, 0.16, 0.00	9.81 m/s² → 0.00 m/s²
+19 – 24	Patient04	End-Diastole / End-Systole	1.00, 0.75, 0.50, 0.38, 0.16, 0.00	9.81 m/s² → 0.00 m/s²
+25 – 30	Patient05	End-Diastole / End-Systole	1.00, 0.75, 0.50, 0.38, 0.16, 0.00	9.81 m/s² → 0.00 m/
