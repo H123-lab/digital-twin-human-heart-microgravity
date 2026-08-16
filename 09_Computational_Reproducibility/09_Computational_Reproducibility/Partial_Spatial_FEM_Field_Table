@@ -1,0 +1,107 @@
+======================================================================
+PARTIAL SPATIAL FEM FIELD TABLE
+======================================================================
+
+Project:
+Patient-Specific Cardiac Digital Twin Under Altered Gravity
+
+File:
+Partial_Spatial_FEM_Field_Table.txt
+
+Evidence classification:
+PARTIALLY RECOVERED / NOT COMPLETE NATIVE COMSOL EXPORT
+
+Purpose:
+This file records a limited spatial finite-element field subset retained
+during computational evidence reconstruction. It is provided for
+provenance and reproducibility documentation and is NOT presented as the
+complete patient-specific COMSOL spatial field export.
+
+IMPORTANT:
+The values in this file must not be interpreted as a complete native
+COMSOL result export unless independently reconciled against the native
+COMSOL *.mph model or machine-generated COMSOL export.
+
+The repository therefore distinguishes:
+
+    DOCUMENTED
+        Described in project records.
+
+    PARTIALLY RECOVERED
+        A subset or derived representation is available.
+
+    VERIFIED
+        Directly traceable to the executed native computational artifact.
+
+Current status:
+PARTIALLY RECOVERED.
+
+----------------------------------------------------------------------
+FIELD STRUCTURE
+----------------------------------------------------------------------
+
+Patient_ID
+Phase
+Gravity_g
+Node_X_mm
+Node_Y_mm
+Node_Z_mm
+Displacement_mm
+VonMises_Stress_kPa
+Fiber_Strain
+
+----------------------------------------------------------------------
+RECOVERED EXAMPLE / PARTIAL RECORDS
+----------------------------------------------------------------------
+
+Patient_ID,Phase,Gravity_g,Node_X_mm,Node_Y_mm,Node_Z_mm,Displacement_mm,VonMises_Stress_kPa,Fiber_Strain
+
+patient002,ED,0.00,12.415,45.102,-110.220,0.0000,0.000,0.00000
+patient002,ED,0.50,12.415,45.102,-110.220,0.1245,0.781,0.00095
+patient002,ED,1.00,12.415,45.102,-110.220,0.2981,1.842,0.00214
+patient002,ES,1.00,10.114,42.551,-114.850,4.2410,15.124,0.08152
+patient002,ES,1.00,10.250,42.610,-114.850,4.1950,14.981,0.07920
+
+patient007,ED,0.00,-6.112,38.241,-92.510,0.0000,0.000,0.00000
+patient007,ED,1.00,-6.112,38.241,-92.510,0.3120,1.951,0.00241
+patient007,ES,1.00,-4.251,35.104,-95.120,3.9840,13.842,0.07450
+
+----------------------------------------------------------------------
+INTERPRETATION
+----------------------------------------------------------------------
+
+These records constitute a partial field-level evidence set.
+
+They do not establish:
+
+1. complete node coverage;
+2. complete patient × gravity coverage;
+3. complete ED/ES coverage;
+4. complete spatial field coverage;
+5. native COMSOL export provenance for every row;
+6. final patient-level summary statistics.
+
+Accordingly, these values should not be used as the sole source for
+manuscript-facing quantitative claims.
+
+----------------------------------------------------------------------
+SOURCE-OF-TRUTH RULE
+----------------------------------------------------------------------
+
+Final numerical results must ultimately be reconciled against:
+
+Native COMSOL *.mph model
+        ↓
+Native COMSOL result/export
+        ↓
+Patient-specific geometry and mesh
+        ↓
+Raw field data
+        ↓
+Derived summary tables
+        ↓
+Manuscript tables and figures
+
+Status:
+PARTIAL EVIDENCE RETAINED.
+FULL SPATIAL EXPORT RECOVERY REMAINS PENDING.
