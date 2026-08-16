@@ -1,0 +1,102 @@
+======================================================================
+SENSITIVITY ANALYSIS — EXECUTION STATUS RECORD
+======================================================================
+
+Project:
+Patient-Specific Cardiac Digital Twin Under Altered Gravity
+
+Evidence classification:
+DOCUMENTED DESIGN / NUMERICAL OUTPUT RECOVERY PENDING
+
+======================================================================
+PRESPECIFIED SENSITIVITY DOMAINS
+======================================================================
+
+1. Fiber-orientation sensitivity
+
+Documented perturbation:
+    ±15 degrees
+
+Purpose:
+Assess robustness of predicted myocardial mechanical response to
+variation in transmural fiber orientation.
+
+---------------------------------------------------------------------
+
+2. Material-parameter sensitivity
+
+Documented perturbation:
+    ±20%
+
+Purpose:
+Assess robustness of mechanical response to uncertainty in myocardial
+material stiffness/constitutive parameters.
+
+---------------------------------------------------------------------
+
+3. Basal-boundary-condition sensitivity
+
+Documented perturbation:
+    ±20% or predefined alternative basal constraint,
+    according to the finalized execution design.
+
+Purpose:
+Assess dependence of model response on basal mechanical constraint.
+
+---------------------------------------------------------------------
+
+4. Cavity-pressure sensitivity
+
+Documented perturbation:
+    ±10%
+
+Purpose:
+Assess sensitivity of model response to uncertainty in ventricular
+loading pressure.
+
+======================================================================
+PATIENT COHORT
+======================================================================
+
+patient002
+patient007
+patient015
+patient020
+patient027
+
+======================================================================
+CURRENT OUTPUT STATUS
+======================================================================
+
+Fiber-angle sensitivity:
+    DESIGN DOCUMENTED.
+    RAW EXECUTED OUTPUT: NOT VERIFIED.
+
+Material sensitivity:
+    DESIGN DOCUMENTED.
+    RAW EXECUTED OUTPUT: NOT VERIFIED.
+
+Basal-boundary sensitivity:
+    DESIGN DOCUMENTED.
+    RAW EXECUTED OUTPUT: NOT VERIFIED.
+
+Cavity-pressure sensitivity:
+    DESIGN DOCUMENTED.
+    RAW EXECUTED OUTPUT: NOT VERIFIED.
+
+======================================================================
+MANUSCRIPT RULE
+======================================================================
+
+No sensitivity percentage, stress value, strain value, displacement
+value, or deviation should be reported as an executed measured result
+until the corresponding raw computational output is recovered and
+reconciled.
+
+This file therefore preserves the sensitivity-analysis design without
+converting expected or illustrative values into claimed simulation
+results.
+
+Status:
+SENSITIVITY DESIGN DOCUMENTATION COMPLETE.
+RAW SENSITIVITY OUTPUT RECOVERY REMAINS PENDING.
