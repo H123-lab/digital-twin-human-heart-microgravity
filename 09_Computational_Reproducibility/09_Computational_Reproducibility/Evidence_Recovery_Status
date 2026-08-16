@@ -1,83 +1,77 @@
-# Computational Evidence Recovery Status
+EVIDENCE RECOVERY STATUS
 
-## Study
-Patient-Specific Cardiac Digital Twin Under Altered Gravity
+Study
+-----
+Patient-specific cardiac digital twin under altered gravity
 
-## Evidence-recovery status
-The computational evidence archive was reviewed according to the predefined
-Stage-3 recovery priorities.
+Cohort
+------
+Five patient-specific cardiac models.
 
-### Priority 1 — Native COMSOL model
-Status: NOT RECOVERED
+Prespecified computational design
+----------------------------------
+30 conditions:
+5 patients × 6 gravity levels
 
-The native COMSOL `.mph` master model was not included in the public repository.
-The repository therefore does not claim complete native-model reproducibility.
+Gravity levels:
+1.00 G
+0.75 G
+0.50 G
+0.38 G
+0.16 G
+0.00 G
 
-### Priority 2 — Geometry and meshes
-Status: PARTIALLY DOCUMENTED
+Evidence categories
+-------------------
 
-Patient-specific geometry reconstruction, mesh generation, mesh-quality
-assessment, and execution records are retained as derived documentation.
-Underlying source imaging remains at the originating dataset.
-
-### Priority 3 — Patient × gravity raw outputs
-Status: PARTIALLY RECOVERED / SOURCE VERIFICATION REQUIRED
-
-Structured gravity-result records are retained where available. Numerical
-values are not treated as definitive manuscript Results unless traceable to
-an executed computational export.
-
-### Priority 4 — Solver and numerical-verification records
-Status: PARTIALLY DOCUMENTED
-
-The repository contains solver configuration and convergence documentation.
-Complete native COMSOL solver logs are not claimed unless directly recovered
-from the executed model environment.
-
-### Priority 5 — Sensitivity-analysis outputs
-Status: PARTIALLY DOCUMENTED
-
-Sensitivity-analysis design and parameter definitions are retained.
-Numerical sensitivity values require traceability to executed model outputs
-before being reported as definitive Results.
-
-### Priority 6 — Spatial FEM fields
-Status: PARTIALLY RECOVERED
-
-Structured spatial field-export formats are documented. Complete patient-level
-field archives are not claimed unless directly recovered from the executed
-COMSOL model.
-
-### Priority 7 — Execution environment
+A. Patient/source provenance
 Status: DOCUMENTED
 
-The computational environment, COMSOL version, solver configuration and
-available hardware are recorded in the computational provenance documentation.
+B. Prespecified simulation design
+Status: DOCUMENTED / REPOSITORY-PRESERVED
 
-### Priority 8 — SHA-256 checksums
-Status: Not Done
+C. Geometry reconstruction workflow
+Status: DOCUMENTED
 
-Cryptographic checksums will only be reported after being generated directly
-from the final repository files. Placeholder or illustrative hashes are not
-used as evidence.
+D. Finite-element formulation
+Status: DOCUMENTED AS METHODOLOGICAL SPECIFICATION
 
-### Priority 9 — Final execution manifest
-Status: PARTIALLY COMPLETED
+E. Material and fiber definitions
+Status: DOCUMENTED AS METHODOLOGICAL SPECIFICATION
 
-A centralized provenance and reconciliation structure has been established.
-Final manifest closure remains dependent on recovery/verification of the
-underlying computational artifacts.
+F. Gravity parameterization
+Status: DOCUMENTED
 
-## Manuscript policy
+G. Complete native COMSOL model files
+Status: NOT CURRENTLY RECOVERED / NOT PUBLICLY DISTRIBUTED
 
-Only verified or directly traceable computational results are reported as
-quantitative manuscript findings. Documentation, candidate outputs and
-unverified numerical examples are not represented as measured experimental
-results.
+H. Complete executed solver logs
+Status: NOT VERIFIED
 
-## Source-data policy
+I. Complete spatial FEM field exports
+Status: NOT VERIFIED
 
-Original source imaging datasets and restricted source files are not
-redistributed through this repository. The repository contains only
-de-identified study records, methodological documentation and study-derived
-computational artifacts permitted for dissemination.
+J. Complete sensitivity-analysis outputs
+Status: NOT VERIFIED
+
+K. Cryptographic hashes of verified source artifacts
+Status: NOT ESTABLISHED
+
+L. Manuscript table reconciliation
+Status: DESIGN-LEVEL RECONCILIATION COMPLETE;
+NUMERICAL RECONCILIATION PENDING
+
+Evidence interpretation
+-----------------------
+The current repository supports documentation of the computational
+framework and prespecified simulation design.
+
+It does not support a claim of complete executed numerical reproducibility
+until the underlying native model files and associated output artifacts
+have been physically recovered and independently checked.
+
+Candidate or illustrative numerical blocks appearing in working notes are
+not treated as recovered evidence.
+
+
+
