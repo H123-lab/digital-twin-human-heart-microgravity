@@ -1,629 +1,104 @@
+CHAB/SPACE CARDIAC DIGITAL TWIN STUDY
 COMPUTATIONAL ARTIFACT REGISTRY
-Patient-Specific Cardiac Digital Twin / COMSOL Finite-Element Model
-Repository File 8
-Version: Reconciled Draft — Stage-3 Evidence Controlled
-Date: 2026-08-16
+Repository path: 09_Computational_Reproducibility/
 
-PURPOSE
+Purpose
 -------
-This registry defines the computational artifacts required to reproduce,
-audit, verify, and trace the patient-specific cardiac finite-element
-digital-twin workflow.
+This registry provides the controlled inventory of computational artifacts
+associated with the patient-specific cardiac digital-twin study.
 
-The registry is the computational source-of-truth for model implementation,
-geometry reconstruction, mesh generation, solver execution, gravity sweeps,
-sensitivity analyses, numerical verification, and manuscript-facing
-computational claims.
-
-IMPORTANT EVIDENCE RULE
------------------------
-A documented model specification is not equivalent to recovered execution
-evidence.
-
-Where an original COMSOL model file, raw export, solver log, mesh-convergence
-record, geometry artifact, or checksum has not been recovered, the artifact
-status is recorded as PENDING or NOT RECOVERED rather than PASS, GO, or
-VERIFIED.
-
-Previously reported numerical values are retained as documented study values
-only where explicitly supported by the current repository record. They are
-not automatically treated as independently verified COMSOL execution outputs.
-
-STUDY SCOPE
------------
-Cohort:
-    Five-patient patient-specific ACDC DCM pilot cohort:
-    P001–P005.
-
-Primary computational scope:
-    Patient-specific ventricular solid mechanics under
-    gravity-dependent loading.
-
-Primary modeled outputs:
-    - Peak von Mises myocardial stress
-    - Peak principal strain
-    - Maximum ventricular displacement
-    - LV cavity volume
-    - Ventricular strain energy
-
-Gravity conditions:
-    1.00 G
-    0.75 G
-    0.50 G
-    0.38 G
-    0.16 G
-    0.00 G
-
-Software specification:
-    COMSOL Multiphysics 6.4
-
-Model formulation:
-    Three-dimensional tetrahedral finite-element ventricular model using
-    an anisotropic Holzapfel–Ogden-type hyperelastic myocardial formulation,
-    nearly incompressible material treatment, model-defined transmural
-    fiber orientation, prescribed cavity loading, anatomically defined basal
-    constraint, and geometrically nonlinear solution.
-
-EVIDENCE STATUS DEFINITIONS
----------------------------
-VERIFIED:
-    The artifact and its supporting execution evidence are present and
-    traceable in the repository.
-
-DOCUMENTED:
-    The artifact or parameter is explicitly documented in the recovered
-    study records, but the underlying execution artifact has not yet been
-    independently verified.
-
-PENDING:
-    The artifact is required and/or described, but supporting execution
-    evidence has not yet been recovered or reconciled.
-
-NOT RECOVERED:
-    The original artifact is specifically known to be unavailable in the
-    currently recovered repository materials.
-
-NOT APPLICABLE:
-    The artifact is not required for the specific model stage.
-
-ARTIFACT REGISTRY
+Repository policy
 -----------------
+Only artifacts that are demonstrably derived from the study workflow,
+supported by the available source environment, or explicitly identified as
+design/documentation artifacts are retained as repository evidence.
 
-ID: ART-001
-Artifact: Source imaging dataset
-Artifact type: Primary input
-Patient scope: P001–P005
-Specification:
-    ACDC cine cardiac MRI with expert ED/ES segmentation masks and associated
-    metadata.
-Required evidence:
-    Original source dataset records or deterministic source-data extraction
-    sufficient to reproduce patient-specific input selection.
-Repository record:
-    Source dataset provenance record.
-Current status:
-    DOCUMENTED / SOURCE-ACCESS CONTROLLED
-Evidence note:
-    The recovered workbook states that original ACDC NIfTI and Info.cfg files
-    were not attached to the currently indexed geometry-QC workbook.
-Required action:
-    Preserve source provenance and, where permitted, attach/access the exact
-    source files used for the five-patient cohort.
+Prespecified simulation design
+------------------------------
+Cohort: 5 patient-specific cardiac models
+Simulation conditions: 30
+Design: 5 patients × 6 gravity levels
+Gravity levels: 1.00, 0.75, 0.50, 0.38, 0.16, 0.00 G
 
-ID: ART-002
-Artifact: Patient-specific ED/ES segmentation inputs
-Artifact type: Anatomical input
-Patient scope: P001–P005
-Specification:
-    Patient-specific ventricular and myocardial segmentation masks used for
-    geometry reconstruction.
-Required evidence:
-    Exact source mask identifiers and corresponding patient-level records.
-Repository record:
-    Cohort/provenance registry.
-Current status:
-    DOCUMENTED / EXECUTION EVIDENCE PENDING
-Required action:
-    Link each P001–P005 geometry to its exact source segmentation record.
+Current artifact inventory
+--------------------------
 
-ID: ART-003
-Artifact: Reconstructed patient-specific surface geometry
-Artifact type: Derived geometry
-Patient scope: P001–P005
-Specification:
-    Three-dimensional ventricular/cardiac surfaces reconstructed from
-    verified segmentation masks.
-Required evidence:
-    Surface files and reconstruction logs.
-Expected formats:
-    STL and/or STEP/IGES or equivalent geometry representation.
-Current status:
-    PENDING / NOT RECOVERED IN CURRENT INDEX
-Required action:
-    Retain final surface geometry for P001–P005 and reconstruction metadata.
+1. Computational_Artifact_Registry.txt
+   Status: ACTIVE
+   Type: Documentation / provenance registry
 
-ID: ART-004
-Artifact: Surface quality-control record
-Artifact type: Geometry verification
-Patient scope: P001–P005
-Specification:
-    Surface-mask agreement, manifold integrity, topology and geometric
-    quality assessment before volumetric model generation.
-Documented criterion:
-    Surface-to-mask volume discrepancy ≤1.5%.
-Previously documented values:
-    0.67–1.08% in the recovered study table.
-Current evidence status:
-    PENDING VERIFICATION
-Required artifact:
-    Patient-level geometry/QC export.
-Important:
-    The documented numerical range must not be labelled VERIFIED until the
-    corresponding source geometry and QC export are available.
+2. Computational_Table_Figure_Reconciliation.txt
+   Status: ACTIVE
+   Type: Manuscript reconciliation record
 
-ID: ART-005
-Artifact: CAD/solid geometry
-Artifact type: Derived computational geometry
-Patient scope: P001–P005
-Specification:
-    Patient-specific closed solid/volumetric geometry suitable for finite-
-    element meshing.
-Required evidence:
-    Final CAD/solid geometry files and conversion/reconstruction record.
-Current status:
-    PENDING / EXECUTION ARTIFACT NOT RECOVERED
-Required action:
-    Retain final volumetric geometry and conversion log.
+3. Evidence_Recovery_Status.txt
+   Status: ACTIVE
+   Type: Evidence-recovery status record
 
-ID: ART-006
-Artifact: Fiber-orientation field
-Artifact type: Constitutive-model input
-Patient scope: P001–P005
-Specification:
-    Model-defined transmural myocardial fiber field with continuous helical
-    interpolation between the specified endocardial and epicardial helix
-    angles.
-Documented specification:
-    Endocardial helix angle: +60 degrees.
-    Epicardial helix angle: -60 degrees.
-Current status:
-    DOCUMENTED / IMPLEMENTATION ARTIFACT PENDING
-Required evidence:
-    Fiber-field implementation record and, where applicable, exported
-    orientation field.
+4. Recovered_Study_Tables_Registry.txt
+   Status: ACTIVE
+   Type: Recovered/available study-table inventory
 
-ID: ART-007
-Artifact: Constitutive-model implementation
-Artifact type: Material model
-Patient scope: P001–P005
-Specification:
-    Anisotropic Holzapfel–Ogden-type hyperelastic myocardial formulation
-    with isotropic matrix and anisotropic fiber contributions and nearly
-    incompressible treatment.
-Required evidence:
-    COMSOL model implementation and parameter registry.
-Current status:
-    DOCUMENTED / EXECUTION ARTIFACT PENDING
-Required action:
-    Retain the exact implemented constitutive equations, parameters,
-    units, and COMSOL implementation syntax.
+5. Verification_Evidence_Status.txt
+   Status: ACTIVE
+   Type: Verification-status record
 
-ID: ART-008
-Artifact: Material parameter registry
-Artifact type: Model parameter input
-Patient scope: P001–P005
-Specification:
-    Complete numerical parameter set used by the constitutive model.
-Current status:
-    PENDING COMPLETE EXECUTED-MODEL RECONCILIATION
-Required action:
-    Ensure all numerical values, units, parameter names, and model-variable
-    mappings correspond exactly to the executed COMSOL model.
+6. Verification_Priority_Status.txt
+   Status: ACTIVE
+   Type: Verification-priority record
 
-ID: ART-009
-Artifact: Boundary-condition specification
-Artifact type: Model constraint
-Patient scope: P001–P005
-Specification:
-    Anatomically defined basal mechanical constraint preventing nonphysical
-    rigid-body motion while allowing physiological deformation.
-    No additional epicardial displacement constraint unless explicitly
-    implemented in the executed model.
-Current status:
-    DOCUMENTED / EXECUTION ARTIFACT PENDING
-Required action:
-    Preserve exact COMSOL boundary-condition definitions and constrained
-    degrees of freedom.
+7. Simulation-design matrix
+   Status: ACTIVE
+   Location: simulation-design/
+   Description: Prespecified 30-condition patient × gravity matrix
 
-ID: ART-010
-Artifact: Cavity-pressure loading definition
-Artifact type: Physiological loading
-Patient scope: P001–P005
-Specification:
-    Prescribed ventricular cavity pressure according to the implemented
-    model loading protocol.
-Units:
-    mmHg and/or Pa, according to executed model representation.
-Current status:
-    DOCUMENTED / NUMERICAL IMPLEMENTATION PENDING
-Required action:
-    Record exact pressure values, pressure ramp/sequence, application
-    surfaces, and unit conversion used in the executed model.
+Restricted or currently unavailable artifacts
+---------------------------------------------
+Native COMSOL .mph master model files:
+Status: NOT CURRENTLY AVAILABLE FOR PUBLIC REPOSITORY DISTRIBUTION
 
-ID: ART-011
-Artifact: Gravity-loading definition
-Artifact type: Experimental condition
-Patient scope: P001–P005
-Specification:
-    Dimensionless gravity multiplier:
-        gamma = 1.00, 0.75, 0.50, 0.38, 0.16, 0.00
+Raw source imaging:
+Status: NOT REDISTRIBUTED IN THIS REPOSITORY
 
-    Effective gravitational acceleration:
-        g_eff = gamma × g0
+Complete executed solver logs:
+Status: NOT VERIFIED/NOT RECOVERED
 
-    where:
-        g0 = 9.81 m/s^2
+Complete spatial FEM field exports:
+Status: NOT VERIFIED/NOT RECOVERED
 
-Current status:
-    DOCUMENTED
-Required evidence:
-    Executed model variable definition and gravity-sweep study settings.
+Complete sensitivity-analysis outputs:
+Status: NOT VERIFIED/NOT RECOVERED
 
-ID: ART-012
-Artifact: Coarse finite-element mesh
-Artifact type: Numerical discretization
-Patient scope: P001–P005
-Specification:
-    Coarse tetrahedral volumetric mesh.
-Current status:
-    DOCUMENTED / EXPORT NOT RECOVERED
-Required evidence:
-    Mesh export, element count, quality metrics and patient identifier.
+Cryptographic execution manifest:
+Status: NOT ESTABLISHED FROM VERIFIED SOURCE FILES
 
-ID: ART-013
-Artifact: Medium finite-element mesh
-Artifact type: Numerical discretization
-Patient scope: P001–P005
-Specification:
-    Medium tetrahedral volumetric mesh.
-Current status:
-    DOCUMENTED / EXPORT NOT RECOVERED
-Required evidence:
-    Mesh export, element count, quality metrics and patient identifier.
+Important exclusion
+-------------------
+Candidate numerical values, illustrative solver logs, hypothetical FEM
+field values, placeholder hashes, and assumed hardware configurations are
+not treated as executed study results and must not be represented as such
+in the public repository or manuscript.
 
-ID: ART-014
-Artifact: Fine finite-element mesh
-Artifact type: Numerical discretization
-Patient scope: P001–P005
-Specification:
-    Fine tetrahedral volumetric mesh.
-Current status:
-    DOCUMENTED / EXPORT NOT RECOVERED
-Required evidence:
-    Mesh export, element count, quality metrics and patient identifier.
+Current reproducibility state
+-----------------------------
+The repository documents the computational design, provenance,
+methodological specification, evidence-recovery status, and reconciliation
+workflow. It does not claim complete native-model reproducibility unless
+the underlying source model and corresponding executed outputs are
+independently verified and available.
 
-ID: ART-015
-Artifact: Mesh-convergence analysis
-Artifact type: Numerical verification
-Patient scope: P001–P005
-Documented criterion:
-    Fine-versus-medium variation ≤2%.
-Previously documented range:
-    0.94–1.63%.
-Current status:
-    PENDING EXECUTION VERIFICATION
-Required evidence:
-    Raw mesh-convergence export linked to the actual coarse/medium/fine
-    meshes and executed COMSOL solution.
-Important:
-    The previously reported 0.94–1.63% range is not treated as verified
-    until the underlying execution evidence is recovered or recreated.
 
-ID: ART-016
-Artifact: COMSOL Multiphysics model
-Artifact type: Primary execution artifact
-Patient scope: P001–P005
-Specification:
-    Executable patient-specific COMSOL model containing geometry, materials,
-    fiber field, boundary conditions, loading, mesh and solver settings.
-Software:
-    COMSOL Multiphysics 6.4
-Required file:
-    *.mph
-Current status:
-    NOT RECOVERED
-Required action:
-    Recover or recreate the executed model and record model version/date.
 
-ID: ART-017
-Artifact: Solver configuration
-Artifact type: Numerical-solver configuration
-Patient scope: P001–P005
-Specification:
-    Geometrically nonlinear finite-element solution using Newton-type
-    nonlinear iteration.
-Current status:
-    DOCUMENTED / EXECUTION CONFIGURATION PENDING
-Required evidence:
-    Exact solver tree/settings from the executed COMSOL model.
+    
 
-ID: ART-018
-Artifact: Solver log
-Artifact type: Numerical verification
-Patient scope: P001–P005
-Documented range:
-    Residuals reported as 5.8 × 10^-7 to 9.1 × 10^-7 in the current study
-    table.
-Current status:
-    PENDING EXECUTION VERIFICATION
-Required evidence:
-    Raw COMSOL solver log/export.
-Important:
-    Reported residual values must not be represented as independently
-    verified solver outputs until the raw logs are available.
 
-ID: ART-019
-Artifact: Failed-element assessment
-Artifact type: Numerical verification
-Patient scope: P001–P005
-Documented result:
-    0 failed elements.
-Current status:
-    PENDING EXECUTION VERIFICATION
-Required evidence:
-    Mesh/solver diagnostic output demonstrating the result.
 
-ID: ART-020
-Artifact: Energy-balance assessment
-Artifact type: Numerical verification
-Patient scope: P001–P005
-Documented criterion:
-    Energy-balance error ≤1%.
-Current status:
-    PENDING EXECUTION VERIFICATION
-Required evidence:
-    Solver/energy audit export from the executed model.
 
-ID: ART-021
-Artifact: Baseline 1G result export
-Artifact type: Simulation result
-Patient scope: P001–P005
-Required outputs:
-    - Peak von Mises stress
-    - Peak principal strain
-    - Maximum displacement
-    - LV cavity volume
-    - Strain energy
-Current status:
-    DOCUMENTED NUMERICAL VALUES / RAW EXECUTION EXPORT PENDING
-Required evidence:
-    Patient-level machine-readable COMSOL output.
 
-ID: ART-022
-Artifact: Gravity-sweep result export
-Artifact type: Simulation result
-Patient scope:
-    P001–P005 × six gravity conditions
-Required structure:
-    One machine-readable record for every patient × gravity × endpoint
-    combination.
-Expected minimum structure:
-    Patient_ID
-    Gravity_G
-    LV_volume_mL
-    Peak_von_Mises_kPa
-    Peak_principal_strain_percent
-    Maximum_displacement_mm
-    Strain_energy_J
-Current status:
-    DOCUMENTED SUMMARY VALUES / RAW EXPORT NOT RECOVERED
-Required action:
-    Retain the complete machine-readable patient × gravity × endpoint
-    output.
+   
+    
 
-ID: ART-023
-Artifact: Figure 6 numerical source table
-Artifact type: Derived reporting artifact
-Specification:
-    Mean ± SD values across the five-patient cohort for the six gravity
-    conditions.
-Current status:
-    DOCUMENTED
-Evidence note:
-    The current record provides exact mean ± SD values for all six gravity
-    states and five endpoints.
-Important:
-    These summary values must remain distinguishable from raw COMSOL exports.
+    
+    
 
-ID: ART-024
-Artifact: Figure 6 normalized-response calculation
-Artifact type: Derived analysis
-Specification:
-    E_p(g) = value_at(g) / value_at(1.00 G) × 100
-Current status:
-    DOCUMENTED / CALCULATION VERIFIED FROM REPORTED SUMMARY VALUES
-Documented 0G-versus-1G changes:
-    Peak von Mises stress: -23.9%
-    Peak principal strain: -23.4%
-    Maximum displacement: -25.3%
-    LV cavity volume: +1.8%
-    Strain energy: -34.1%
-Important:
-    These are mathematical transformations of the reported summary means;
-    they do not establish independent verification of the underlying
-    COMSOL execution.
 
-ID: ART-025
-Artifact: Spatial FEM field exports
-Artifact type: Visualization input
-Specification:
-    Spatial stress and strain fields required for scientifically accurate
-    FEM contour maps.
-Current status:
-    NOT RECOVERED
-Required evidence:
-    Exported COMSOL field data.
-Important:
-    Peak numerical values must not be used to synthesize or infer spatial
-    stress/strain contours.
-
-ID: ART-026
-Artifact: Sensitivity-analysis definition
-Artifact type: Secondary analysis
-Patient scope: P001–P005
-Documented perturbations:
-    Fiber orientation: ±15 degrees
-    Material stiffness: ±20%
-    Basal constraint stiffness: ±20%
-    Cavity pressure: ±10%
-Current status:
-    DOCUMENTED DESIGN / EXECUTION OUTPUTS PENDING
-Required evidence:
-    Raw sensitivity-analysis outputs from the executed model.
-Important:
-    Expected ranges must not be presented as measured simulation results.
-
-ID: ART-027
-Artifact: Sensitivity-analysis outputs
-Artifact type: Secondary simulation result
-Patient scope: P001–P005
-Current status:
-    PENDING
-Required evidence:
-    Machine-readable outputs for each perturbation and endpoint.
-
-ID: ART-028
-Artifact: Execution timestamp
-Artifact type: Execution metadata
-Current status:
-    NOT RECOVERED
-Required action:
-    Record date/time of final model execution and, where possible, system
-    and software environment.
-
-ID: ART-029
-Artifact: Software environment record
-Artifact type: Reproducibility metadata
-Specification:
-    COMSOL Multiphysics 6.4.
-Required additional information:
-    Module(s), operating system, hardware/GPU configuration if relevant,
-    solver configuration, and any external scripts used.
-Current status:
-    PARTIALLY DOCUMENTED
-Required action:
-    Complete from the executed environment.
-
-ID: ART-030
-Artifact: SHA-256 checksums
-Artifact type: Integrity metadata
-Required files:
-    Final .mph model
-    Geometry files
-    Mesh exports
-    Solver logs
-    Gravity-sweep exports
-    Sensitivity outputs
-    Post-processing scripts
-Current status:
-    NOT RECOVERED
-Required action:
-    Generate SHA-256 checksums after final artifact collection.
-
-ID: ART-031
-Artifact: Post-processing scripts
-Artifact type: Derived-analysis code
-Specification:
-    Scripts used to calculate normalized responses, summary statistics,
-    figure data, and manuscript-facing derived quantities.
-Current status:
-    PENDING REPOSITORY RECONCILIATION
-Required action:
-    Retain exact executed script version and dependency information.
-
-ID: ART-032
-Artifact: Computational execution manifest
-Artifact type: Master provenance record
-Specification:
-    Machine-readable mapping between patient, model version, geometry,
-    mesh, solver execution, gravity condition, result export, and checksum.
-Current status:
-    PENDING
-Required action:
-    Create final manifest after execution artifacts are recovered/recreated.
-
-STAGE-3 GATE RULE
------------------
-A patient may receive a final PASS/GO designation only when the required
-execution evidence for that stage is present and traceable.
-
-The following cannot independently establish PASS/GO:
-    - A manuscript table
-    - A manually reconstructed value
-    - An expected range
-    - A figure generated from summary values
-    - A parameter specification without the executed model
-    - A statement that a simulation "passed" without its corresponding log
-      or artifact
-
-CURRENT GLOBAL STATUS
----------------------
-Model specification:
-    DOCUMENTED
-
-Source-data provenance:
-    DOCUMENTED / SOURCE FILE RECONCILIATION REQUIRED
-
-Patient-specific geometry:
-    PENDING EXECUTION ARTIFACT RECONCILIATION
-
-COMSOL .mph model:
-    NOT RECOVERED
-
-Mesh exports:
-    NOT RECOVERED
-
-Mesh convergence:
-    PENDING
-
-Solver logs:
-    PENDING
-
-Failed-element assessment:
-    PENDING
-
-Energy balance:
-    PENDING
-
-Baseline 1G execution evidence:
-    PENDING RAW EXPORT RECONCILIATION
-
-Gravity-sweep raw execution evidence:
-    NOT RECOVERED
-
-Sensitivity-analysis raw execution evidence:
-    PENDING
-
-FEM spatial field exports:
-    NOT RECOVERED
-
-Checksums:
-    NOT RECOVERED
-
-Final Stage-3 GO/NO-GO:
-    NO-GO / EVIDENCE PENDING
-
-REPOSITORY PRINCIPLE
---------------------
-The repository should preserve a strict distinction between:
-
-1. model specification,
-2. documented study values,
-3. derived calculations,
-4. recovered execution artifacts, and
-5. independently verified execution evidence.
-
-Only categories 4 and 5 should be used to establish final computational
-execution status.
-
-END OF FILE
