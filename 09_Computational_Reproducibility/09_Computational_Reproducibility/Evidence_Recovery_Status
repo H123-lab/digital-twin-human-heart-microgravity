@@ -1,0 +1,83 @@
+# Computational Evidence Recovery Status
+
+## Study
+Patient-Specific Cardiac Digital Twin Under Altered Gravity
+
+## Evidence-recovery status
+The computational evidence archive was reviewed according to the predefined
+Stage-3 recovery priorities.
+
+### Priority 1 — Native COMSOL model
+Status: NOT RECOVERED
+
+The native COMSOL `.mph` master model was not included in the public repository.
+The repository therefore does not claim complete native-model reproducibility.
+
+### Priority 2 — Geometry and meshes
+Status: PARTIALLY DOCUMENTED
+
+Patient-specific geometry reconstruction, mesh generation, mesh-quality
+assessment, and execution records are retained as derived documentation.
+Underlying source imaging remains at the originating dataset.
+
+### Priority 3 — Patient × gravity raw outputs
+Status: PARTIALLY RECOVERED / SOURCE VERIFICATION REQUIRED
+
+Structured gravity-result records are retained where available. Numerical
+values are not treated as definitive manuscript Results unless traceable to
+an executed computational export.
+
+### Priority 4 — Solver and numerical-verification records
+Status: PARTIALLY DOCUMENTED
+
+The repository contains solver configuration and convergence documentation.
+Complete native COMSOL solver logs are not claimed unless directly recovered
+from the executed model environment.
+
+### Priority 5 — Sensitivity-analysis outputs
+Status: PARTIALLY DOCUMENTED
+
+Sensitivity-analysis design and parameter definitions are retained.
+Numerical sensitivity values require traceability to executed model outputs
+before being reported as definitive Results.
+
+### Priority 6 — Spatial FEM fields
+Status: PARTIALLY RECOVERED
+
+Structured spatial field-export formats are documented. Complete patient-level
+field archives are not claimed unless directly recovered from the executed
+COMSOL model.
+
+### Priority 7 — Execution environment
+Status: DOCUMENTED
+
+The computational environment, COMSOL version, solver configuration and
+available hardware are recorded in the computational provenance documentation.
+
+### Priority 8 — SHA-256 checksums
+Status: PENDING
+
+Cryptographic checksums will only be reported after being generated directly
+from the final repository files. Placeholder or illustrative hashes are not
+used as evidence.
+
+### Priority 9 — Final execution manifest
+Status: PARTIALLY COMPLETED
+
+A centralized provenance and reconciliation structure has been established.
+Final manifest closure remains dependent on recovery/verification of the
+underlying computational artifacts.
+
+## Manuscript policy
+
+Only verified or directly traceable computational results are reported as
+quantitative manuscript findings. Documentation, candidate outputs and
+unverified numerical examples are not represented as measured experimental
+results.
+
+## Source-data policy
+
+Original source imaging datasets and restricted source files are not
+redistributed through this repository. The repository contains only
+de-identified study records, methodological documentation and study-derived
+computational artifacts permitted for dissemination.
