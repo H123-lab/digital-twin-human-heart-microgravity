@@ -55,7 +55,7 @@ The computational environment, COMSOL version, solver configuration and
 available hardware are recorded in the computational provenance documentation.
 
 ### Priority 8 — SHA-256 checksums
-Status: PENDING
+Status: Not Done
 
 Cryptographic checksums will only be reported after being generated directly
 from the final repository files. Placeholder or illustrative hashes are not
