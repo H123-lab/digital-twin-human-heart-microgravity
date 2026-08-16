@@ -1,0 +1,116 @@
+======================================================================
+SOLVER LOGS — FINAL REPOSITORY STATUS RECORD
+======================================================================
+
+Project:
+Patient-Specific Cardiac Digital Twin Under Altered Gravity
+
+File:
+solver_logs_final.txt
+
+Evidence classification:
+PARTIALLY DOCUMENTED / NATIVE SOLVER LOG VERIFICATION PENDING
+
+======================================================================
+PURPOSE
+======================================================================
+
+This file records the documented solver configuration and the status of
+solver-evidence recovery.
+
+It is NOT a substitute for native COMSOL-generated solver logs.
+
+No synthetic or manually constructed iteration sequence is presented as
+an executed COMSOL log.
+
+======================================================================
+DOCUMENTED SOLVER FRAMEWORK
+======================================================================
+
+Software:
+COMSOL Multiphysics 6.4
+
+Documented nonlinear solution:
+Newton-type nonlinear finite-element solution.
+
+Documented sparse-direct strategy:
+PARDISO.
+
+GPU/cuDSS:
+Documented as a possible COMSOL 6.4 acceleration option.
+
+Important:
+The exact solver backend used for each patient-level execution remains
+unverified unless demonstrated by the native *.mph model or native
+machine-generated execution record.
+
+======================================================================
+DOCUMENTED VERIFICATION TARGETS
+======================================================================
+
+Nonlinear residual:
+    predefined convergence criterion.
+
+Strict verification target:
+    1e-5
+
+Element integrity:
+    no inverted or degenerate elements.
+
+Minimum Jacobian quality:
+    > 0.35
+
+Mesh convergence:
+    predefined coarse/medium/fine comparison.
+
+Energy consistency:
+    predefined verification criterion.
+
+======================================================================
+PATIENT COHORT
+======================================================================
+
+patient002
+patient007
+patient015
+patient020
+patient027
+
+======================================================================
+CURRENT EVIDENCE STATUS
+======================================================================
+
+patient002:
+    Solver configuration documented.
+    Native solver log: NOT VERIFIED.
+
+patient007:
+    Solver configuration documented.
+    Native solver log: NOT VERIFIED.
+
+patient015:
+    Solver configuration documented.
+    Native solver log: NOT VERIFIED.
+
+patient020:
+    Solver configuration documented.
+    Native solver log: NOT VERIFIED.
+
+patient027:
+    Solver configuration documented.
+    Native solver log: NOT VERIFIED.
+
+======================================================================
+IMPORTANT MANUSCRIPT RULE
+======================================================================
+
+No numerical residual, iteration count, wall-clock time, memory
+consumption, Jacobian value, or solver success statement should be
+reported as an experimentally measured patient-level result unless it
+is directly recovered from a native computational artifact.
+
+Expected/documented values are not equivalent to measured results.
+
+Status:
+SOLVER VERIFICATION DOCUMENTATION COMPLETE.
+NATIVE LOG RECOVERY REMAINS PENDING.
