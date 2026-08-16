@@ -1,0 +1,302 @@
+======================================================================
+COMPREHENSIVE STUDY TRACEABILITY MATRIX
+======================================================================
+
+Project:
+Patient-Specific Cardiac Digital Twin Under Altered Gravity
+
+Evidence status:
+DOCUMENTED / PARTIALLY RECOVERED
+
+Purpose:
+To provide an auditable linkage between source datasets, selected
+subjects, derived anatomical inputs, finite-element model construction,
+simulation execution, and manuscript-facing outputs.
+
+======================================================================
+1. SOURCE DATASETS
+======================================================================
+
+Dataset:
+ACDC
+
+Role:
+Primary cardiac imaging source documented for patient-specific cardiac
+digital-twin cohort construction.
+
+Input type:
+Cine cardiac MRI with expert cardiac segmentation masks.
+
+Use in pipeline:
+Cohort selection
+→ segmentation verification
+→ geometry reconstruction
+→ patient-specific model generation.
+
+Redistribution:
+Source imaging data are not redistributed through this repository.
+
+Evidence status:
+DOCUMENTED.
+
+----------------------------------------------------------------------
+Dataset:
+Sunnybrook Cardiac Data
+
+Role:
+Reference cardiac imaging dataset evaluated during source-data
+assessment/methodological comparison.
+
+Use in final FEM cohort:
+Not treated as a source of final FEM geometries unless explicitly
+supported by the finalized cohort/execution record.
+
+Evidence status:
+DOCUMENTED AS REFERENCE RESOURCE.
+
+----------------------------------------------------------------------
+Dataset:
+CAMUS
+
+Role:
+Reference echocardiographic dataset for methodological/benchmark
+assessment.
+
+Use in final FEM cohort:
+Not treated as a source of final CMR FEM geometries unless explicitly
+supported by the finalized execution record.
+
+Evidence status:
+DOCUMENTED AS REFERENCE RESOURCE.
+
+======================================================================
+2. PATIENT-SPECIFIC COHORT
+======================================================================
+
+Final computational cohort documented in project records:
+
+    patient002
+    patient007
+    patient015
+    patient020
+    patient027
+
+Identifier type:
+De-identified study-level identifiers.
+
+Important:
+Patient-level diagnosis, frame numbers, voxel dimensions, mesh counts,
+and other numerical attributes should be considered final only when
+reconciled against the finalized cohort-selection and execution records.
+
+Evidence status:
+DOCUMENTED COHORT STRUCTURE / PATIENT-LEVEL EXECUTION RECONCILIATION
+PENDING.
+
+======================================================================
+3. ANATOMICAL INPUTS
+======================================================================
+
+Source:
+Verified cardiac segmentation masks.
+
+Derived artifact:
+Patient-specific ventricular/cardiac geometry.
+
+Processing pathway:
+
+Segmentation masks
+→ surface reconstruction
+→ surface quality control
+→ CAD/solid generation
+→ volumetric computational domain
+→ finite-element mesh.
+
+Evidence status:
+PARTIALLY DOCUMENTED / RECOVERY STATUS TO BE COMPLETED.
+
+======================================================================
+4. FINITE-ELEMENT DISCRETIZATION
+======================================================================
+
+Documented mesh strategy:
+
+    Coarse mesh
+    Medium mesh
+    Fine mesh
+
+Purpose:
+Numerical discretization and mesh-convergence assessment.
+
+Required verification evidence:
+
+    mesh files
+    element-quality statistics
+    convergence outputs
+    inverted-element assessment
+    native COMSOL mesh information where available.
+
+Evidence status:
+DOCUMENTED / PATIENT-LEVEL NATIVE ARTIFACT RECOVERY PENDING.
+
+======================================================================
+5. CONSTITUTIVE MODEL
+======================================================================
+
+Documented framework:
+
+    anisotropic hyperelastic myocardial mechanics
+    nearly incompressible representation
+    transmural myocardial fiber orientation
+    patient/model-specific loading
+    nonlinear finite-element solution.
+
+Fiber orientation:
+Documented as a transmural model-defined field.
+
+Exact patient-level implementation:
+To be verified against the final COMSOL model.
+
+======================================================================
+6. BOUNDARY AND LOADING CONDITIONS
+======================================================================
+
+Documented components:
+
+    gravity-dependent body force
+    cavity loading
+    basal mechanical constraint
+    epicardial/mechanical constraints according to model implementation.
+
+Gravity conditions specified in the study design:
+
+    0.00 g
+    0.16 g
+    0.38 g
+    0.50 g
+    0.75 g
+    1.00 g
+
+Only conditions confirmed in the final executed model should be reported
+as completed simulations.
+
+======================================================================
+7. SOLVER FRAMEWORK
+======================================================================
+
+Documented computational framework:
+
+    nonlinear finite-element solution
+    Newton-type nonlinear iteration
+    sparse direct solver strategy
+    PARDISO documented as CPU solver option.
+
+GPU/cuDSS:
+Documented as a possible COMSOL 6.4 computational option but not
+classified as patient-level verified unless demonstrated by native
+execution records.
+
+======================================================================
+8. NUMERICAL VERIFICATION
+======================================================================
+
+Verification framework includes:
+
+    mesh convergence
+    element quality
+    inverted-element detection
+    nonlinear residual convergence
+    energy consistency
+    geometric volume preservation
+    pressure-response consistency
+    gravity-response reproducibility
+    fiber sensitivity
+    material sensitivity
+    basal-boundary sensitivity
+    cavity-pressure sensitivity.
+
+Documented geometric divergence equation:
+
+    Delta V (%) =
+    |V_mask - V_mesh| / V_mask × 100
+
+Documented target:
+    Delta V <= 1.5%
+
+Documented minimum Jacobian-quality target:
+    > 0.35
+
+Documented strict residual target:
+    1e-5
+
+Actual patient-level values:
+Must be verified against native computational artifacts.
+
+======================================================================
+9. COMPUTATIONAL OUTPUTS
+======================================================================
+
+Expected computational artifacts:
+
+    patient-specific geometry
+    finite-element meshes
+    native COMSOL *.mph model
+    gravity-dependent results
+    solver convergence records
+    spatial FEM field exports
+    sensitivity-analysis outputs
+    execution registries
+    provenance records.
+
+Current evidence classification:
+
+    Native *.mph:
+        NOT VERIFIED / RECOVERY PENDING
+
+    Geometry:
+        PARTIALLY DOCUMENTED
+
+    Mesh:
+        PARTIALLY DOCUMENTED
+
+    Patient × gravity raw results:
+        PARTIALLY RECOVERED
+
+    Solver logs:
+        PARTIALLY DOCUMENTED / NATIVE VERIFICATION PENDING
+
+    Sensitivity outputs:
+        PARTIALLY DOCUMENTED
+
+    Spatial FEM fields:
+        PARTIALLY RECOVERED
+
+    Execution environment:
+        DOCUMENTED
+
+    SHA-256:
+        NOT YET GENERATED FROM FINAL VERIFIED ARTIFACTS
+
+======================================================================
+10. MANUSCRIPT RECONCILIATION
+======================================================================
+
+No manuscript-facing numerical value is considered a final measured
+simulation result solely because it appears in a planning workbook,
+expected-result table, example export, or draft computational record.
+
+Final hierarchy:
+
+Native COMSOL model
+→ native execution/output records
+→ geometry/mesh artifacts
+→ raw numerical outputs
+→ derived summaries
+→ manuscript tables
+→ figures
+→ Results
+→ Discussion.
+
+Status:
+TRACEABILITY FRAMEWORK COMPLETE.
+SOURCE-ARTIFACT RECONCILIATION REMAINS PENDING.
