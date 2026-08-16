@@ -1,0 +1,851 @@
+VERIFICATION PRIORITY 2–7 STATUS
+Patient-Specific Cardiac Digital Twin / COMSOL Finite-Element Model
+
+Repository location:
+09_Computational_Reproducibility/Verification_Priority_2_to_7_Status.txt
+
+Version:
+Stage-3 Evidence-Controlled Status Record
+
+Date:
+2026-08-16
+
+
+PURPOSE
+-------
+This file records the current evidence status for computational verification
+Priorities 2 through 7 following reconciliation of the recovered study
+records, computational artifact registry, simulation-result lineage,
+recovered-study tables, and table/figure reconciliation.
+
+The purpose is to preserve a strict distinction between:
+
+    documented model architecture,
+    documented study values,
+    expected or planned analyses,
+    recovered computational artifacts,
+    and independently verified execution evidence.
+
+No undocumented computational artifact is inferred to exist.
+
+
+CURRENT OVERALL STATUS
+----------------------
+The recovered project documentation demonstrates a coherent computational
+architecture for a five-patient ACDC-derived cardiac digital-twin study.
+
+However, the currently recovered materials do not establish independent
+execution verification of the patient-specific COMSOL finite-element models.
+
+Current Stage-3 status:
+
+    EVIDENCE PENDING
+
+Current final computational designation:
+
+    NO-GO FOR VERIFIED EXECUTION CLAIMS
+
+This designation does not invalidate the documented study architecture or
+recovered numerical records. It indicates that the underlying execution
+artifacts required to verify those records have not yet been recovered.
+
+
+COHORT
+------
+Patient-specific cohort:
+
+    P001
+    P002
+    P003
+    P004
+    P005
+
+Source dataset:
+
+    ACDC
+
+Role:
+
+    Primary source of patient-specific cine cardiac MRI and segmentation
+    information for the digital-twin cohort.
+
+Current provenance status:
+
+    DOCUMENTED
+
+Important limitation:
+
+    The currently recovered materials establish the intended source-data
+    provenance but do not independently demonstrate that the exact
+    geometry used in the FEM execution was generated from the corresponding
+    source files.
+
+
+PRIORITY 2 — PATIENT-SPECIFIC GEOMETRY AND MESH
+-----------------------------------------------
+
+2.1 Source imaging and segmentation
+
+Current knowledge:
+
+    The source ACDC cohort and the intended ED/ES segmentation records are
+    documented.
+
+The recovered source-level information is sufficient to identify which
+patient-specific ACDC frames and segmentation records should form the
+anatomical basis of the models.
+
+Current status:
+
+    SOURCE-LEVEL PROVENANCE DOCUMENTED
+
+What remains unverified:
+
+    A deterministic file-level linkage between each source segmentation
+    and the final geometry used in the FEM model.
+
+Required evidence:
+
+    - exact ACDC patient/source identifiers
+    - corresponding ED/ES segmentation files
+    - geometry reconstruction record
+    - patient-to-geometry mapping
+    - reconstruction version or execution record
+
+
+2.2 Surface reconstruction
+
+Documented workflow:
+
+    ACDC segmentation
+        ↓
+    surface reconstruction
+        ↓
+    surface quality control
+        ↓
+    repaired/validated geometry
+        ↓
+    CAD/solid generation
+        ↓
+    volumetric FEM domain
+
+Current status:
+
+    WORKFLOW DOCUMENTED
+
+Actual patient-specific surface artifacts:
+
+    NOT RECOVERED
+
+Actual reconstruction logs:
+
+    NOT RECOVERED
+
+Therefore:
+
+    The existence and exact form of the final patient-specific surfaces
+    cannot currently be independently verified.
+
+
+2.3 Surface quality control
+
+Previously documented criterion:
+
+    Surface-to-mask volume discrepancy ≤1.5%
+
+Previously documented study range:
+
+    0.67–1.08%
+
+Current evidence status:
+
+    DOCUMENTED / VERIFICATION PENDING
+
+Important:
+
+    The documented range must not be treated as independently verified
+    unless the corresponding surface geometry, segmentation comparison,
+    and QC export are available.
+
+
+2.4 Volumetric/CAD geometry
+
+Documented requirement:
+
+    Closed patient-specific solid/volumetric domains suitable for
+    finite-element analysis.
+
+Current status:
+
+    NOT RECOVERED
+
+Required evidence:
+
+    - final patient-specific solid geometry
+    - geometry filename/version
+    - patient identifier
+    - geometry-generation record
+    - conversion/reconstruction log where applicable
+
+
+2.5 Finite-element mesh
+
+Documented mesh hierarchy:
+
+    Coarse
+    Medium
+    Fine
+
+Previously documented element counts:
+
+    P001:
+        Coarse 184,260
+        Medium 392,840
+        Fine 781,560
+
+    P002:
+        Coarse 176,430
+        Medium 371,920
+        Fine 748,310
+
+    P003:
+        Coarse 191,740
+        Medium 406,380
+        Fine 816,220
+
+    P004:
+        Coarse 168,920
+        Medium 359,610
+        Fine 721,450
+
+    P005:
+        Coarse 183,510
+        Medium 388,470
+        Fine 779,830
+
+Status of these counts:
+
+    DOCUMENTED REGISTRY VALUES
+
+Independent mesh-export verification:
+
+    NOT COMPLETED
+
+Actual mesh artifacts:
+
+    NOT RECOVERED
+
+Required evidence:
+
+    - patient-specific coarse mesh
+    - patient-specific medium mesh
+    - patient-specific fine mesh
+    - element counts
+    - mesh-quality statistics
+    - mesh version identifiers
+    - linkage to the executed COMSOL model
+
+
+2.6 Mesh independence
+
+Documented design:
+
+    Three mesh levels were generated and assessed for numerical
+    independence.
+
+Previously documented criterion:
+
+    Fine-versus-medium variation ≤2%
+
+Previously documented range:
+
+    0.94–1.63%
+
+Current status:
+
+    DOCUMENTED / EXECUTION VERIFICATION PENDING
+
+Required evidence:
+
+    Actual mesh files plus machine-readable convergence calculations
+    generated from the corresponding executed model.
+
+Current manuscript-safe designation:
+
+    "Mesh-independence assessment was specified/performed in the recovered
+    study records."
+
+Do not use:
+
+    "Mesh independence was independently verified"
+
+until the underlying execution evidence is available.
+
+
+PRIORITY 3 — PATIENT × GRAVITY RAW RESULTS
+------------------------------------------
+
+3.1 Gravity architecture
+
+The recovered computational design specifies six gravity conditions:
+
+    1.00 G
+    0.75 G
+    0.50 G
+    0.38 G
+    0.16 G
+    0.00 G
+
+Gravity multiplier:
+
+    γ = 1.00, 0.75, 0.50, 0.38, 0.16, 0.00
+
+Effective gravity:
+
+    g_eff = γ × g0
+
+with:
+
+    g0 = 9.81 m/s²
+
+Primary simulation matrix:
+
+    5 patients × 6 gravity conditions = 30 patient-condition states.
+
+Current status:
+
+    MODEL/DESIGN DOCUMENTED
+
+
+3.2 Primary mechanical endpoints
+
+The recovered framework identifies the following primary outputs:
+
+    - Peak von Mises myocardial stress
+    - Peak principal strain
+    - Maximum ventricular displacement
+    - LV cavity volume
+    - Myocardial volume
+    - Ventricular strain energy
+
+Current status:
+
+    OUTPUT DEFINITIONS DOCUMENTED
+
+
+3.3 Raw patient × gravity result exports
+
+Required structure:
+
+    Patient_ID
+    Gravity_G
+    LV_volume_mL
+    Myocardial_volume_mL
+    Peak_von_Mises_kPa
+    Peak_principal_strain_percent
+    Maximum_displacement_mm
+    Strain_energy_J
+
+Additional execution metadata where available:
+
+    Solver_iterations
+    Final_residual
+    Failed_elements
+    Energy_balance_error
+    Model_version
+    Execution_timestamp
+
+Current status:
+
+    RAW PATIENT × GRAVITY EXPORTS NOT RECOVERED
+
+
+3.4 Existing gravity summary values
+
+The recovered study record contains cohort-level mean ± SD values for
+the six gravity conditions.
+
+These values are retained in:
+
+    Computational_Table_Figure_Reconciliation.txt
+
+and the associated recovered-study records.
+
+Current classification:
+
+    DOCUMENTED SUMMARY VALUES
+
+They are not classified as independently verified COMSOL output because
+the underlying patient × gravity machine-readable exports have not been
+recovered.
+
+
+PRIORITY 4 — SOLVER AND NUMERICAL VERIFICATION
+----------------------------------------------
+
+4.1 Solver architecture
+
+Documented solver:
+
+    Fully coupled Newton-type nonlinear solution
+
+Documented computational framework:
+
+    Geometrically nonlinear finite-element solid mechanics.
+
+Current status:
+
+    SOLVER SPECIFICATION DOCUMENTED
+
+
+4.2 Previously documented solver values
+
+The recovered records contain:
+
+    P001:
+        11 iterations
+        residual = 8.4 × 10^-7
+
+    P002:
+        13 iterations
+        residual = 6.9 × 10^-7
+
+    P003:
+        9 iterations
+        residual = 9.1 × 10^-7
+
+    P004:
+        14 iterations
+        residual = 7.6 × 10^-7
+
+    P005:
+        10 iterations
+        residual = 5.8 × 10^-7
+
+Current classification:
+
+    DOCUMENTED STUDY VALUES
+
+Current verification status:
+
+    RAW SOLVER LOGS NOT RECOVERED
+
+
+4.3 Failed-element assessment
+
+Documented study result:
+
+    0 failed elements
+
+Current status:
+
+    DOCUMENTED / VERIFICATION PENDING
+
+Required evidence:
+
+    COMSOL mesh/solver diagnostics or equivalent machine-readable output.
+
+
+4.4 Energy balance
+
+Documented verification criterion:
+
+    Energy-balance error ≤1%
+
+Current status:
+
+    DOCUMENTED CRITERION / EXECUTION EVIDENCE PENDING
+
+Required evidence:
+
+    Actual energy-balance calculation linked to the executed simulation.
+
+
+PRIORITY 5 — SENSITIVITY ANALYSIS
+---------------------------------
+
+5.1 Sensitivity architecture
+
+The recovered study design specifies four independent perturbation
+categories:
+
+    A. Fiber orientation
+       ±15°
+
+    B. Material stiffness/parameterization
+       ±20%
+
+    C. Basal boundary-condition stiffness
+       ±20%
+
+    D. Cavity pressure
+       ±10%
+
+Current status:
+
+    SENSITIVITY DESIGN DOCUMENTED
+
+
+5.2 Fiber orientation sensitivity
+
+Baseline fiber architecture:
+
+    Endocardial helix angle:
+        +60°
+
+    Epicardial helix angle:
+        -60°
+
+Perturbation:
+
+    ±15°
+
+Current status:
+
+    DESIGN DOCUMENTED
+
+Previously recovered numerical tables:
+
+    Table 36
+
+Classification:
+
+    DOCUMENTED STUDY VALUES
+
+Raw execution outputs:
+
+    NOT RECOVERED
+
+
+5.3 Material sensitivity
+
+Perturbation:
+
+    ±20%
+
+Previously recovered numerical table:
+
+    Table 37
+
+Classification:
+
+    DOCUMENTED STUDY VALUES
+
+Raw execution outputs:
+
+    NOT RECOVERED
+
+
+5.4 Basal boundary-condition sensitivity
+
+Perturbation:
+
+    ±20%
+
+Previously recovered numerical table:
+
+    Table 38
+
+Classification:
+
+    DOCUMENTED STUDY VALUES
+
+Raw execution outputs:
+
+    NOT RECOVERED
+
+
+5.5 Pressure sensitivity
+
+Perturbation:
+
+    ±10%
+
+Previously recovered numerical tables:
+
+    Table 35
+    Table 39
+
+Classification:
+
+    DOCUMENTED STUDY VALUES
+
+Raw execution outputs:
+
+    NOT RECOVERED
+
+
+5.6 Sensitivity-analysis reporting rule
+
+Previously documented percentage changes and expected ranges are retained
+for provenance and reconciliation.
+
+They must not be described as independently verified simulation results
+until the underlying raw sensitivity outputs are recovered or recreated.
+
+Expected ranges must not be substituted for actual execution results.
+
+
+PRIORITY 6 — SPATIAL FEM FIELD EXPORTS
+--------------------------------------
+
+Required spatial fields for final FEM visualization include, where
+implemented:
+
+    - von Mises stress
+    - maximum principal strain
+    - displacement magnitude
+    - fiber-direction stress
+    - fiber-direction strain
+    - strain-energy density
+
+Current status:
+
+    SPATIAL FIELD EXPORTS NOT RECOVERED
+
+
+Figure implication:
+
+    Figure 6:
+        Cohort-level numerical response can remain documented/derived.
+
+    Figure 7:
+        Spatial FEM contour visualization remains PENDING.
+
+Critical rule:
+
+    Spatial contours must be generated from actual exported FEM field data.
+
+Peak summary values must not be used to reconstruct spatial stress,
+strain, displacement, or energy contours.
+
+
+PRIORITY 7 — EXECUTION ENVIRONMENT
+----------------------------------
+
+7.1 Confirmed software
+
+Software:
+
+    COMSOL Multiphysics 6.4
+
+Current status:
+
+    DOCUMENTED / VERSION TO BE CONFIRMED AGAINST EXECUTED MODEL
+
+
+7.2 Computational environment
+
+The following information is required but is not currently established
+by recovered execution evidence:
+
+    Operating system:
+        NOT RECOVERED
+
+    CPU:
+        NOT RECOVERED
+
+    RAM:
+        NOT RECOVERED
+
+    GPU:
+        NOT RECOVERED
+
+    COMSOL modules:
+        NOT RECOVERED
+
+    Exact solver configuration:
+        PARTIALLY DOCUMENTED
+
+    Execution date/time:
+        NOT RECOVERED
+
+    Model filename:
+        NOT RECOVERED
+
+    Model version:
+        NOT RECOVERED
+
+    Export version:
+        NOT RECOVERED
+
+
+7.3 Environment reporting rule
+
+No CPU, GPU, RAM, operating-system, execution timestamp, module, or
+hardware information should be invented or inferred.
+
+Only information directly supported by the executed computational
+environment should be entered into the final reproducibility record.
+
+
+CURRENT ARCHITECTURAL COHERENCE
+-------------------------------
+Despite the missing execution artifacts, the recovered documentation
+contains a coherent computational architecture:
+
+Cohort:
+    Five ACDC subjects
+
+Geometry:
+    Patient-specific ventricular geometry
+
+Fiber architecture:
+    +60° endocardial → -60° epicardial transmural field
+
+Constitutive model:
+    Anisotropic Holzapfel–Ogden-type passive formulation
+
+Compressibility:
+    Nearly incompressible treatment
+
+Gravity:
+    1.00 → 0.75 → 0.50 → 0.38 → 0.16 → 0.00 G
+
+Primary simulation states:
+    30 patient × gravity conditions
+
+Primary mechanical endpoints:
+    Stress
+    Strain
+    Displacement
+    LV volume
+    Myocardial volume
+    Strain energy
+
+Verification framework:
+    Geometry QC
+    Fiber QC
+    Material verification
+    Mesh convergence
+    Solver convergence
+    Failed-element assessment
+    Energy balance
+    Sensitivity analysis
+    Provenance
+    Reproducibility
+
+Assessment:
+
+    ARCHITECTURALLY COHERENT
+
+Important:
+
+    Architectural coherence does not constitute execution verification.
+
+
+CURRENT EVIDENCE MATRIX
+-----------------------
+
+Component                         Status
+---------------------------------------------------------------
+ACDC source provenance           DOCUMENTED
+ED/ES segmentation provenance    DOCUMENTED
+Geometry reconstruction design   DOCUMENTED
+Actual patient geometry          NOT RECOVERED
+Surface QC                       PENDING
+CAD/solid geometry               NOT RECOVERED
+Coarse mesh                      NOT RECOVERED
+Medium mesh                      NOT RECOVERED
+Fine mesh                        NOT RECOVERED
+Mesh convergence                 PENDING
+Fiber-field design               DOCUMENTED
+Fiber implementation artifact    NOT RECOVERED
+Material model specification     DOCUMENTED
+Material parameter registry      PENDING COMPLETE RECONCILIATION
+Boundary-condition design        DOCUMENTED
+Pressure-loading design          DOCUMENTED
+Gravity-loading design           DOCUMENTED
+COMSOL model                     NOT RECOVERED
+Solver specification             DOCUMENTED
+Solver logs                      NOT RECOVERED
+Failed-element evidence          PENDING
+Energy-balance evidence          PENDING
+1G raw results                   NOT RECOVERED
+Patient × gravity raw results    NOT RECOVERED
+Gravity summary values           DOCUMENTED
+Normalized response calculations DERIVED
+Fiber sensitivity results        DOCUMENTED / PENDING RAW OUTPUT
+Material sensitivity results     DOCUMENTED / PENDING RAW OUTPUT
+Basal-BC sensitivity results     DOCUMENTED / PENDING RAW OUTPUT
+Pressure sensitivity results     DOCUMENTED / PENDING RAW OUTPUT
+Spatial FEM fields               NOT RECOVERED
+Execution environment            PARTIALLY DOCUMENTED
+Execution timestamps             NOT RECOVERED
+SHA-256 checksums                NOT RECOVERED
+Execution manifest               NOT YET BUILT
+
+
+MANUSCRIPT-SAFE STATUS
+----------------------
+The current evidence supports description of the computational framework
+and its intended simulation architecture.
+
+The current evidence does NOT yet support unconditional claims that:
+
+    - all five patient-specific models were successfully executed;
+    - all simulations converged;
+    - mesh independence was verified;
+    - no elements failed;
+    - energy balance satisfied the stated criterion;
+    - sensitivity analyses were successfully executed;
+    - spatial FEM fields were generated;
+    - the reported numerical values were directly generated by the
+      currently recoverable COMSOL model.
+
+The manuscript should therefore distinguish between:
+
+    computational framework description
+
+and:
+
+    verified computational execution results.
+
+
+NEXT ACTION
+-----------
+The next verification action remains:
+
+    PRIORITY 1 — RECOVER THE EXECUTED COMSOL *.mph MODEL
+
+Target files include:
+
+    patient001.mph
+    patient002.mph
+    patient003.mph
+    patient004.mph
+    patient005.mph
+
+or:
+
+    Cardiac_Digital_Twin_Master.mph
+
+or an equivalent parametrized COMSOL model containing the patient-specific
+geometry, material model, fiber field, boundary conditions, loading,
+mesh, solver, and study definitions.
+
+If the original .mph model cannot be recovered, the project must explicitly
+transition to a controlled model-recreation pathway rather than treating
+documented numerical values as verified execution outputs.
+
+
+DECISION
+--------
+Current evidence classification:
+
+    ARCHITECTURE = COHERENT
+    DOCUMENTATION = SUBSTANTIAL
+    NUMERICAL RECORDS = RECOVERED/DOCUMENTED
+    EXECUTION ARTIFACTS = INCOMPLETE
+    INDEPENDENT COMPUTATIONAL VERIFICATION = PENDING
+
+Final Stage-3 status:
+
+    NO-GO FOR VERIFIED EXECUTION CLAIMS
+
+This status should remain unchanged until the required computational
+execution evidence is recovered or the model is deterministically recreated,
+executed, audited, and reconciled.
+
+
+END OF FILE
