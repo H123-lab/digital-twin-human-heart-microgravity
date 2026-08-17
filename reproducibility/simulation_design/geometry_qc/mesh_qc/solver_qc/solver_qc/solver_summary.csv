@@ -1,0 +1,6 @@
+Patient_ID,Model_identifier,Solver,Study_step,Nonlinear_iterations,Final_residual,Failed_elements,Energy_balance_error,Status,Date_time
+P001,P001_LV_FEM_v1.0,Fully coupled Newton,Stationary nonlinear FEM,11,8.4e-7,0,<=1%,CONVERGED,12-Mar-2026 14:18:37
+P002,P002_LV_FEM_v1.0,Fully coupled Newton,Stationary nonlinear FEM,13,6.9e-7,0,<=1%,CONVERGED,14-Mar-2026 10:42:16
+P003,P003_LV_FEM_v1.0,Fully coupled Newton,Stationary nonlinear FEM,10,7.7e-7,0,<=1%,CONVERGED,17-Mar-2026 16:07:51
+P004,P004_LV_FEM_v1.0,Fully coupled Newton,Stationary nonlinear FEM,14,9.1e-7,0,<=1%,CONVERGED,20-Mar-2026 11:36:24
+P005,P005_LV_FEM_v1.0,Fully coupled Newton,Stationary nonlinear FEM,12,7.3e-7,0,<=1%,CONVERGED,23-Mar-2026 09:24:43
