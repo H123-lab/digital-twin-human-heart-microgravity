@@ -1,0 +1,31 @@
+PATIENT-SPECIFIC CARDIAC FIBER FIELD DEFINITION
+
+Study:
+Patient-specific LV gravity solid-mechanics study
+
+Fiber-field construction:
+The myocardial fiber field is model-defined rather than derived from patient-specific diffusion-tensor MRI.
+
+Endocardial fiber angle:
++60 degrees
+
+Epicardial fiber angle:
+-60 degrees
+
+Transmural behavior:
+Continuous helical interpolation between the endocardial and epicardial fiber orientations.
+
+Transmural coordinate:
+eta = [native definition to be retained/recovered from the model]
+
+Fiber-angle function:
+alpha(eta) = [native equation to be retained/recovered from the model]
+
+Coordinate system:
+[native coordinate-system definition]
+
+Interpolation method:
+Continuous transmural interpolation.
+
+Important reproducibility note:
+The numerical endocardial and epicardial angle definitions are documented here. The exact native COMSOL implementation of the transmural coordinate, interpolation equation, coordinate system, and spatial vector expression should be recovered from the native model before being described as fully reproduced.
