@@ -1,0 +1,14 @@
+Validation_ID,Dataset_A,Dataset_B,Variable,Comparison_scope,Status,Action_required
+V001,gravity_results.csv,gravity_1G_vs_0G_summary.csv,Peak stress,1G values across P001-P005,PASS,No action
+V002,gravity_results.csv,gravity_1G_vs_0G_summary.csv,Peak principal strain,1G values across P001-P005,PASS,No action
+V003,gravity_results.csv,gravity_1G_vs_0G_summary.csv,Maximum displacement,1G values across P001-P005,PASS,No action
+V004,gravity_results.csv,gravity_1G_vs_0G_summary.csv,Peak stress,0G values across P001-P005,PASS,No action
+V005,gravity_results.csv,gravity_1G_vs_0G_summary.csv,Peak principal strain,0G values across P001-P005,PASS,No action
+V006,gravity_results.csv,gravity_1G_vs_0G_summary.csv,Maximum displacement,0G values across P001-P005,PASS,No action
+V007,gravity_results.csv,sensitivity_outputs.csv,1G baseline stress,P001-P005,REVIEW,Confirm baseline provenance
+V008,gravity_results.csv,sensitivity_outputs.csv,1G baseline strain,P001-P005,REVIEW,Confirm baseline provenance
+V009,gravity_results.csv,sensitivity_outputs.csv,1G baseline displacement,P001-P005,REVIEW,Confirm baseline provenance
+V010,mesh_convergence_registry.csv,native solver/model outputs,Fine-versus-medium endpoint, P001-P005,PENDING,Natively verify unrounded endpoint values
+V011,solver_summary.csv,native_solver_logs/,Iteration count and final residual,P001-P005,PASS,No action
+V012,geometry_qc_registry.csv,native geometry artifacts,Geometry QC,P001-P005,REVIEW,Retain as documented QC evidence
+V013,fiber_field_definition.txt,native COMSOL model,Fiber implementation,P001-P005,PENDING,Verify native coordinate and interpolation implementation if available
