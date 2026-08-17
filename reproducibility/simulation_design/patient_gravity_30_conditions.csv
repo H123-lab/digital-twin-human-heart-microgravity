@@ -1,0 +1,31 @@
+Condition_ID,Patient_ID,Gravity_G,Gravity_fraction_of_Earth_g,Gravity_condition
+C001,P001,1.00,1.00,Earth-normal gravity
+C002,P001,0.75,0.75,0.75 G
+C003,P001,0.50,0.50,0.50 G
+C004,P001,0.38,0.38,Mars-analog gravity
+C005,P001,0.16,0.16,0.16 G
+C006,P001,0.00,0.00,Microgravity
+C007,P002,1.00,1.00,Earth-normal gravity
+C008,P002,0.75,0.75,0.75 G
+C009,P002,0.50,0.50,0.50 G
+C010,P002,0.38,0.38,Mars-analog gravity
+C011,P002,0.16,0.16,0.16 G
+C012,P002,0.00,0.00,Microgravity
+C013,P003,1.00,1.00,Earth-normal gravity
+C014,P003,0.75,0.75,0.75 G
+C015,P003,0.50,0.50,0.50 G
+C016,P003,0.38,0.38,Mars-analog gravity
+C017,P003,0.16,0.16,0.16 G
+C018,P003,0.00,0.00,Microgravity
+C019,P004,1.00,1.00,Earth-normal gravity
+C020,P004,0.75,0.75,0.75 G
+C021,P004,0.50,0.50,0.50 G
+C022,P004,0.38,0.38,Mars-analog gravity
+C023,P004,0.16,0.16,0.16 G
+C024,P004,0.00,0.00,Microgravity
+C025,P005,1.00,1.00,Earth-normal gravity
+C026,P005,0.75,0.75,0.75 G
+C027,P005,0.50,0.50,0.50 G
+C028,P005,0.38,0.38,Mars-analog gravity
+C029,P005,0.16,0.16,0.16 G
+C030,P005,0.00,0.00,Microgravity
