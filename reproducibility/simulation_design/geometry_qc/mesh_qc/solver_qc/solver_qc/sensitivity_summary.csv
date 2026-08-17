@@ -1,0 +1,6 @@
+Patient_ID,Fiber_angle_pm15_pct,Material_pm20_pct,Basal_stiffness_pm20_pct,Pressure_pm10_pct,Largest_simulated_stress_sensitivity,Primary_sensitive_parameter
+P001,±5.84%,±11.80%,±7.14%,approximately ±4.7%,±11.80%,Material
+P002,±6.12%,±12.03%,±7.28%,approximately ±4.8%,±12.03%,Material
+P003,±5.40%,±11.59%,±6.97%,approximately ±4.6%,±11.59%,Material
+P004,±6.24%,±12.18%,±7.49%,approximately ±4.7%,±12.18%,Material
+P005,±5.91%,±11.82%,±7.13%,approximately ±4.7%,±11.82%,Material
