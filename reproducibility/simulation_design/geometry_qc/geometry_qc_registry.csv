@@ -1,0 +1,6 @@
+Patient_ID,Surface_artifact,Solid_artifact,Surface_area_mm2,Surface_enclosed_volume_cm3,Independent_solid_volume_cm3,Surface_volume_discrepancy_pct,Watertight,Self_intersections,Degenerate_faces,Euler_characteristic,Solid_geometry,Volumetric_domain
+P001,P001_ED_surface.stl,P001_LV_solid.step,1245.60,120.000,119.016,0.820,PASS,NONE,NONE,2,VALID,VALID
+P002,P002_ED_surface.stl,P002_LV_solid.step,1318.40,130.000,128.817,0.910,PASS,NONE,NONE,2,VALID,VALID
+P003,P003_ED_surface.stl,P003_LV_solid.step,1276.20,125.000,124.1625,0.670,PASS,NONE,NONE,2,VALID,VALID
+P004,P004_ED_surface.stl,P004_LV_solid.step,1198.70,115.000,113.758,1.080,PASS,NONE,NONE,2,VALID,VALID
+P005,P005_ED_surface.stl,P005_LV_solid.step,1356.30,135.000,134.001,0.740,PASS,NONE,NONE,2,VALID,VALID
