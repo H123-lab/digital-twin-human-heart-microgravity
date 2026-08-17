@@ -1,0 +1,6 @@
+Patient_ID,Comparison,Reported_difference_pct,Criterion_pct,Status,Native_endpoint_verification_required
+P001,Fine_vs_Medium,1.21,2.00,PASS,YES
+P002,Fine_vs_Medium,1.47,2.00,PASS,YES
+P003,Fine_vs_Medium,0.94,2.00,PASS,YES
+P004,Fine_vs_Medium,1.63,2.00,PASS,YES
+P005,Fine_vs_Medium,1.18,2.00,PASS,YES
